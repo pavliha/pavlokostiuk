@@ -28,6 +28,7 @@
         <div class="font-bold text-lg tracking-tight">pavlokostiuk.cloud</div>
         <ul class="flex gap-8">
             <li><a href="#experience" class="text-sm text-zinc-400 hover:text-white transition-colors">Experience</a></li>
+            <li><a href="#projects" class="text-sm text-zinc-400 hover:text-white transition-colors">Projects</a></li>
             <li><a href="#skills" class="text-sm text-zinc-400 hover:text-white transition-colors">Skills</a></li>
             <li><a href="#contact" class="text-sm text-zinc-400 hover:text-white transition-colors">Contact</a></li>
         </ul>
@@ -221,6 +222,130 @@
             </div>
         </div>
 
+    </div>
+</section>
+
+<hr class="border-zinc-800 max-w-5xl mx-auto">
+
+<!-- Projects -->
+<section id="projects" class="py-20 px-6 max-w-5xl mx-auto">
+    <p class="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-3">Projects</p>
+    <h2 class="text-3xl font-bold tracking-tight mb-4">Into.ge</h2>
+    <p class="text-zinc-400 max-w-2xl mb-4">
+        Full-stack e-commerce platform for a 3D printing store in Tbilisi, Georgia. Built from scratch as a solo developer — storefront, admin panel, inventory management, checkout with bank integration, and bilingual support (Georgian + English).
+    </p>
+    <div class="flex items-center gap-3 mb-10">
+        <a href="https://beta.into.ge" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Visit Site
+        </a>
+        <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Next.js</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">React</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Drizzle ORM</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Turso</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Tailwind CSS</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Meilisearch</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Playwright</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">AWS S3</span>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-8">
+
+        <!-- Homepage -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-homepage.png" alt="Into.ge homepage showing hero section and product categories" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Homepage with Dynamic Sections</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Hero section with CTAs, product category cards with images, trust indicators, and delivery/payment info. The homepage sections are fully configurable from the admin panel.</p>
+            </div>
+        </div>
+
+        <!-- Shop -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-shop.png" alt="Into.ge shop page with product filters and catalog" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Shop with Advanced Filtering</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Product catalog with category tree, price range sliders, brand/color/weight filters, and technical attribute filters (tensile strength, heat distortion, etc.). Powered by Meilisearch for instant full-text search across 77+ products.</p>
+            </div>
+        </div>
+
+        <!-- Product -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-product.png" alt="Into.ge product detail page with variant selection" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Product Page with Variants</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Product detail pages with image gallery, color variant selection, discount badges, stock status, and add-to-cart. Includes breadcrumb navigation, social sharing, and delivery guarantees.</p>
+            </div>
+        </div>
+
+        <!-- Services -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-services.png" alt="Into.ge 3D printing services page" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">3D Printing Services</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Service booking flow for 3D printing, scanning, and modeling. Customers upload CAD files, receive quotes within 24 hours, and track order status. Includes a portfolio gallery of completed projects.</p>
+            </div>
+        </div>
+
+        <!-- Admin Dashboard -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-admin-dashboard.png" alt="Into.ge admin dashboard with orders, products, and revenue" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Admin Dashboard</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Overview panel with total orders, product count, revenue stats, and recent order activity. Sidebar navigation gives access to orders, shop management, inventory, finance, POS, services, reports, customers, and settings.</p>
+            </div>
+        </div>
+
+        <!-- Admin Products -->
+        <div class="bg-surface border border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-admin-products.png" alt="Into.ge admin product management with grid view" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Product Management</h3>
+                <p class="text-zinc-400 text-sm leading-relaxed">Admin product catalog with grid view, stock indicators, category/stock filters, search, and bulk import/export. Each product supports variants, images, translations, technical attributes, and discount rules.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- What I Built -->
+    <div class="mt-10 bg-surface border border-zinc-800 rounded-2xl p-6">
+        <h3 class="text-lg font-semibold mb-4">What I Built</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Full e-commerce storefront with cart, checkout, and Bank of Georgia payment integration</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Admin panel with product, order, inventory, discount, and customer management</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Inventory system with stock tracking, warehouse transfers, and movement history</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Point-of-sale (POS) system for in-store sales with customer phone lookup</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Bilingual support (Georgian + English) with translated product content</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">97 end-to-end Playwright tests covering checkout, admin, and cart flows</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Telegram notifications for new orders and service requests</p>
+            </div>
+            <div class="flex items-start gap-2">
+                <span class="text-indigo-400 mt-0.5">-</span>
+                <p class="text-zinc-400 text-sm">Transactional emails via AWS SES for order confirmations and quotes</p>
+            </div>
+        </div>
     </div>
 </section>
 
