@@ -55,6 +55,48 @@
 
 <!-- Hero -->
 <header class="min-h-screen flex items-end px-6 sm:px-10 pb-16 pt-24 relative overflow-hidden noise">
+    <!-- Abstract geometric SVG -->
+    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[500px] h-[500px] sm:w-[600px] sm:h-[600px] lg:w-[700px] lg:h-[700px] opacity-[0.15] pointer-events-none z-0">
+        <svg viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#6366f1"/>
+                    <stop offset="50%" stop-color="#a855f7"/>
+                    <stop offset="100%" stop-color="#ec4899"/>
+                </linearGradient>
+            </defs>
+            <!-- Connecting lines -->
+            <line x1="120" y1="80" x2="280" y2="160" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="280" y1="160" x2="400" y2="100" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="280" y1="160" x2="320" y2="300" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="120" y1="80" x2="80" y2="240" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="80" y1="240" x2="200" y2="350" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="200" y1="350" x2="320" y2="300" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="320" y1="300" x2="440" y2="260" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="400" y1="100" x2="440" y2="260" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="200" y1="350" x2="340" y2="430" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="320" y1="300" x2="340" y2="430" stroke="url(#heroGrad)" stroke-width="1"/>
+            <line x1="80" y1="240" x2="320" y2="300" stroke="url(#heroGrad)" stroke-width="0.5"/>
+            <line x1="120" y1="80" x2="320" y2="300" stroke="url(#heroGrad)" stroke-width="0.5"/>
+            <!-- Nodes -->
+            <circle cx="120" cy="80" r="6" fill="url(#heroGrad)"/>
+            <circle cx="280" cy="160" r="8" fill="url(#heroGrad)"/>
+            <circle cx="400" cy="100" r="5" fill="url(#heroGrad)"/>
+            <circle cx="80" cy="240" r="7" fill="url(#heroGrad)"/>
+            <circle cx="320" cy="300" r="10" fill="url(#heroGrad)"/>
+            <circle cx="200" cy="350" r="6" fill="url(#heroGrad)"/>
+            <circle cx="440" cy="260" r="5" fill="url(#heroGrad)"/>
+            <circle cx="340" cy="430" r="7" fill="url(#heroGrad)"/>
+            <!-- Outer rings -->
+            <circle cx="280" cy="160" r="20" stroke="url(#heroGrad)" stroke-width="0.5" fill="none"/>
+            <circle cx="320" cy="300" r="24" stroke="url(#heroGrad)" stroke-width="0.5" fill="none"/>
+            <circle cx="120" cy="80" r="16" stroke="url(#heroGrad)" stroke-width="0.5" fill="none"/>
+            <!-- Dashed orbits -->
+            <circle cx="250" cy="250" r="180" stroke="url(#heroGrad)" stroke-width="0.5" stroke-dasharray="4 8" fill="none"/>
+            <circle cx="250" cy="250" r="120" stroke="url(#heroGrad)" stroke-width="0.3" stroke-dasharray="2 6" fill="none"/>
+        </svg>
+    </div>
+
     <div class="max-w-6xl w-full mx-auto relative z-10">
         <h1 class="display-text font-extrabold text-white mb-6">PAVLO<br><span class="bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">KOSTIUK</span></h1>
         <div class="w-24 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mb-6"></div>
