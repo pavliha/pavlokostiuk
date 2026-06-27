@@ -302,6 +302,71 @@
 <!-- Projects -->
 <section id="projects" class="py-20 px-6 max-w-5xl mx-auto">
     <p class="text-xs font-semibold uppercase tracking-widest text-indigo-400 mb-3">Projects</p>
+    <h2 class="text-3xl font-bold tracking-tight mb-4">Aircast</h2>
+    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-4">
+        A drone connectivity platform I founded — streams live video and MAVLink telemetry over 4G/LTE from a Raspberry Pi payload to a browser anywhere in the world. The web console lets operators watch live RTSP/WebRTC/HLS feeds, manage the camera source, monitor the cellular link, and connect a ground station, with secure remote access over Tailscale.
+    </p>
+    <div class="flex items-center gap-3 mb-10">
+        <a href="https://aircast.one" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Visit Site
+        </a>
+        <div class="flex flex-wrap gap-1.5">
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">React</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">WebRTC</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">MediaMTX</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">MAVLink</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Raspberry Pi</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Tailscale</span>
+            <span class="text-xs px-2.5 py-1 rounded-md bg-indigo-500/10 text-indigo-400 border border-indigo-500/15">Kubernetes</span>
+        </div>
+    </div>
+
+    <div class="flex flex-col gap-8">
+
+        <!-- Overview -->
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/aircast-overview.png" alt="Aircast console overview showing live video links, telemetry, and cellular status" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Operations Overview</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">Single-pane status for each drone unit — services up, cellular link quality, data usage, and a live video panel with one-click RTSP, WebRTC, and HLS stream URLs. Telemetry endpoint is exposed right alongside for ground-station connection.</p>
+            </div>
+        </div>
+
+        <!-- Streaming -->
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/aircast-streaming.png" alt="Aircast streaming page with RTSP, WebRTC, HLS endpoints and camera source config" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Live Video Streaming</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">MediaMTX-backed streaming with simultaneous RTSP, WebRTC, and HLS outputs from a single camera source. Operators set the upstream camera URL and changes apply live, with a reachability check on the feed.</p>
+            </div>
+        </div>
+
+        <!-- Telemetry -->
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/aircast-telemetry.png" alt="Aircast telemetry page exposing a MAVLink UDP endpoint for ground stations" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">MAVLink Telemetry</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">MAVP2P bridges the drone's MAVLink stream to a public UDP endpoint, so QGroundControl or Mission Planner can connect over the cellular link as if the aircraft were on the local network.</p>
+            </div>
+        </div>
+
+        <!-- Network -->
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/aircast-network.png" alt="Aircast network page showing cellular modem, interface priority, and Tailscale connection" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Network &amp; Connectivity</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">Live view of the cellular modem (signal, APN, data usage) with interface priority and failover between cellular, wired, and Wi-Fi uplinks. Tailscale provides secure remote access to every field unit without any port forwarding.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<hr class="border-zinc-200 dark:border-zinc-800 max-w-5xl mx-auto">
+
+<!-- Projects: Into.ge -->
+<section class="py-20 px-6 max-w-5xl mx-auto">
     <h2 class="text-3xl font-bold tracking-tight mb-4">Into.ge</h2>
     <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-4">
         Full-stack e-commerce platform for a 3D printing store in Tbilisi, Georgia. Built from scratch as a solo developer — storefront, admin panel, inventory management, checkout with bank integration, and bilingual support (Georgian + English).
