@@ -72,6 +72,10 @@ jobs:
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
             [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
           done
+          for path in /sitemap.xml /robots.txt; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
+            [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
+          done
           for path in / /ecommerce /ecommerce.html /index.html; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
             [ "$code" = "301" ] || { echo "FAIL $path -> $code (expected 301)"; fail=1; }
