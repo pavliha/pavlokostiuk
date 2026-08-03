@@ -2,12 +2,13 @@
   "name": "pavlokostiuk-cloud",
   "private": true,
   "scripts": {
-    "dev": "next dev",
+    "dev": "next dev -p 3020",
     "build": "next build",
-    "start": "npx serve out",
+    "start": "npx --yes serve out -l 3020 --no-clipboard",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
-    "test": "playwright test"
+    "test": "playwright test",
+    "preview": "npm run build && npm run start"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",
