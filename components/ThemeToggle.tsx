@@ -1,15 +1,14 @@
 "use client"
 
 const toggle = () => {
-  const html = document.documentElement
-  const isDark = html.classList.toggle("dark")
-  localStorage.theme = isDark ? "dark" : "light"
+  const isDark = document.documentElement.classList.toggle("dark")
+  window.localStorage.theme = isDark ? "dark" : "light"
 }
 
-const ThemeToggle = () => (
+const ThemeToggle = ({ label }: { label: string }) => (
   <button
     onClick={toggle}
-    aria-label="Toggle theme"
+    aria-label={label}
     className="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors shrink-0"
   >
     <svg className="hidden dark:block" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">

@@ -3,7 +3,7 @@ import TagList from "./TagList"
 export type Experience = {
   title: string
   role: string
-  via?: string
+  via: string
   duration: string
   body: string
   tags: readonly string[]
@@ -15,7 +15,7 @@ const ExperienceCard = ({ title, role, via, duration, body, tags }: Experience) 
       <div>
         <h3 className="text-lg font-semibold">{title}</h3>
         <div className="text-indigo-700 dark:text-indigo-300 text-sm font-medium">
-          {role} {via ? <span className="text-zinc-600 dark:text-zinc-400">via {via}</span> : null}
+          {role} {via ? <span className="text-zinc-600 dark:text-zinc-400">{via}</span> : null}
         </div>
       </div>
       <span className="text-xs text-zinc-600 dark:text-zinc-300 bg-accent/10 px-3 py-1 rounded-md whitespace-nowrap">

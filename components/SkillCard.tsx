@@ -1,7 +1,7 @@
-import type { Skill } from "@/content/skills"
-
 import PanelCard from "./PanelCard"
-import SkillIcon from "./SkillIcon"
+import SkillIcon, { type SkillIconName } from "./SkillIcon"
+
+export type Skill = { title: string; body: string; icon: SkillIconName }
 
 const SkillCard = ({ title, body, icon }: Skill) => (
   <PanelCard className="p-5">

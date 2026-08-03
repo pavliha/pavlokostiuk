@@ -4,14 +4,14 @@ import { useEffect, useState } from "react"
 
 import CallToActionLink from "./CallToActionLink"
 
-const StickyCallBar = () => {
+const StickyCallBar = ({ label }: { label: string }) => {
   const [shown, setShown] = useState(false)
 
   useEffect(() => {
     const onScroll = () => setShown(window.scrollY >= window.innerHeight)
     onScroll()
-    addEventListener("scroll", onScroll, { passive: true })
-    return () => removeEventListener("scroll", onScroll)
+    window.addEventListener("scroll", onScroll, { passive: true })
+    return () => window.removeEventListener("scroll", onScroll)
   }, [])
 
   return (
@@ -22,7 +22,7 @@ const StickyCallBar = () => {
     >
       <CallToActionLink
         source="sticky"
-        label="Book a free 30-minute call"
+        label={label}
         className="flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-medium bg-accent text-white"
       />
     </div>
