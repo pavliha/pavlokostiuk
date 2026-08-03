@@ -40,9 +40,18 @@
       "seeWork": "See my work",
       "portraitAlt": "Pavlo Kostiuk",
       "stats": {
-        "years": { "value": "10+", "label": "years shipping" },
-        "users": { "value": "1.9M+", "label": "users served" },
-        "founder": { "value": "Founder", "label": "of Aircast" }
+        "years": {
+          "value": "10+",
+          "label": "years shipping"
+        },
+        "users": {
+          "value": "1.9M+",
+          "label": "users served"
+        },
+        "founder": {
+          "value": "Founder",
+          "label": "of Aircast"
+        }
       }
     },
     "experience": {
@@ -224,9 +233,18 @@
       "university": "Zaporizhzhia National Technical University",
       "hackathonsTitle": "Hackathons",
       "hackathons": [
-        { "place": "1st place, Hackathon Like IT", "date": "Apr 2017" },
-        { "place": "4th place, Startup Hackathon Kyiv", "date": "Jul 2018" },
-        { "place": "3rd place, Hackathon Like IT", "date": "Nov 2019" }
+        {
+          "place": "1st place, Hackathon Like IT",
+          "date": "Apr 2017"
+        },
+        {
+          "place": "4th place, Startup Hackathon Kyiv",
+          "date": "Jul 2018"
+        },
+        {
+          "place": "3rd place, Hackathon Like IT",
+          "date": "Nov 2019"
+        }
       ]
     },
     "contact": {
@@ -252,10 +270,23 @@
       "whatItCosts": "What it costs"
     },
     "stats": {
-      "tools": { "value": "106", "label": "AI tools your assistant can call on the store" },
-      "languages": { "value": "3", "label": "Languages, machine-translated and human-editable" },
-      "stock": { "value": "1", "label": "Stock number shared by web, POS and warehouse" },
-      "commission": { "value": "0", "label": "Per-sale commission — you pay once, not per order" }
+      "tools": {
+        "value": "106",
+        "label": "AI tools your assistant can call on the store"
+      },
+      "languages": {
+        "value": "3",
+        "label": "Languages, machine-translated and human-editable"
+      },
+      "stock": {
+        "value": "1",
+        "label": "Stock number shared by web, POS and warehouse"
+      },
+      "commission": {
+        "value": "0",
+        "label": "Per-sale commission — you pay once, not per order"
+      },
+      "note": "Counted from the running system, not the brochure."
     },
     "ai": {
       "eyebrow": "The difference",
@@ -638,7 +669,10 @@
       "title": "Tell me what you sell",
       "intro": "Thirty minutes, free, no obligation — and I'll tell you if you'd be better off on Shopify.",
       "expectations": {
-        "bring": { "label": "Bring", "body": "Your product list in any form, and the admin task you hate most." },
+        "bring": {
+          "label": "Bring",
+          "body": "Your product list in any form, and the admin task you hate most."
+        },
         "cover": {
           "label": "We cover",
           "body": "What you sell, what breaks today, what it would cost and how long it takes."

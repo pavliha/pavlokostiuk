@@ -8,13 +8,14 @@ import CallToActionLink from "@/components/CallToActionLink"
 import ExperienceCard from "@/components/ExperienceCard"
 import VisitSiteButton from "@/components/VisitSiteButton"
 import HeroBackdrop from "@/components/HeroBackdrop"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import ScreenshotCard from "@/components/ScreenshotCard"
 import { Separator } from "@/components/ui/separator"
 import SectionHeading from "@/components/SectionHeading"
 import SiteFooter from "@/components/SiteFooter"
 import SiteNav from "@/components/SiteNav"
-import SkillCard from "@/components/SkillCard"
+import LedgerGroup from "@/components/LedgerGroup"
+import SkillEntry from "@/components/SkillEntry"
 import SocialLinks from "@/components/SocialLinks"
 import TagList from "@/components/TagList"
 import { AIRCAST_SHOTS, INTO_GE_SHOTS, PORTRAIT } from "@/content/media"
@@ -221,17 +222,10 @@ const HomeContent = () => {
           ))}
         </div>
 
-        <Card className="mt-10 p-6">
-          <h3 className="text-lg font-semibold mb-4">{t("intoGe.builtTitle")}</h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-3">
-            {t.raw("intoGe.built").map((item: string) => (
-              <div key={item} className="flex items-start gap-2">
-                <span className="text-primary dark:text-brand-light mt-0.5">-</span>
-                <p className="text-muted-foreground text-sm">{item}</p>
-              </div>
-            ))}
-          </div>
-        </Card>
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-x-14">
+          <LedgerGroup title={t("intoGe.builtTitle")} bullets={t.raw("intoGe.built").slice(0, 4)} />
+          <LedgerGroup title="&nbsp;" bullets={t.raw("intoGe.built").slice(4)} />
+        </div>
       </section>
 
       <Separator />
@@ -240,9 +234,9 @@ const HomeContent = () => {
         <SectionHeading eyebrow={t("skills.eyebrow")} title={t("skills.title")}>
           <p className="text-muted-foreground max-w-xl mb-12">{t("skills.intro")}</p>
         </SectionHeading>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
           {SKILL_KEYS.map((key) => (
-            <SkillCard
+            <SkillEntry
               key={key}
               icon={SKILL_ICONS[key]}
               title={t(`skills.items.${key}.title`)}
@@ -257,15 +251,15 @@ const HomeContent = () => {
       <section className="py-20 px-6 max-w-5xl mx-auto">
         <SectionHeading eyebrow={t("background.eyebrow")} title={t("background.title")}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
-            <Card className="p-6">
-              <h3 className="text-primary dark:text-brand-light font-semibold mb-3">
+            <section className="border-t border-rule pt-4">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary dark:text-brand-light mb-3">
                 {t("background.educationTitle")}
               </h3>
-              <div className="text-base font-medium">{t("background.degree")}</div>
+              <div className="text-base font-medium text-ink">{t("background.degree")}</div>
               <div className="text-muted-foreground text-sm mt-1">{t("background.university")}</div>
-            </Card>
-            <Card className="p-6">
-              <h3 className="text-primary dark:text-brand-light font-semibold mb-3">
+            </section>
+            <section className="border-t border-rule pt-4">
+              <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary dark:text-brand-light mb-3">
                 {t("background.hackathonsTitle")}
               </h3>
               <ul className="space-y-2">
@@ -275,7 +269,7 @@ const HomeContent = () => {
                   </li>
                 ))}
               </ul>
-            </Card>
+            </section>
           </div>
         </SectionHeading>
       </section>

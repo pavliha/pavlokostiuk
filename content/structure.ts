@@ -1,4 +1,4 @@
-import type { Skill } from "@/components/SkillCard"
+import type { Skill } from "@/components/SkillEntry"
 
 export const EXPERIENCE_KEYS = [
   "homeWarranty",

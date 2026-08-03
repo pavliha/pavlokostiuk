@@ -40,9 +40,18 @@
       "seeWork": "ჩემი ნამუშევრები",
       "portraitAlt": "პავლო კოსტიუკი",
       "stats": {
-        "years": { "value": "10+", "label": "წელი დეველოპმენტში" },
-        "users": { "value": "1.9M+", "label": "მომხმარებელი" },
-        "founder": { "value": "დამფუძნებელი", "label": "Aircast-ის" }
+        "years": {
+          "value": "10+",
+          "label": "წელი დეველოპმენტში"
+        },
+        "users": {
+          "value": "1.9M+",
+          "label": "მომხმარებელი"
+        },
+        "founder": {
+          "value": "დამფუძნებელი",
+          "label": "Aircast-ის"
+        }
       }
     },
     "experience": {
@@ -224,9 +233,18 @@
       "university": "ზაპოროჟიეს ეროვნული ტექნიკური უნივერსიტეტი",
       "hackathonsTitle": "ჰაკათონები",
       "hackathons": [
-        { "place": "I ადგილი, Hackathon Like IT", "date": "აპრ 2017" },
-        { "place": "IV ადგილი, Startup Hackathon Kyiv", "date": "ივლ 2018" },
-        { "place": "III ადგილი, Hackathon Like IT", "date": "ნოე 2019" }
+        {
+          "place": "I ადგილი, Hackathon Like IT",
+          "date": "აპრ 2017"
+        },
+        {
+          "place": "IV ადგილი, Startup Hackathon Kyiv",
+          "date": "ივლ 2018"
+        },
+        {
+          "place": "III ადგილი, Hackathon Like IT",
+          "date": "ნოე 2019"
+        }
       ]
     },
     "contact": {
@@ -252,10 +270,23 @@
       "whatItCosts": "რა ღირს"
     },
     "stats": {
-      "tools": { "value": "106", "label": "AI ინსტრუმენტი, რომელსაც ასისტენტი იყენებს მაღაზიაში" },
-      "languages": { "value": "3", "label": "ენა, მანქანური თარგმანითა და ხელით რედაქტირებით" },
-      "stock": { "value": "1", "label": "ნაშთი საერთო: საიტი, სალარო და საწყობი" },
-      "commission": { "value": "0", "label": "საკომისიო გაყიდვაზე — იხდით ერთხელ, არა შეკვეთაზე" }
+      "tools": {
+        "value": "106",
+        "label": "AI ინსტრუმენტი, რომელსაც ასისტენტი იყენებს მაღაზიაში"
+      },
+      "languages": {
+        "value": "3",
+        "label": "ენა, მანქანური თარგმანითა და ხელით რედაქტირებით"
+      },
+      "stock": {
+        "value": "1",
+        "label": "ნაშთი საერთო: საიტი, სალარო და საწყობი"
+      },
+      "commission": {
+        "value": "0",
+        "label": "საკომისიო გაყიდვაზე — იხდით ერთხელ, არა შეკვეთაზე"
+      },
+      "note": "დათვლილია მომუშავე სისტემაში და არა ბროშურაში."
     },
     "ai": {
       "eyebrow": "განსხვავება",

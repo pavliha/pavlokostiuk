@@ -40,9 +40,18 @@
       "seeWork": "Посмотреть работы",
       "portraitAlt": "Павло Костюк",
       "stats": {
-        "years": { "value": "10+", "label": "лет в разработке" },
-        "users": { "value": "1.9M+", "label": "пользователей" },
-        "founder": { "value": "Основатель", "label": "Aircast" }
+        "years": {
+          "value": "10+",
+          "label": "лет в разработке"
+        },
+        "users": {
+          "value": "1.9M+",
+          "label": "пользователей"
+        },
+        "founder": {
+          "value": "Основатель",
+          "label": "Aircast"
+        }
       }
     },
     "experience": {
@@ -224,9 +233,18 @@
       "university": "Запорожский национальный технический университет",
       "hackathonsTitle": "Хакатоны",
       "hackathons": [
-        { "place": "1-е место, Hackathon Like IT", "date": "Апр 2017" },
-        { "place": "4-е место, Startup Hackathon Kyiv", "date": "Июл 2018" },
-        { "place": "3-е место, Hackathon Like IT", "date": "Ноя 2019" }
+        {
+          "place": "1-е место, Hackathon Like IT",
+          "date": "Апр 2017"
+        },
+        {
+          "place": "4-е место, Startup Hackathon Kyiv",
+          "date": "Июл 2018"
+        },
+        {
+          "place": "3-е место, Hackathon Like IT",
+          "date": "Ноя 2019"
+        }
       ]
     },
     "contact": {
@@ -252,10 +270,23 @@
       "whatItCosts": "Сколько это стоит"
     },
     "stats": {
-      "tools": { "value": "106", "label": "инструментов ИИ, доступных ассистенту в магазине" },
-      "languages": { "value": "3", "label": "языка: машинный перевод и ручная правка" },
-      "stock": { "value": "1", "label": "остаток на всех: сайт, касса и склад" },
-      "commission": { "value": "0", "label": "комиссии с продажи — платите один раз, не за заказ" }
+      "tools": {
+        "value": "106",
+        "label": "инструментов ИИ, доступных ассистенту в магазине"
+      },
+      "languages": {
+        "value": "3",
+        "label": "языка: машинный перевод и ручная правка"
+      },
+      "stock": {
+        "value": "1",
+        "label": "остаток на всех: сайт, касса и склад"
+      },
+      "commission": {
+        "value": "0",
+        "label": "комиссии с продажи — платите один раз, не за заказ"
+      },
+      "note": "Посчитано в работающей системе, а не в буклете."
     },
     "ai": {
       "eyebrow": "Отличие",

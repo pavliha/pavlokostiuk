@@ -3,9 +3,11 @@ import { getTranslations, setRequestLocale } from "next-intl/server"
 import { useTranslations } from "next-intl"
 import { use } from "react"
 
-import BulletCard from "@/components/BulletCard"
+import LedgerGroup from "@/components/LedgerGroup"
+import LedgerNote from "@/components/LedgerNote"
+import StatLedger from "@/components/StatLedger"
 import CallToActionLink from "@/components/CallToActionLink"
-import { Card, CardContent } from "@/components/ui/card"
+import { Card } from "@/components/ui/card"
 import ScreenshotCard from "@/components/ScreenshotCard"
 import { Separator } from "@/components/ui/separator"
 import SectionHeading from "@/components/SectionHeading"
@@ -106,15 +108,15 @@ const EcommerceContent = () => {
         </p>
       </section>
 
-      <section className="px-6 max-w-5xl mx-auto pb-16">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {STAT_KEYS.map((key) => (
-            <Card key={key} className="p-5">
-              <div className="text-3xl font-bold tracking-tight mb-1">{t(`stats.${key}.value`)}</div>
-              <div className="text-xs text-muted-foreground leading-snug">{t(`stats.${key}.label`)}</div>
-            </Card>
-          ))}
-        </div>
+      <section className="px-6 max-w-5xl mx-auto pb-20">
+        <StatLedger
+          hero={{ value: t("stats.tools.value"), label: t("stats.tools.label") }}
+          note={t("stats.note")}
+          rest={STAT_KEYS.filter((key) => key !== "tools").map((key) => ({
+            value: t(`stats.${key}.value`),
+            label: t(`stats.${key}.label`),
+          }))}
+        />
       </section>
 
       <Separator />
@@ -140,12 +142,11 @@ const EcommerceContent = () => {
           </div>
         </Card>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-x-14 gap-y-7">
           {AI_POINT_KEYS.map((key) => (
-            <Card key={key} className="p-6">
-              <h3 className="font-semibold mb-2">{t(`ai.points.${key}.title`)}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{t(`ai.points.${key}.body`)}</p>
-            </Card>
+            <LedgerNote key={key} title={t(`ai.points.${key}.title`)}>
+              {t(`ai.points.${key}.body`)}
+            </LedgerNote>
           ))}
         </div>
       </section>
@@ -166,9 +167,9 @@ const EcommerceContent = () => {
             </span>
           ))}
         </div>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-x-14 gap-y-9">
           {FEATURE_KEYS.map((key) => (
-            <BulletCard
+            <LedgerGroup
               key={key}
               title={t(`features.groups.${key}.title`)}
               bullets={t.raw(`features.groups.${key}.bullets`)}
@@ -226,9 +227,9 @@ const EcommerceContent = () => {
         <SectionHeading eyebrow={t("price.eyebrow")} title={t("price.title")}>
           <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">{t("price.intro")}</p>
         </SectionHeading>
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className="grid md:grid-cols-2 gap-x-14 gap-y-9">
           {PRICE_KEYS.map((key) => (
-            <BulletCard
+            <LedgerGroup
               key={key}
               title={t(`price.groups.${key}.title`)}
               bullets={t.raw(`price.groups.${key}.bullets`)}
@@ -243,35 +244,38 @@ const EcommerceContent = () => {
         <SectionHeading eyebrow={t("process.eyebrow")} title={t("process.title")}>
           {null}
         </SectionHeading>
-        <div className="grid md:grid-cols-2 gap-4 mt-6 mb-10">
+        <div className="grid md:grid-cols-2 gap-x-14 gap-y-7 mt-6 mb-14">
           {PROCESS_KEYS.map((key) => (
-            <Card key={key} className="p-6">
-              <div className="text-primary dark:text-brand-light font-bold text-sm mb-2">
+            <section key={key} className="border-t border-rule pt-4">
+              <div className="figure text-primary dark:text-brand-light font-semibold text-sm mb-1.5">
                 {t(`process.steps.${key}.step`)}
               </div>
-              <h3 className="font-semibold mb-2">{t(`process.steps.${key}.title`)}</h3>
+              <h3 className="font-semibold mb-1.5 text-ink">{t(`process.steps.${key}.title`)}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">
                 {t(`process.steps.${key}.body`)}
               </p>
-            </Card>
+            </section>
           ))}
         </div>
 
-        <Card className="p-6">
-          <h3 className="text-lg font-semibold mb-4">{t("shopify.title")}</h3>
+        <div className="border-t-2 border-rule pt-6">
+          <h3 className="text-lg font-semibold mb-4 text-ink">{t("shopify.title")}</h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-4">{t("shopify.intro")}</p>
           <ul className="text-sm text-muted-foreground space-y-1.5 leading-relaxed">
             {t.raw("shopify.reasons").map((reason: string) => (
-              <li key={reason}>— {reason}</li>
+              <li key={reason} className="relative pl-4">
+                <span className="absolute left-0 top-[0.62em] h-px w-1.5 bg-ledger" aria-hidden="true" />
+                {reason}
+              </li>
             ))}
           </ul>
-        </Card>
+        </div>
       </section>
 
       <Separator />
 
       <section className="py-20 px-6 max-w-5xl mx-auto">
-        <Card className="p-6 mb-16">
+        <div className="border-t border-rule pt-6 mb-16 max-w-2xl">
           <h3 className="text-lg font-semibold mb-2">{t("bio.title")}</h3>
           <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t("bio.body1")}</p>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -284,21 +288,21 @@ const EcommerceContent = () => {
             </Link>
             .
           </p>
-        </Card>
+        </div>
 
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold tracking-tight mb-4">{t("cta.title")}</h2>
           <p className="text-muted-foreground mb-8 leading-relaxed">{t("cta.intro")}</p>
           <div className="grid sm:grid-cols-3 gap-3 text-left mb-8">
             {CALL_KEYS.map((key) => (
-              <Card key={key} className="p-4">
-                <div className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5">
+              <div key={key} className="border-t border-rule pt-3">
+                <div className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary dark:text-brand-light mb-1.5">
                   {t(`cta.expectations.${key}.label`)}
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   {t(`cta.expectations.${key}.body`)}
                 </p>
-              </Card>
+              </div>
             ))}
           </div>
           <CallToActionLink
