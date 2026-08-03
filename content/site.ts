@@ -1,0 +1,7 @@
+export const CALENDLY_URL = "https://calendly.com/kostyk-pavel-09/30min"
+export const EMAIL = "kostyk.pavel.09@gmail.com"
+export const TELEGRAM = "https://t.me/pavliha"
+export const GITHUB = "https://github.com/pavliha"
+export const LINKEDIN = "https://www.linkedin.com/in/kostyukpavel/"
+export const INTO_GE = "https://beta.into.ge"
+export const AIRCAST = "https://aircast.one"

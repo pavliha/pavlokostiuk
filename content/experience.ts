@@ -1,0 +1,66 @@
+import type { Experience } from "@/components/ExperienceCard"
+
+export const EXPERIENCE: readonly Experience[] = [
+  {
+    title: "Home Warranty E-Commerce Platform",
+    role: "Lead Software Engineer",
+    via: "SoftServe",
+    duration: "3 years",
+    body: "E-commerce platform for home warranty plans serving 1.9M+ homes through 25+ utility partnerships across the US. Led a team of 5 developers, drove architecture decisions, and communicated trade-offs to stakeholders.",
+    tags: ["React", "Next.js", "VTEX", "Contentstack", "Playwright", "Oracle DB"],
+  },
+  {
+    title: "Aircast / Missiya",
+    role: "Founder & Software Engineer",
+    duration: "3 years",
+    body: "Custom drone platform with live video streaming over 4G for search and rescue, industrial surveying, and remote broadcasting. Built the streaming pipeline and collaborated with hardware engineers on Raspberry Pi integration.",
+    tags: ["Go", "React", "WebRTC", "Raspberry Pi", "H.264", "Ansible", "MAVLink"],
+  },
+  {
+    title: "Supply Chain Traceability Platform",
+    role: "Senior Front End Engineer",
+    via: "SoftServe",
+    duration: "1 year",
+    body: "Product traceability tool for a global retail group. Developed new features in React and mentored team members across a 10-developer front-end team.",
+    tags: ["React", "MobX", "Jest", "Cypress", "React Testing Library"],
+  },
+  {
+    title: "Collaboration Whiteboard Platform",
+    role: "Senior Front End Engineer",
+    via: "SoftServe",
+    duration: "6 months",
+    body: "Design system and accessibility for a digital whiteboard collaboration platform. Built reusable components, mentored teammates, and improved platform accessibility.",
+    tags: ["React", "Redux/Saga", "Web Components", "Jest", "Node.js"],
+  },
+  {
+    title: "Digital Banking Platform",
+    role: "Lead Front End Developer",
+    via: "SoftServe",
+    duration: "1 year",
+    body: "Checkout widget processing payments from cards, ACH, and balance. Joined early phase, managed 2 releases with 1.5K daily users, created project architecture. Also built the companion mobile banking application.",
+    tags: ["React", "React Native", "Redux/Saga", "Web Components", "NestJS", "TypeORM"],
+  },
+  {
+    title: "Securities Crowdfunding Platform",
+    role: "Senior Front End Developer",
+    via: "SoftServe",
+    duration: "4 months",
+    body: "SEC-compliant crowdfunding tools for tech-driven securities offerings. Built the project funding widget with the team.",
+    tags: ["React", "Redux", "Material UI", "Jest", "Storybook"],
+  },
+  {
+    title: "Retail Diagnostics Platform",
+    role: "Senior Front End Developer",
+    via: "SoftServe",
+    duration: "5 months",
+    body: "Store diagnostics and inventory tools. Completed a full redesign and refactored the entire project, exceeding client expectations on timeline.",
+    tags: ["React Native Web", "Redux", "Material UI", "Jest"],
+  },
+  {
+    title: "Octopart",
+    role: "Full Stack Developer",
+    duration: "6 months",
+    body: "Parts search engine for electrical engineers. Built the API layer for the React application using serverless architecture on AWS.",
+    tags: ["Node.js", "Serverless", "AWS Lambda", "BigQuery", "ElasticSearch", "Redis"],
+  },
+] as const
