@@ -1,3 +1,6 @@
+import { Badge } from "@/components/ui/badge"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+
 import TagList from "./TagList"
 
 export type Experience = {
@@ -10,21 +13,25 @@ export type Experience = {
 }
 
 const ExperienceCard = ({ title, role, via, duration, body, tags }: Experience) => (
-  <div className="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 hover:border-zinc-300 dark:hover:border-zinc-700 hover:bg-zinc-50 dark:hover:bg-surface-hover transition-all">
-    <div className="flex justify-between items-start gap-4 mb-2 flex-wrap">
-      <div>
-        <h3 className="text-lg font-semibold">{title}</h3>
-        <div className="text-indigo-700 dark:text-indigo-300 text-sm font-medium">
-          {role} {via ? <span className="text-zinc-600 dark:text-zinc-400">{via}</span> : null}
+  <Card className="hover:bg-surface-hover transition-colors">
+    <CardHeader>
+      <div className="flex justify-between items-start gap-4 flex-wrap">
+        <div>
+          <CardTitle className="text-lg">{title}</CardTitle>
+          <div className="text-primary dark:text-brand-light text-sm font-medium mt-1">
+            {role} {via ? <span className="text-muted-foreground">{via}</span> : null}
+          </div>
         </div>
+        <Badge variant="outline" className="whitespace-nowrap">
+          {duration}
+        </Badge>
       </div>
-      <span className="text-xs text-zinc-600 dark:text-zinc-300 bg-accent/10 px-3 py-1 rounded-md whitespace-nowrap">
-        {duration}
-      </span>
-    </div>
-    <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-4">{body}</p>
-    <TagList tags={tags} />
-  </div>
+    </CardHeader>
+    <CardContent>
+      <p className="text-muted-foreground text-sm leading-relaxed mb-4">{body}</p>
+      <TagList tags={tags} />
+    </CardContent>
+  </Card>
 )
 
 export default ExperienceCard

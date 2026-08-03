@@ -27,7 +27,7 @@ const LocaleLayout = async ({ children, params }: { children: ReactNode; params:
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="bg-zinc-50 dark:bg-bg text-zinc-900 dark:text-zinc-50 antialiased transition-colors">
+      <body className="antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
       </body>
     </html>

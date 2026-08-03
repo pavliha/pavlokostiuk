@@ -5,9 +5,9 @@ import { use } from "react"
 
 import BulletCard from "@/components/BulletCard"
 import CallToActionLink from "@/components/CallToActionLink"
-import PanelCard from "@/components/PanelCard"
+import { Card, CardContent } from "@/components/ui/card"
 import ScreenshotCard from "@/components/ScreenshotCard"
-import SectionDivider from "@/components/SectionDivider"
+import { Separator } from "@/components/ui/separator"
 import SectionHeading from "@/components/SectionHeading"
 import SiteFooter from "@/components/SiteFooter"
 import SiteNav from "@/components/SiteNav"
@@ -61,21 +61,21 @@ const EcommerceContent = () => {
       <SiteNav brandHref="/" links={links} themeLabel={nav("toggleTheme")} languageLabel={nav("language")} />
 
       <section className="pt-36 pb-16 px-6 max-w-5xl mx-auto">
-        <span className="inline-block text-xs px-3 py-1 rounded-full bg-accent/10 text-indigo-700 dark:text-indigo-300 border border-accent/20 mb-6">
+        <span className="inline-block text-xs px-3 py-1 rounded-full bg-primary/10 text-primary dark:text-brand-light border border-primary/20 mb-6">
           {t("hero.badge")}
         </span>
         <h1 className="text-4xl sm:text-6xl font-bold tracking-tight leading-[1.05] mb-6">
           {t("hero.titleLine1")}
           <br />
-          <span className="text-accent dark:text-accent-light">{t("hero.titleLine2")}</span>
+          <span className="text-primary dark:text-brand-light">{t("hero.titleLine2")}</span>
         </h1>
-        <p className="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mb-6 leading-relaxed">
+        <p className="text-lg text-muted-foreground max-w-2xl mb-6 leading-relaxed">
           {t("hero.bodyStart")} <em>{t("hero.bodyYour")}</em> {t("hero.bodyEnd")}{" "}
           <a
             href={INTO_GE}
             target="_blank"
             rel="noopener"
-            className="text-accent dark:text-accent-light hover:text-accent-strong dark:hover:text-white underline underline-offset-4"
+            className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
           >
             into.ge
           </a>
@@ -85,20 +85,21 @@ const EcommerceContent = () => {
           <CallToActionLink
             source="hero"
             label={common("bookCall30")}
-            className="inline-flex items-center px-6 py-3 rounded-xl text-sm font-medium bg-accent text-white hover:bg-accent-strong transition-all"
+            size="lg"
+            className="rounded-xl px-6 py-6 text-sm"
           />
           <a
             href="#screens"
-            className="inline-flex items-center px-6 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 hover:border-accent transition-all"
+            className="inline-flex items-center px-6 py-3 rounded-xl text-sm font-medium bg-card border hover:border-primary transition-all"
           >
             {t("hero.seeWhole")}
           </a>
         </div>
-        <p className="text-sm text-zinc-600 dark:text-zinc-400">
+        <p className="text-sm text-muted-foreground">
           {t("hero.eligibility")}{" "}
           <a
             href="#price"
-            className="text-accent dark:text-accent-light hover:text-accent-strong dark:hover:text-white underline underline-offset-4"
+            className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
           >
             {t("hero.whatItCosts")}
           </a>
@@ -108,58 +109,58 @@ const EcommerceContent = () => {
       <section className="px-6 max-w-5xl mx-auto pb-16">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
           {STAT_KEYS.map((key) => (
-            <PanelCard key={key} className="p-5">
+            <Card key={key} className="p-5">
               <div className="text-3xl font-bold tracking-tight mb-1">{t(`stats.${key}.value`)}</div>
-              <div className="text-xs text-zinc-600 dark:text-zinc-400 leading-snug">{t(`stats.${key}.label`)}</div>
-            </PanelCard>
+              <div className="text-xs text-muted-foreground leading-snug">{t(`stats.${key}.label`)}</div>
+            </Card>
           ))}
         </div>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section id="ai" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
         <SectionHeading eyebrow={t("ai.eyebrow")} title={t("ai.title")}>
-          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10 leading-relaxed">{t("ai.intro")}</p>
+          <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">{t("ai.intro")}</p>
         </SectionHeading>
 
-        <PanelCard className="p-6 mb-6">
-          <h3 className="text-sm uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-5">
+        <Card className="p-6 mb-6">
+          <h3 className="text-sm uppercase tracking-widest text-muted-foreground mb-5">
             {t("ai.asksTitle")}
           </h3>
           <div className="grid md:grid-cols-2 gap-3">
             {t.raw("ai.asks").map((ask: string) => (
               <div
                 key={ask}
-                className="rounded-xl bg-zinc-50 dark:bg-bg border border-zinc-200 dark:border-zinc-800 p-4 text-sm text-zinc-700 dark:text-zinc-300"
+                className="rounded-xl bg-muted/40 border p-4 text-sm text-foreground/80"
               >
                 &quot;{ask}&quot;
               </div>
             ))}
           </div>
-        </PanelCard>
+        </Card>
 
         <div className="grid md:grid-cols-2 gap-4">
           {AI_POINT_KEYS.map((key) => (
-            <PanelCard key={key} className="p-6">
+            <Card key={key} className="p-6">
               <h3 className="font-semibold mb-2">{t(`ai.points.${key}.title`)}</h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{t(`ai.points.${key}.body`)}</p>
-            </PanelCard>
+              <p className="text-sm text-muted-foreground leading-relaxed">{t(`ai.points.${key}.body`)}</p>
+            </Card>
           ))}
         </div>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section id="features" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
         <SectionHeading eyebrow={t("features.eyebrow")} title={t("features.title")}>
-          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-6 leading-relaxed">{t("features.intro")}</p>
+          <p className="text-muted-foreground max-w-2xl mb-6 leading-relaxed">{t("features.intro")}</p>
         </SectionHeading>
         <div className="flex flex-wrap gap-1.5 mb-10">
           {FEATURE_KEYS.map((key) => (
             <span
               key={key}
-              className="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-600 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800"
+              className="text-xs px-2.5 py-1 rounded-md bg-muted text-muted-foreground border"
             >
               {t(`features.groups.${key}.title`)}
             </span>
@@ -176,7 +177,7 @@ const EcommerceContent = () => {
         </div>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section id="screens" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
         <SectionHeading eyebrow={t("screens.eyebrow")} title={t("screens.title")}>
@@ -196,34 +197,34 @@ const EcommerceContent = () => {
           ))}
         </div>
 
-        <PanelCard className="mt-8 p-6">
+        <Card className="mt-8 p-6">
           <h3 className="text-lg font-semibold mb-2">{t("audit.title")}</h3>
-          <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-5">{t("audit.intro")}</p>
-          <div className="rounded-xl bg-zinc-50 dark:bg-bg border border-zinc-200 dark:border-zinc-800 p-4 mb-3">
-            <div className="text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">
+          <p className="text-muted-foreground text-sm leading-relaxed mb-5">{t("audit.intro")}</p>
+          <div className="rounded-xl bg-muted/40 border p-4 mb-3">
+            <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
               {t("audit.you")}
             </div>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300">{t("audit.question")}</p>
+            <p className="text-sm text-foreground/80">{t("audit.question")}</p>
           </div>
-          <div className="rounded-xl bg-zinc-50 dark:bg-bg border border-zinc-200 dark:border-zinc-800 p-4">
-            <div className="text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-2">
+          <div className="rounded-xl bg-muted/40 border p-4">
+            <div className="text-xs uppercase tracking-widest text-muted-foreground mb-2">
               {t("audit.store")}
             </div>
-            <ul className="text-sm text-zinc-700 dark:text-zinc-300 space-y-1.5 leading-relaxed">
+            <ul className="text-sm text-foreground/80 space-y-1.5 leading-relaxed">
               {t.raw("audit.findings").map((finding: string) => (
                 <li key={finding}>— {finding}</li>
               ))}
             </ul>
           </div>
-          <p className="text-zinc-600 dark:text-zinc-400 text-xs leading-relaxed mt-4">{t("audit.footnote")}</p>
-        </PanelCard>
+          <p className="text-muted-foreground text-xs leading-relaxed mt-4">{t("audit.footnote")}</p>
+        </Card>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section id="price" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
         <SectionHeading eyebrow={t("price.eyebrow")} title={t("price.title")}>
-          <p className="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10 leading-relaxed">{t("price.intro")}</p>
+          <p className="text-muted-foreground max-w-2xl mb-10 leading-relaxed">{t("price.intro")}</p>
         </SectionHeading>
         <div className="grid md:grid-cols-2 gap-4">
           {PRICE_KEYS.map((key) => (
@@ -236,7 +237,7 @@ const EcommerceContent = () => {
         </div>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section id="process" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
         <SectionHeading eyebrow={t("process.eyebrow")} title={t("process.title")}>
@@ -244,74 +245,75 @@ const EcommerceContent = () => {
         </SectionHeading>
         <div className="grid md:grid-cols-2 gap-4 mt-6 mb-10">
           {PROCESS_KEYS.map((key) => (
-            <PanelCard key={key} className="p-6">
-              <div className="text-indigo-700 dark:text-indigo-300 font-bold text-sm mb-2">
+            <Card key={key} className="p-6">
+              <div className="text-primary dark:text-brand-light font-bold text-sm mb-2">
                 {t(`process.steps.${key}.step`)}
               </div>
               <h3 className="font-semibold mb-2">{t(`process.steps.${key}.title`)}</h3>
-              <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <p className="text-sm text-muted-foreground leading-relaxed">
                 {t(`process.steps.${key}.body`)}
               </p>
-            </PanelCard>
+            </Card>
           ))}
         </div>
 
-        <PanelCard className="p-6">
+        <Card className="p-6">
           <h3 className="text-lg font-semibold mb-4">{t("shopify.title")}</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-4">{t("shopify.intro")}</p>
-          <ul className="text-sm text-zinc-600 dark:text-zinc-400 space-y-1.5 leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-4">{t("shopify.intro")}</p>
+          <ul className="text-sm text-muted-foreground space-y-1.5 leading-relaxed">
             {t.raw("shopify.reasons").map((reason: string) => (
               <li key={reason}>— {reason}</li>
             ))}
           </ul>
-        </PanelCard>
+        </Card>
       </section>
 
-      <SectionDivider />
+      <Separator />
 
       <section className="py-20 px-6 max-w-5xl mx-auto">
-        <PanelCard className="p-6 mb-16">
+        <Card className="p-6 mb-16">
           <h3 className="text-lg font-semibold mb-2">{t("bio.title")}</h3>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">{t("bio.body1")}</p>
-          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-sm text-muted-foreground leading-relaxed mb-3">{t("bio.body1")}</p>
+          <p className="text-sm text-muted-foreground leading-relaxed">
             {t("bio.body2")}{" "}
             <Link
               href="/"
-              className="text-accent dark:text-accent-light hover:text-accent-strong dark:hover:text-white underline underline-offset-4"
+              className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
             >
               {t("bio.backgroundLink")}
             </Link>
             .
           </p>
-        </PanelCard>
+        </Card>
 
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-3xl font-bold tracking-tight mb-4">{t("cta.title")}</h2>
-          <p className="text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">{t("cta.intro")}</p>
+          <p className="text-muted-foreground mb-8 leading-relaxed">{t("cta.intro")}</p>
           <div className="grid sm:grid-cols-3 gap-3 text-left mb-8">
             {CALL_KEYS.map((key) => (
-              <PanelCard key={key} className="p-4">
-                <div className="text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-1.5">
+              <Card key={key} className="p-4">
+                <div className="text-xs uppercase tracking-widest text-muted-foreground mb-1.5">
                   {t(`cta.expectations.${key}.label`)}
                 </div>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                <p className="text-sm text-muted-foreground leading-relaxed">
                   {t(`cta.expectations.${key}.body`)}
                 </p>
-              </PanelCard>
+              </Card>
             ))}
           </div>
           <CallToActionLink
             source="footer"
             label={common("bookCall")}
-            className="inline-flex items-center px-8 py-4 rounded-xl font-medium bg-accent text-white hover:bg-accent-strong transition-all mb-10"
+            size="lg"
+            className="rounded-xl px-8 py-7 mb-10"
           />
-          <p className="text-xs uppercase tracking-widest text-zinc-600 dark:text-zinc-400 mb-4">
+          <p className="text-xs uppercase tracking-widest text-muted-foreground mb-4">
             {common("orReachMe")}
           </p>
           <div className="flex gap-3 justify-center flex-wrap">
             <a
               href={`mailto:${EMAIL}`}
-              className="px-5 py-3 bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm hover:border-accent transition-all"
+              className="px-5 py-3 bg-card border rounded-xl text-sm hover:border-primary transition-all"
             >
               {EMAIL}
             </a>
@@ -319,7 +321,7 @@ const EcommerceContent = () => {
               href={TELEGRAM}
               target="_blank"
               rel="noopener"
-              className="px-5 py-3 bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm hover:border-accent transition-all"
+              className="px-5 py-3 bg-card border rounded-xl text-sm hover:border-primary transition-all"
             >
               @pavliha
             </a>
@@ -328,7 +330,7 @@ const EcommerceContent = () => {
       </section>
 
       <SiteFooter reserveStickyBar copyright={common("copyright")}>
-        <Link href="/" className="hover:text-zinc-900 dark:hover:text-white transition-colors">
+        <Link href="/" className="hover:text-foreground transition-colors">
           {common("backToSite")}
         </Link>
       </SiteFooter>

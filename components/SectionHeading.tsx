@@ -3,7 +3,7 @@ import type { ReactNode } from "react"
 const SectionHeading = ({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) => (
   <>
     {eyebrow ? (
-      <p className="text-xs font-semibold uppercase tracking-widest text-indigo-700 dark:text-indigo-300 mb-3">
+      <p className="text-xs font-semibold uppercase tracking-widest text-primary dark:text-brand-light mb-3">
         {eyebrow}
       </p>
     ) : null}

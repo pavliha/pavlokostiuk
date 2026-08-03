@@ -16,15 +16,11 @@ const StickyCallBar = ({ label }: { label: string }) => {
 
   return (
     <div
-      className={`sm:hidden fixed bottom-0 inset-x-0 z-50 px-4 py-3 bg-white/90 dark:bg-bg/90 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-800 transition-transform ${
+      className={`sm:hidden fixed bottom-0 inset-x-0 z-50 px-4 py-3 bg-background/90 backdrop-blur-xl border-t transition-transform ${
         shown ? "" : "translate-y-full"
       }`}
     >
-      <CallToActionLink
-        source="sticky"
-        label={label}
-        className="flex items-center justify-center w-full px-6 py-3 rounded-xl text-sm font-medium bg-accent text-white"
-      />
+      <CallToActionLink source="sticky" label={label} size="lg" className="w-full rounded-xl py-6 text-sm" />
     </div>
   )
 }

@@ -30,9 +30,19 @@ test.describe("locales", () => {
 
   test("the switcher moves between locales and keeps the page", async ({ page }) => {
     await page.goto("/en/ecommerce")
-    await page.selectOption("select", "ru")
+    await page.getByRole("combobox").click()
+    await page.getByRole("option", { name: "Русский" }).click()
     await expect(page).toHaveURL(/\/ru\/ecommerce/)
     await expect(page.locator("html")).toHaveAttribute("lang", "ru")
+  })
+
+  test("the switcher is reachable by keyboard", async ({ page }) => {
+    await page.goto("/en")
+    const trigger = page.getByRole("combobox")
+    await trigger.focus()
+    await expect(trigger).toBeFocused()
+    await page.keyboard.press("Enter")
+    await expect(page.getByRole("option", { name: "ქართული" })).toBeVisible()
   })
 })
 

@@ -2,6 +2,7 @@
 
 import { useLocale } from "next-intl"
 
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { usePathname, useRouter } from "@/i18n/navigation"
 import { LOCALE_LABELS, locales, type Locale } from "@/i18n/routing"
 
@@ -11,18 +12,18 @@ const LocaleSwitcher = ({ label }: { label: string }) => {
   const router = useRouter()
 
   return (
-    <select
-      aria-label={label}
-      value={locale}
-      onChange={(event) => router.replace(pathname, { locale: event.target.value as Locale })}
-      className="shrink-0 bg-transparent text-sm text-zinc-600 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white py-1.5 px-1 rounded-lg cursor-pointer focus-visible:outline-2"
-    >
-      {locales.map((option) => (
-        <option key={option} value={option} className="bg-white dark:bg-surface text-zinc-900 dark:text-zinc-50">
-          {LOCALE_LABELS[option]}
-        </option>
-      ))}
-    </select>
+    <Select value={locale} onValueChange={(next) => router.replace(pathname, { locale: next as Locale })}>
+      <SelectTrigger aria-label={label} size="sm" className="w-auto gap-1 border-none shadow-none bg-transparent">
+        <SelectValue />
+      </SelectTrigger>
+      <SelectContent align="end">
+        {locales.map((option) => (
+          <SelectItem key={option} value={option}>
+            {LOCALE_LABELS[option]}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   )
 }
 
