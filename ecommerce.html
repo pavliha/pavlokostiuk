@@ -33,12 +33,13 @@
 
 <nav class="fixed top-0 w-full z-50 px-6 py-4 bg-white/80 dark:bg-bg/80 backdrop-blur-xl border-b border-zinc-200 dark:border-zinc-800 transition-colors">
     <div class="max-w-5xl mx-auto flex justify-between items-center">
-        <a href="index.html" class="font-bold text-lg tracking-tight">Pavlo Kostiuk</a>
-        <div class="flex items-center gap-6">
-            <ul class="hidden sm:flex gap-8">
+        <a href="index.html" class="font-bold text-lg tracking-tight whitespace-nowrap shrink-0 hidden sm:block">Pavlo Kostiuk</a>
+        <div class="flex items-center gap-4 min-w-0">
+            <ul class="flex gap-4 sm:gap-8 overflow-x-auto whitespace-nowrap min-w-0">
                 <li><a href="#ai" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">AI</a></li>
                 <li><a href="#features" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Features</a></li>
                 <li><a href="#screens" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Screens</a></li>
+                <li><a href="#price" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Price</a></li>
                 <li><a href="#process" class="text-sm text-zinc-500 dark:text-zinc-400 hover:text-zinc-900 dark:hover:text-white transition-colors">Process</a></li>
             </ul>
             <button onclick="toggleTheme()" class="p-2 rounded-lg hover:bg-zinc-100 dark:hover:bg-zinc-800 transition-colors" aria-label="Toggle theme">
@@ -55,22 +56,22 @@
         Your own online store.<br>
         <span class="text-indigo-500">Run it by talking to AI.</span>
     </h1>
-    <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mb-8 leading-relaxed">
-        Not a template on someone else's platform. A complete e-commerce system built around how <em>your</em> business actually works — storefront, admin, stock, point of sale, money — with an AI assistant plugged into every part of it, so running the shop is a conversation instead of forty clicks.
+    <p class="text-lg text-zinc-600 dark:text-zinc-400 max-w-2xl mb-6 leading-relaxed">
+        Not a template on someone else's platform. A complete system built around how <em>your</em> business works — storefront, admin, stock, point of sale, money — with an AI assistant plugged into every part of it. Already built and running at
+        <a href="https://beta.into.ge" target="_blank" class="text-indigo-500 hover:text-indigo-400 underline underline-offset-4">into.ge</a>.
     </p>
-    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10 leading-relaxed">
-        Everything on this page is already built and running in production at
-        <a href="https://beta.into.ge" target="_blank" class="text-indigo-500 hover:text-indigo-400 underline underline-offset-4">into.ge</a>,
-        a 3D printing store in Tbilisi. Your build starts from that foundation and gets shaped to your trade.
-    </p>
-    <div class="flex flex-wrap items-center gap-3">
-        <a href="https://calendly.com/kostyk-pavel-09/30min" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all">
+    <div class="flex flex-wrap items-center gap-3 mb-4">
+        <a href="https://calendly.com/kostyk-pavel-09/30min?utm_source=pavlokostiuk.cloud&utm_content=hero" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all">
             Book a free 30-minute call
         </a>
-        <a href="https://beta.into.ge" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500 transition-all">
-            See it live
+        <a href="#screens" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-medium bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 hover:border-indigo-500 transition-all">
+            See the whole thing
         </a>
     </div>
+    <p class="text-sm text-zinc-500 dark:text-zinc-400">
+        Worked remotely, anywhere — your bank and courier are the only per-country pieces.
+        <a href="#price" class="text-indigo-500 hover:text-indigo-400 underline underline-offset-4">What it costs</a>
+    </p>
 </section>
 
 <section class="px-6 max-w-5xl mx-auto pb-16">
@@ -148,9 +149,29 @@
 <section id="features" class="py-20 px-6 max-w-5xl mx-auto">
     <span class="text-xs uppercase tracking-widest text-indigo-500 font-medium">Everything in the box</span>
     <h2 class="text-3xl font-bold tracking-tight mt-3 mb-4">Full functionality overview</h2>
-    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10 leading-relaxed">
+    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-6 leading-relaxed">
         This is the complete feature set running in production today. Your build won't need all of it — we switch on what fits your trade and leave the rest out.
     </p>
+    <div class="flex flex-wrap gap-1.5 mb-10">
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Storefront</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Search &amp; filtering</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Cart &amp; checkout</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Payments</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Orders</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Products &amp; catalog</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Pricing &amp; promotions</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Inventory</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Point of sale</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Money &amp; reporting</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Customers</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Services &amp; quotes</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Languages &amp; content</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Staff &amp; permissions</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Notifications</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Being found</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Configuration</span>
+        <span class="text-xs px-2.5 py-1 rounded-md bg-zinc-100 dark:bg-surface text-zinc-500 dark:text-zinc-400 border border-zinc-200 dark:border-zinc-800">Backups &amp; export</span>
+    </div>
 
     <div class="grid md:grid-cols-2 gap-4">
 
@@ -420,6 +441,83 @@
                 <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">Price, live stock, category, published state and the linked stock item in one table — with search, saved filters, bulk import and export. The same operations your AI assistant performs when you ask it to.</p>
             </div>
         </div>
+
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-admin-pos.png" alt="Into.ge point of sale with barcode scanning, product search and live stock per location" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">The till</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">Sell over the counter from a laptop or tablet — scan with the device camera or search by name and SKU, pick which location you're selling from, take cash or card. The counter draws down the same stock the website sells from, so the two can't drift apart.</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-admin-inventory.png" alt="Into.ge stock movement history showing receives, reserves and removals per location" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Where did it go?</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">Every change to stock is a recorded movement — received, reserved when an order is placed, removed when it ships, transferred between locations, adjusted after a count. This store has 6,801 of them and you can filter to any one. Nothing changes quantity without leaving a row here.</p>
+            </div>
+        </div>
+
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl overflow-hidden">
+            <img src="screenshots/into-ge-admin-mcp.png" alt="Into.ge admin settings page for connecting Claude, ChatGPT and Gemini to the store over MCP" class="w-full" loading="lazy">
+            <div class="p-6">
+                <h3 class="text-lg font-semibold mb-2">Connecting the AI, for real</h3>
+                <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">This is the actual settings page, not a mock-up. Copy the address, paste it into Claude, ChatGPT or Gemini, sign in with your own admin account, approve. Your staff each connect with their own login, so a cashier's assistant gets a cashier's permissions.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-8 bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6">
+        <h3 class="text-lg font-semibold mb-2">A real answer, from the real store</h3>
+        <p class="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed mb-5">Asked of into.ge's live catalog while writing this page. No cherry-picking — it found problems in my own shop, which is rather the point.</p>
+        <div class="rounded-xl bg-zinc-50 dark:bg-bg border border-zinc-200 dark:border-zinc-800 p-4 mb-3">
+            <div class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">You</div>
+            <p class="text-sm text-zinc-700 dark:text-zinc-300">Audit the catalog — anything broken, mislinked or unpublishable?</p>
+        </div>
+        <div class="rounded-xl bg-zinc-50 dark:bg-bg border border-zinc-200 dark:border-zinc-800 p-4">
+            <div class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-2">The store</div>
+            <ul class="text-sm text-zinc-700 dark:text-zinc-300 space-y-1.5 leading-relaxed">
+                <li>— <strong>17</strong> published products tracking stock with no inventory item linked</li>
+                <li>— <strong>158</strong> links whose product and stock-item names don't match, e.g. <span class="text-zinc-500 dark:text-zinc-400">"ABS-Like OdorLite" → "eResine ABS Odor Grey"</span></li>
+                <li>— <strong>0</strong> missing translations, missing images, empty categories, bad prices, duplicate barcodes or duplicate SKUs</li>
+                <li>— <strong>0</strong> orphaned translation rows, shared stock items or links to retired items</li>
+            </ul>
+        </div>
+        <p class="text-zinc-500 dark:text-zinc-400 text-xs leading-relaxed mt-4">Thirteen classes of defect, checked across the whole catalog in one question. Finding the same by eye is a morning's work you'd never actually schedule.</p>
+    </div>
+</section>
+
+<hr class="border-zinc-200 dark:border-zinc-800 max-w-5xl mx-auto">
+
+<section id="price" class="py-20 px-6 max-w-5xl mx-auto">
+    <span class="text-xs uppercase tracking-widest text-indigo-500 font-medium">The money</span>
+    <h2 class="text-3xl font-bold tracking-tight mt-3 mb-4">What it costs</h2>
+    <p class="text-zinc-600 dark:text-zinc-400 max-w-2xl mb-10 leading-relaxed">
+        One build fee, then nothing per sale — ever. You can take the source code and hosting keys at any point and stop paying me entirely.
+    </p>
+
+    <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">What moves the number</h3>
+            <ul class="text-sm text-zinc-600 dark:text-zinc-400 space-y-1.5 leading-relaxed">
+                <li>— How many products, and how messy the data is today</li>
+                <li>— How many languages you sell in</li>
+                <li>— Whether you need inventory and a point of sale, or just a shop</li>
+                <li>— Which bank and which couriers have to be integrated</li>
+                <li>— Whether you're migrating an existing shop or starting clean</li>
+                <li>— Whether you want ongoing support or the keys and the source</li>
+            </ul>
+        </div>
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">What you own at the end</h3>
+            <ul class="text-sm text-zinc-600 dark:text-zinc-400 space-y-1.5 leading-relaxed">
+                <li>— The full source code, yours outright</li>
+                <li>— The database, on hosting in your own name</li>
+                <li>— Your domain, your bank account, your customer list</li>
+                <li>— No per-sale commission, no per-seat licence, no app subscriptions</li>
+                <li>— No lock-in: any competent developer can pick it up from here</li>
+            </ul>
+        </div>
     </div>
 </section>
 
@@ -471,31 +569,66 @@
 
 <hr class="border-zinc-200 dark:border-zinc-800 max-w-5xl mx-auto">
 
-<section class="py-20 px-6 max-w-3xl mx-auto text-center">
+<section class="py-20 px-6 max-w-5xl mx-auto">
+    <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-2xl p-6 mb-16">
+        <h3 class="text-lg font-semibold mb-2">Who you'd be working with</h3>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed mb-3">
+            I'm Pavlo Kostiuk — a full-stack developer in Tbilisi. Into.ge is my own build, start to finish: the storefront, the admin, the inventory engine, the point of sale, the bank integration and the AI layer. I run it in production, which means I get the support calls when something breaks, and I've had to make it survive real use rather than a demo.
+        </p>
+        <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            That's the honest state of the reference list: one shop, deeply built, publicly inspectable — not a portfolio of logos.
+            <a href="index.html" class="text-indigo-500 hover:text-indigo-400 underline underline-offset-4">My background and other work</a>.
+        </p>
+    </div>
+
+    <div class="max-w-3xl mx-auto text-center">
     <h2 class="text-3xl font-bold tracking-tight mb-4">Tell me what you sell</h2>
     <p class="text-zinc-600 dark:text-zinc-400 mb-8 leading-relaxed">
-        Thirty minutes, no pitch, no obligation. Bring your product list and your worst admin task — we'll work out whether this is worth building for you.
+        Thirty minutes, free, no obligation — and I'll tell you if you'd be better off on Shopify.
     </p>
-    <a href="https://calendly.com/kostyk-pavel-09/30min" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all mb-10">
+    <div class="grid sm:grid-cols-3 gap-3 text-left mb-8">
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl p-4">
+            <div class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1.5">Bring</div>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">Your product list in any form, and the admin task you hate most.</p>
+        </div>
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl p-4">
+            <div class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1.5">We cover</div>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">What you sell, what breaks today, what it would cost and how long it takes.</p>
+        </div>
+        <div class="bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl p-4">
+            <div class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-1.5">You leave with</div>
+            <p class="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">A price, a timeline, and a straight answer on whether it's worth it.</p>
+        </div>
+    </div>
+    <a href="https://calendly.com/kostyk-pavel-09/30min?utm_source=pavlokostiuk.cloud&utm_content=footer" target="_blank" class="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-medium bg-indigo-500 text-white hover:bg-indigo-400 transition-all mb-10">
         Book a free call
     </a>
     <p class="text-xs uppercase tracking-widest text-zinc-400 dark:text-zinc-500 mb-4">or reach me directly</p>
     <div class="flex gap-3 justify-center flex-wrap">
+        <!--email_off-->
         <a href="mailto:kostyk.pavel.09@gmail.com" class="flex items-center gap-2.5 px-5 py-3 bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm hover:border-indigo-500 dark:hover:border-indigo-500 hover:bg-indigo-500/5 transition-all">
             <svg class="opacity-70" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-8.97 5.7a1.94 1.94 0 01-2.06 0L2 7"/></svg>
             kostyk.pavel.09@gmail.com
         </a>
+        <!--email_on-->
         <a href="https://t.me/pavliha" target="_blank" class="flex items-center gap-2.5 px-5 py-3 bg-white dark:bg-surface border border-zinc-200 dark:border-zinc-800 rounded-xl text-sm hover:border-indigo-500 dark:hover:border-indigo-500 hover:bg-indigo-500/5 transition-all">
             <svg class="opacity-70" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M11.944 0A12 12 0 000 12a12 12 0 0012 12 12 12 0 0012-12A12 12 0 0012 0h-.056zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 01.171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.479.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
             @pavliha
         </a>
     </div>
+    </div>
 </section>
 
-<footer class="text-center py-8 text-zinc-500 text-xs border-t border-zinc-200 dark:border-zinc-800">
+<footer class="text-center py-8 pb-24 sm:pb-8 text-zinc-500 text-xs border-t border-zinc-200 dark:border-zinc-800">
     <a href="index.html" class="hover:text-zinc-900 dark:hover:text-white transition-colors">&larr; Back to pavlokostiuk.cloud</a>
     <div class="mt-2">&copy; 2026 Pavlo Kostiuk</div>
 </footer>
+
+<div id="stickyCta" class="sm:hidden fixed bottom-0 inset-x-0 z-50 px-4 py-3 bg-white/90 dark:bg-bg/90 backdrop-blur-xl border-t border-zinc-200 dark:border-zinc-800 translate-y-full transition-transform">
+    <a href="https://calendly.com/kostyk-pavel-09/30min?utm_source=pavlokostiuk.cloud&utm_content=sticky" target="_blank" class="flex items-center justify-center gap-2 w-full px-6 py-3 rounded-xl text-sm font-medium bg-indigo-500 text-white">
+        Book a free 30-minute call
+    </a>
+</div>
 
 <script>
 function toggleTheme() {
@@ -508,6 +641,11 @@ function toggleTheme() {
         localStorage.theme = 'dark';
     }
 }
+
+const stickyCta = document.getElementById('stickyCta');
+addEventListener('scroll', () => {
+    stickyCta.classList.toggle('translate-y-full', scrollY < innerHeight);
+}, { passive: true });
 </script>
 </body>
 </html>
