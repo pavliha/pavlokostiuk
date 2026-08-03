@@ -72,13 +72,19 @@ Rules are `--rule`; nothing else divides.
 
 ## i18n constraint
 
-Ledger columns use **CSS grid, not `columns`**. Georgian and Ukrainian both run longer
-than English and
-multi-column flow breaks unpredictably across scripts; grid is stable in all three.
-Verify any layout change in `ka` before shipping it.
+Four locales: `en`, `ka`, `uk`, `ru`.
+
+Ledger columns use **CSS grid, not `columns`**. Georgian and Ukrainian both run
+noticeably longer than English, and multi-column flow breaks unpredictably across
+scripts; grid is stable in all four. Verify any layout change in `ka` — the longest
+script — before shipping it.
+
+Message catalogues must stay key-identical to `en`. Check parity before committing, not
+after: a missing key renders the raw key path in production.
 
 ## Verification bar
 
-Before shipping UI here: 6 pages × 2 themes × 2 widths must come back with zero contrast
-failures, zero horizontal overflow, zero console errors, and 9/9 Playwright tests green.
+Before shipping UI here: 8 pages × 2 themes × 2 widths (32 combinations) must come back
+with zero contrast failures, zero horizontal overflow, zero console errors, and all
+Playwright tests green.
 The gradient-clipped `h1` reports a false positive (`rgba(0,0,0,0)`) — ignore that one.
