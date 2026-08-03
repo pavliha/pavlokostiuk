@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Check message catalogues
+        run: npm run check:messages
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Build static export
+        run: npx next build
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: End-to-end tests
+        run: npm test
+
+      - name: Upload report on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-report
+          path: playwright-report/
+          retention-days: 7
+
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Build the image Dokploy will build
+        run: docker build -t pavlokostiuk-cloud .
+
+      - name: Serve it and check every locale
+        run: |
+          docker run -d --name site -p 8099:80 pavlokostiuk-cloud
+          ready=0
+          for i in $(seq 1 30); do
+            if curl -fsS -o /dev/null http://localhost:8099/en; then ready=1; break; fi
+            sleep 1
+          done
+          if [ "$ready" != "1" ]; then
+            echo "container never became ready"
+            docker logs site
+            exit 1
+          fi
+          fail=0
+          for path in /en /ka /uk /ru /en/ecommerce /ka/ecommerce /uk/ecommerce /ru/ecommerce; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
+            [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
+          done
+          for path in / /ecommerce /ecommerce.html /index.html; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
+            [ "$code" = "301" ] || { echo "FAIL $path -> $code (expected 301)"; fail=1; }
+          done
+          docker rm -f site > /dev/null
+          exit $fail
