@@ -4,6 +4,7 @@ import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 
+import AnalyticsProvider from "@/components/AnalyticsProvider"
 import { locales, routing } from "@/i18n/routing"
 
 import "../globals.css"
@@ -29,6 +30,7 @@ const LocaleLayout = async ({ children, params }: { children: ReactNode; params:
       </head>
       <body className="antialiased">
         <NextIntlClientProvider>{children}</NextIntlClientProvider>
+        <AnalyticsProvider locale={locale} />
       </body>
     </html>
   )

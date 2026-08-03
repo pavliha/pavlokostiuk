@@ -88,3 +88,18 @@ Before shipping UI here: 8 pages × 2 themes × 2 widths (32 combinations) must 
 with zero contrast failures, zero horizontal overflow, zero console errors, and all
 Playwright tests green.
 The gradient-clipped `h1` reports a false positive (`rgba(0,0,0,0)`) — ignore that one.
+
+## Measurement and capture
+
+`NEXT_PUBLIC_POSTHOG_KEY` + `NEXT_PUBLIC_POSTHOG_HOST` — both required, or PostHog does
+not initialise at all. Pageviews are captured manually (the app router does not fire them
+on client navigation) with `locale` and a locale-stripped `page` property, so the four
+language versions can be compared.
+
+`NEXT_PUBLIC_SUBSCRIBE_ENDPOINT` — the newsletter form POSTs `{email, source}` as JSON and
+expects 2xx. **When it is unset the form shows a visible failure with a fallback address.**
+That is deliberate: a form that silently swallows addresses is worse than one that admits
+it is not wired up.
+
+These are build-time values in a static export — set them in Dokploy and redeploy, not at
+runtime.

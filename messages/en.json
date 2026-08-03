@@ -682,6 +682,15 @@
           "body": "A price, a timeline, and a straight answer on whether it's worth it."
         }
       }
+    },
+    "subscribe": {
+      "heading": "Notes from building these",
+      "body": "Once a month: what actually broke, what a shop owner asked for that I hadn't thought of, and what it cost. No launch announcements, no drip sequence.",
+      "label": "Email address",
+      "placeholder": "you@yourshop.com",
+      "action": "Send them",
+      "done": "You're on the list. First one arrives when there's something worth writing up.",
+      "error": "That didn't send. Email me at kostyk.pavel.09@gmail.com and I'll add you by hand."
     }
   }
 }

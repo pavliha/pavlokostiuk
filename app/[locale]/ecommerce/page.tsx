@@ -7,6 +7,7 @@ import LedgerGroup from "@/components/LedgerGroup"
 import LedgerNote from "@/components/LedgerNote"
 import StatLedger from "@/components/StatLedger"
 import CallToActionLink from "@/components/CallToActionLink"
+import EmailCapture from "@/components/EmailCapture"
 import { Card } from "@/components/ui/card"
 import ScreenshotCard from "@/components/ScreenshotCard"
 import { Separator } from "@/components/ui/separator"
@@ -288,6 +289,19 @@ const EcommerceContent = () => {
             </Link>
             .
           </p>
+        </div>
+
+        <div className="max-w-2xl mb-16">
+          <EmailCapture
+            source="platform"
+            heading={t("subscribe.heading")}
+            body={t("subscribe.body")}
+            label={t("subscribe.label")}
+            placeholder={t("subscribe.placeholder")}
+            action={t("subscribe.action")}
+            done={t("subscribe.done")}
+            error={t("subscribe.error")}
+          />
         </div>
 
         <div className="max-w-3xl mx-auto text-center">

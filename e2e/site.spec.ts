@@ -74,3 +74,29 @@ test("no page overflows horizontally at 375px", async ({ page }) => {
     expect(overflows, `${path} overflows`).toBe(false)
   }
 })
+
+test.describe("email capture", () => {
+  test("renders with a labelled field and a honeypot", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    const field = page.getByLabel("Email address")
+    await expect(field).toBeVisible()
+    await expect(field).toHaveAttribute("type", "email")
+    await expect(field).toHaveAttribute("autocomplete", "email")
+    await expect(page.locator('input[name="company"]')).toBeHidden()
+  })
+
+  test("says so instead of failing silently when it cannot send", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    await page.getByLabel("Email address").fill("shop@example.com")
+    await page.getByRole("button", { name: "Send them" }).click()
+    await expect(page.locator("form ~ p[role=alert]")).toContainText("didn't send")
+  })
+})
+
+test("no analytics requests fire when the key is unset", async ({ page }) => {
+  const analytics: string[] = []
+  page.on("request", (r) => /posthog|i\.posthog\.com/.test(r.url()) && analytics.push(r.url()))
+  await page.goto("/en/ecommerce")
+  await page.waitForTimeout(1500)
+  expect(analytics).toEqual([])
+})
