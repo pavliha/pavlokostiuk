@@ -72,7 +72,8 @@ Rules are `--rule`; nothing else divides.
 
 ## i18n constraint
 
-Ledger columns use **CSS grid, not `columns`**. Georgian runs longer than English and
+Ledger columns use **CSS grid, not `columns`**. Georgian and Ukrainian both run longer
+than English and
 multi-column flow breaks unpredictably across scripts; grid is stable in all three.
 Verify any layout change in `ka` before shipping it.
 

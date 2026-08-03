@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test"
 
-const LOCALES = ["en", "ka", "ru"] as const
+const LOCALES = ["en", "ka", "uk", "ru"] as const
 
 test.describe("locales", () => {
   LOCALES.forEach((locale) => {
