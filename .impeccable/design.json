@@ -1,0 +1,245 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-08-06T00:00:00.000Z",
+  "title": "Design System: Pavlo Kostiuk — Owned E-commerce",
+  "extensions": {
+    "colorMeta": {
+      "thermal-red": {
+        "role": "primary",
+        "displayName": "Thermal Red",
+        "canonical": "#d81f26",
+        "dark": "#ff3b41",
+        "tonalRamp": ["#2b0507", "#4d090d", "#730d13", "#a8161c", "#d81f26", "#ec4a50", "#f88b8f", "#fdd8da"]
+      },
+      "thermal-red-deep": {
+        "role": "primary",
+        "displayName": "Thermal Red Deep",
+        "canonical": "#a8161c",
+        "dark": "#ff6a6f",
+        "tonalRamp": ["#230406", "#3f070a", "#5d0b0f", "#841116", "#a8161c", "#c8353b", "#e07f83", "#f6d1d3"]
+      },
+      "price-gun-orange": {
+        "role": "secondary",
+        "displayName": "Price-Gun Orange",
+        "canonical": "#ff5c1a",
+        "dark": "#ff7a3d",
+        "tonalRamp": ["#331000", "#571b00", "#7d2800", "#b03800", "#e04a08", "#ff5c1a", "#ff9364", "#ffdccb"]
+      },
+      "printhead-black": {
+        "role": "neutral",
+        "displayName": "Printhead Black",
+        "canonical": "#14161a",
+        "dark": "#eef1f2",
+        "tonalRamp": ["#0a0b0d", "#14161a", "#23272c", "#3f4a50", "#5b666c", "#8b979d", "#c9d2d6", "#eef1f2"]
+      },
+      "carbon-grey": {
+        "role": "neutral",
+        "displayName": "Carbon Grey",
+        "canonical": "#3f4a50",
+        "dark": "#b3bec4",
+        "tonalRamp": ["#0f1214", "#1c2124", "#2b3237", "#3f4a50", "#5b666c", "#8b979d", "#b3bec4", "#e2e7e9"]
+      },
+      "printhead-grey": {
+        "role": "neutral",
+        "displayName": "Printhead Grey",
+        "canonical": "#8b979d",
+        "dark": "#5d686e",
+        "tonalRamp": ["#161a1c", "#252b2e", "#3a4247", "#5d686e", "#8b979d", "#aab4b9", "#c9d2d6", "#edf0f1"]
+      },
+      "hairline-grey": {
+        "role": "neutral",
+        "displayName": "Hairline Grey",
+        "canonical": "#c9d2d6",
+        "dark": "#2c3237",
+        "tonalRamp": ["#171b1d", "#2c3237", "#434b50", "#5f696e", "#8b979d", "#adb7bc", "#c9d2d6", "#eef1f2"]
+      },
+      "muted-ink": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#5b666c",
+        "dark": "#95a1a8",
+        "tonalRamp": ["#121517", "#1f2427", "#323a3e", "#465055", "#5b666c", "#8b979d", "#b6c0c5", "#e6eaec"]
+      },
+      "roll-white": {
+        "role": "neutral",
+        "displayName": "Roll White",
+        "canonical": "#fbfcfc",
+        "dark": "#1a1d20",
+        "tonalRamp": ["#101214", "#1a1d20", "#22262a", "#3a4045", "#6d777c", "#a9b3b8", "#dfe4e6", "#fbfcfc"]
+      },
+      "thermal-white": {
+        "role": "neutral",
+        "displayName": "Thermal White",
+        "canonical": "#eef1f2",
+        "dark": "#101214",
+        "tonalRamp": ["#0b0d0e", "#101214", "#1c1f22", "#343a3e", "#687277", "#a4aeb3", "#d5dbdd", "#eef1f2"]
+      },
+      "passed-grey": {
+        "role": "neutral",
+        "displayName": "Passed Grey",
+        "canonical": "#e2e7e9",
+        "dark": "#22262a",
+        "tonalRamp": ["#0e1113", "#161a1c", "#22262a", "#394045", "#6b757a", "#a3adb2", "#c9d2d6", "#e2e7e9"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Stamped Display", "purpose": "The page headline only, at roll width, condensed 800 uppercase capped at 18ch." },
+      "headline": { "displayName": "Stamped Headline", "purpose": "Section titles. The only level besides display allowed viewport-scale type." },
+      "title": { "displayName": "Stamped Title", "purpose": "Panel headings, group headings, plan steps, screenshot captions, form labels." },
+      "subhead": { "displayName": "Subhead", "purpose": "The single sentence under a headline, held to max-w-2xl." },
+      "body": { "displayName": "Body", "purpose": "All prose and list items at 1rem / 1.55; long-form explanatory prose loosens to 1.7." },
+      "figure": { "displayName": "Printed Figure", "purpose": "Stat and price values in tabular mono, red at page scale." },
+      "label": { "displayName": "Printout Label", "purpose": "Navigation, locale codes, form input text, step numbers and list markers." },
+      "caption": { "displayName": "Caption", "purpose": "Figure labels, footnotes, scarcity notes, copyright." }
+    },
+    "shadows": [
+      { "name": "roll-curl", "value": "0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent), 0 18px 40px -28px color-mix(in oklab, var(--ink) 55%, transparent)", "purpose": "Applied by the roll surface itself so the paper reads as lifting off the page. Never applied to anything else." },
+      { "name": "label-lift", "value": "0 10px 24px -16px rgba(20,22,26,0.9)", "purpose": "The price-gun label only; it is a physical sticker sitting proud of the roll." }
+    ],
+    "motion": [
+      { "name": "peel", "value": "transition: rotate 200ms ease-out, translate 200ms ease-out", "purpose": "The price label straightening from -1.4deg and rising 2px on hover or focus-visible." },
+      { "name": "ink-shift", "value": "transition: color 150ms, border-color 150ms", "purpose": "Link colour and field-underline colour changes. The only other motion in the system." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ],
+    "materials": [
+      { "name": "roll", "value": "background: var(--roll); box-shadow: 0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent), 0 18px 40px -28px color-mix(in oklab, var(--ink) 55%, transparent);", "purpose": "The paper every section is printed on." },
+      { "name": "tear-bottom", "value": "mask-image: radial-gradient(circle at 7px 7px, transparent 6px, #000 6.5px); mask-size: 14px 14px; mask-repeat: repeat-x; height: 14px;", "purpose": "Perforated edge punched along the bottom of a roll surface." },
+      { "name": "dotrule", "value": "background-image: repeating-linear-gradient(to right, var(--ledger) 0 3px, transparent 3px 7px); background-size: 100% 1px; background-position: 0 50%;", "purpose": "The dotted tear rule that divides every section." },
+      { "name": "stamped", "value": "font-family: var(--font-display); font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; overflow-wrap: anywhere;", "purpose": "The heading treatment. Applied by class, never re-declared per component." },
+      { "name": "printed", "value": "font-family: var(--font-mono); font-variant-numeric: tabular-nums; letter-spacing: -0.01em;", "purpose": "The figures-and-chrome treatment." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Price Label (Primary CTA)",
+      "kind": "button",
+      "refersTo": "price-label",
+      "description": "The fluorescent adhesive label — the only unprinted object on the roll. One per viewport.",
+      "html": "<a href=\"#\" class=\"ds-price-label\"><span aria-hidden=\"true\" class=\"ds-price-label__strip\"></span><span class=\"ds-price-label__text\">BOOK A 20-MINUTE CALL</span><span aria-hidden=\"true\" class=\"ds-price-label__enter\">↵</span></a>",
+      "css": ".ds-price-label { position: relative; display: inline-flex; align-items: center; gap: 12px; background: var(--label, #ff5c1a); color: #14161a; padding: 16px 24px; border-radius: 0; text-decoration: none; rotate: -1.4deg; box-shadow: 0 10px 24px -16px rgba(20,22,26,0.9); transition: rotate 200ms ease-out, translate 200ms ease-out; } .ds-price-label__strip { position: absolute; top: 0; bottom: 0; left: 0; width: 6px; opacity: 0.6; background: repeating-linear-gradient(to bottom, #14161a 0 3px, transparent 3px 7px); } .ds-price-label__text { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1.25rem; } .ds-price-label__enter { font-family: var(--font-mono, 'Roboto Mono'), monospace; font-size: 0.75rem; font-weight: 700; opacity: 0.7; } .ds-price-label:hover { rotate: 0deg; translate: 0 -2px; } .ds-price-label:focus-visible { rotate: 0deg; outline: 2px solid var(--primary, #d81f26); outline-offset: 2px; }"
+    },
+    {
+      "name": "Inline Red Link (Secondary Action)",
+      "kind": "button",
+      "refersTo": "link-inline",
+      "description": "The system's only secondary action: a red underlined text link. There is no filled secondary button.",
+      "html": "<a href=\"#\" class=\"ds-link-inline\">Send me your product list instead</a>",
+      "css": ".ds-link-inline { font-family: var(--font-sans, 'Archivo'), sans-serif; font-size: 1rem; line-height: 1.55; color: var(--primary, #d81f26); text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 4px; transition: color 150ms; } .ds-link-inline:hover { color: var(--brand-strong, #a8161c); } .ds-link-inline:focus-visible { outline: 2px solid var(--primary, #d81f26); outline-offset: 3px; }"
+    },
+    {
+      "name": "Paper Form Field",
+      "kind": "input",
+      "refersTo": "input-field",
+      "description": "Underline-only field with mono input text; the underline turns thermal red on focus.",
+      "html": "<div class=\"ds-field\"><label class=\"ds-field__label\" for=\"ds-field-sell\">What do you sell?</label><input class=\"ds-field__input\" id=\"ds-field-sell\" type=\"text\" placeholder=\"3D printing filament, 240 SKUs\" /></div>",
+      "css": ".ds-field { display: grid; gap: 4px; max-width: 32rem; } .ds-field__label { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1rem; color: var(--ink, #14161a); } .ds-field__input { font-family: var(--font-mono, 'Roboto Mono'), monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; width: 100%; height: 48px; padding: 0 12px; background: transparent; color: var(--ink, #14161a); border: 0; border-bottom: 1px solid var(--ledger, #8b979d); border-radius: 0; font-size: 1rem; transition: border-color 150ms; caret-color: var(--primary, #d81f26); } .ds-field__input::placeholder { color: var(--ledger, #8b979d); } .ds-field__input:focus { outline: none; border-bottom-color: var(--primary, #d81f26); }"
+    },
+    {
+      "name": "Locale Select",
+      "kind": "nav",
+      "refersTo": "locale-select",
+      "description": "shadcn Select forced square and hairline: mono locale code, no shadow, red border on focus or open.",
+      "html": "<button class=\"ds-locale\" aria-label=\"Language\"><span>EN</span><svg width=\"12\" height=\"12\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"><path d=\"m6 9 6 6 6-6\"/></svg></button>",
+      "css": ".ds-locale { display: inline-flex; align-items: center; gap: 8px; height: 44px; padding: 0 12px; background: transparent; color: var(--ink, #14161a); border: 1px solid var(--rule, #c9d2d6); border-radius: 0; box-shadow: none; font-family: var(--font-mono, 'Roboto Mono'), monospace; font-size: 0.8125rem; letter-spacing: -0.01em; cursor: pointer; transition: border-color 150ms; } .ds-locale:hover { border-color: var(--ledger, #8b979d); } .ds-locale:focus-visible, .ds-locale[data-state='open'] { outline: none; border-color: var(--primary, #d81f26); }"
+    },
+    {
+      "name": "Top Navigation",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "Fixed blurred bar with a stamped wordmark, mono links at 44px touch height, and a compact price label.",
+      "html": "<nav class=\"ds-nav\"><a class=\"ds-nav__brand\" href=\"#\">Pavlo Kostiuk</a><div class=\"ds-nav__group\"><a class=\"ds-nav__link\" href=\"#\">Problems</a><a class=\"ds-nav__link\" href=\"#\">Price</a><a class=\"ds-nav__cta\" href=\"#\">Book a call</a></div></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; width: 100%; padding: 12px 24px; background: color-mix(in oklab, var(--background, #eef1f2) 92%, transparent); backdrop-filter: blur(12px); border-bottom: 1px solid var(--ledger, #8b979d); } .ds-nav__brand { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1.25rem; color: var(--ink, #14161a); text-decoration: none; white-space: nowrap; } .ds-nav__group { display: flex; align-items: center; gap: 12px; } .ds-nav__link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 8px; font-family: var(--font-mono, 'Roboto Mono'), monospace; font-size: 0.8125rem; letter-spacing: -0.01em; color: var(--ink-2, #3f4a50); text-decoration: none; transition: color 150ms; } .ds-nav__link:hover { color: var(--primary, #d81f26); } .ds-nav__cta { display: inline-flex; align-items: center; padding: 8px 16px; background: var(--label, #ff5c1a); color: #14161a; text-decoration: none; border-radius: 0; font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1rem; transition: translate 200ms ease-out; } .ds-nav__cta:hover { translate: 0 -2px; }"
+    },
+    {
+      "name": "Roll Section with Tear Rule",
+      "kind": "card",
+      "refersTo": "roll-panel",
+      "description": "The full-bleed printed surface plus the dotted perforation strip that divides every section.",
+      "html": "<section class=\"ds-roll\"><h2 class=\"ds-roll__title\">The counter and the site disagree</h2><p class=\"ds-roll__body\">A customer buys the last one at the counter. The website sells it again ten minutes later.</p></section><div class=\"ds-tear\" aria-hidden=\"true\"></div>",
+      "css": ".ds-roll { display: block; width: 100%; padding: 48px 24px; background: var(--roll, #fbfcfc); box-shadow: 0 1px 0 0 color-mix(in oklab, var(--ink, #14161a) 6%, transparent), 0 18px 40px -28px color-mix(in oklab, var(--ink, #14161a) 55%, transparent); } .ds-roll__title { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 3rem; color: var(--ink, #14161a); margin: 0 0 20px; max-width: 20ch; } .ds-roll__body { font-family: var(--font-sans, 'Archivo'), sans-serif; font-size: 1rem; line-height: 1.55; color: var(--ink-2, #3f4a50); margin: 0; max-width: 42rem; } .ds-tear { height: 32px; width: 100%; background-color: var(--roll, #fbfcfc); background-image: repeating-linear-gradient(to right, var(--ledger, #8b979d) 0 3px, transparent 3px 7px); background-repeat: repeat-x; background-size: 100% 1px; background-position: 0 50%; }"
+    },
+    {
+      "name": "Ledger Group",
+      "kind": "custom",
+      "refersTo": "roll-panel",
+      "description": "Stamped heading over a hairline rule, with mono red '>' markers on every line. The standard grouped list.",
+      "html": "<section class=\"ds-ledger\"><h3 class=\"ds-ledger__title\">Inventory</h3><ul class=\"ds-ledger__list\"><li class=\"ds-ledger__item\"><span aria-hidden=\"true\" class=\"ds-ledger__marker\">&gt;</span><span>Stock re-checked at the moment of purchase</span></li><li class=\"ds-ledger__item\"><span aria-hidden=\"true\" class=\"ds-ledger__marker\">&gt;</span><span>Counter sales reduce web stock immediately</span></li></ul></section>",
+      "css": ".ds-ledger__title { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1.125rem; color: var(--ink, #14161a); padding-bottom: 8px; margin: 0 0 12px; border-bottom: 1px solid var(--rule, #c9d2d6); } .ds-ledger__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; } .ds-ledger__item { display: flex; gap: 12px; font-family: var(--font-sans, 'Archivo'), sans-serif; font-size: 1rem; line-height: 1.55; color: var(--ink-2, #3f4a50); } .ds-ledger__marker { font-family: var(--font-mono, 'Roboto Mono'), monospace; color: var(--primary, #d81f26); flex-shrink: 0; user-select: none; }"
+    },
+    {
+      "name": "Resolved Block",
+      "kind": "card",
+      "refersTo": "roll-panel",
+      "description": "The promise/finding block: red left edge, passed-grey fill at 60%, stamped line over a muted caption.",
+      "html": "<div class=\"ds-resolved\"><p class=\"ds-resolved__promise\">One stock number, two counters</p><p class=\"ds-resolved__proof\">Live at into.ge since 2025. 97 end-to-end tests.</p></div>",
+      "css": ".ds-resolved { border-left: 1px solid var(--primary, #d81f26); background: color-mix(in oklab, var(--secondary, #e2e7e9) 60%, transparent); padding: 12px 0 12px 16px; border-radius: 0; } .ds-resolved__promise { font-family: var(--font-display, 'Fira Sans Condensed'), sans-serif; font-weight: 800; text-transform: uppercase; letter-spacing: 0.005em; line-height: 0.92; font-size: 1rem; color: var(--ink, #14161a); margin: 0 0 6px; } .ds-resolved__proof { font-family: var(--font-sans, 'Archivo'), sans-serif; font-size: 0.75rem; line-height: 1.5; color: var(--muted-foreground, #5b666c); margin: 0; }"
+    },
+    {
+      "name": "Printed Figure",
+      "kind": "chip",
+      "refersTo": "roll-panel",
+      "description": "A stat printed as a till line: tabular mono value over a muted caption, separated by a top hairline.",
+      "html": "<dl class=\"ds-figure\"><dt class=\"ds-figure__value\">311.7</dt><dd class=\"ds-figure__label\">hours to build the first installation</dd></dl>",
+      "css": ".ds-figure { margin: 0; padding-top: 16px; padding-right: 24px; border-top: 1px solid var(--rule, #c9d2d6); } .ds-figure__value { font-family: var(--font-mono, 'Roboto Mono'), monospace; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; font-weight: 700; font-size: 2.25rem; line-height: 1.1; color: var(--primary, #d81f26); margin: 0 0 6px; } .ds-figure__label { font-family: var(--font-sans, 'Archivo'), sans-serif; font-size: 0.75rem; line-height: 1.375; color: var(--muted-foreground, #5b666c); margin: 0; }"
+    },
+    {
+      "name": "Pain Figure",
+      "kind": "custom",
+      "refersTo": "roll-panel",
+      "description": "Label-free 400x80 diagram: printhead grey is the broken present, thermal red the resolved future.",
+      "html": "<svg class=\"ds-painfig\" viewBox=\"0 0 400 80\" fill=\"none\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M8 48 H392\" stroke=\"var(--rule, #c9d2d6)\" stroke-dasharray=\"3 5\"/><path d=\"M8 14 H110 V28 H210 V48 H286\" stroke=\"var(--ledger, #8b979d)\" stroke-width=\"2\"/><path d=\"M286 48 V68 H392\" stroke=\"var(--primary, #d81f26)\" stroke-width=\"2.5\"/><circle cx=\"286\" cy=\"48\" r=\"4\" fill=\"var(--primary, #d81f26)\" stroke=\"none\"/></svg>",
+      "css": ".ds-painfig { display: block; width: 100%; height: auto; margin-bottom: 20px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Till Roll You Keep",
+    "overview": "The page is the artifact the counter prints. Every surface behaves like a continuous thermal receipt unspooling down the viewport: an unbroken roll of near-white stock, divided not by cards or containers but by perforated dot rules where the paper would tear. Content is stamped onto the roll rather than placed on top of it. There is no floating panel, no lifted card, no drop-shadowed hero — only what a two-colour printhead could physically put down: black at full density, thermal red for totals and voids, and a single unprinted object, the fluorescent price-gun label, stuck on at an angle.\n\nThe density is a printout's: full-bleed to the roll's edges with generous vertical silence between tear lines, columns separated by wide gutters and hairline rules instead of boxes. Type does the structural work. Heavy condensed caps are stamped at roll width for headlines; a quiet grotesque carries every sentence a human reads; monospace is reserved strictly for figures, codes and chrome — never for prose. The palette is cold, not warm: the paper is grey-blue thermal stock, never cream.\n\nTwo rejections are load-bearing and confirmed by the build. It refuses the centred hero-plus-screenshot arrangement the category ships — the first viewport is a left-weighted stamped headline with the product shot as a co-equal column, not a centred pitch above a device mock. And it refuses the warm-paper editorial ledger that preceded it here: no cream, no indigo, no system sans, no serif.",
+    "keyCharacteristics": [
+      "Continuous roll, not stacked cards — sections are divided by perforation, not elevation",
+      "Zero corner radius on every authored surface; borders are hairlines, never heavy strokes",
+      "Exactly one unprinted element per screen: the fluorescent price-gun label CTA",
+      "Monospace is a figures-and-chrome material, never a body material",
+      "Full light and dark roll, with red brightening rather than the paper going warm",
+      "Diagrams carry meaning without labels: grey stroke is the broken present, red is the resolved future"
+    ],
+    "rules": [
+      { "name": "The One Unprinted Object Rule", "body": "Price-gun orange is the only colour a thermal head cannot produce. It appears on primary actions only, at most once per viewport, and always with black type on it. If two orange objects are visible at once, one of them is not a primary action.", "section": "colors" },
+      { "name": "The Cold Stock Rule", "body": "The paper is grey-blue, never cream, ivory or warm white. Any neutral introduced must sit on the same cold axis as #eef1f2 / #fbfcfc.", "section": "colors" },
+      { "name": "The Red Means Resolved Rule", "body": "In every diagram, chart and step list, grey stroke is the broken present and red is the resolved future. Red is never decorative and never signals danger here — the destructive role is a separate token that the page does not use.", "section": "colors" },
+      { "name": "The Figures-Only Mono Rule", "body": "Roboto Mono carries numbers, codes, step markers, list glyphs and interface chrome. It never sets a sentence a human reads. If a mono run exceeds a short phrase, it is the wrong font.", "section": "typography" },
+      { "name": "The Stamped-or-Set Rule", "body": "A heading is either stamped (condensed 800, uppercase, line-height 0.92) or it is plain body semibold. There is no third heading style, and Archivo is never set in caps.", "section": "typography" },
+      { "name": "The Sixteen Rule", "body": "Root size is exactly 16px and body line-height exactly 1.55. This is canonical, not inherited default — no surface may shrink base prose below 1rem.", "section": "typography" },
+      { "name": "The Full-Bleed Roll Rule", "body": "Sections span the full viewport width and paint their own background. Never wrap a section in a centred max-width container — the roll runs edge to edge or it is not a roll.", "section": "layout" },
+      { "name": "The Rule-Not-Box Rule", "body": "Separation is achieved with a single hairline on one edge plus padding. Reach for a four-sided border only when the content is a genuinely inset panel (the prototype form, the audit transcript, a screenshot card).", "section": "layout" },
+      { "name": "The Two Shadows Rule", "body": "The system has exactly two shadows and both are already assigned. Panels, cards, buttons, inputs, dropdowns and nav all carry box-shadow: none.", "section": "elevation" },
+      { "name": "The Motion-Is-Peel Rule", "body": "The only motion in the system is a sticker responding to the cursor: a 200ms rotate-to-zero and a 2px rise on the label and its siblings, plus colour transitions on links and field underlines. Nothing fades in, nothing slides on scroll.", "section": "elevation" },
+      { "name": "The Square Corners Rule", "body": "border-radius: 0 on every surface a user can touch. If a component library supplies a radius, override it.", "section": "shapes" },
+      { "name": "The Hairline Rule", "body": "Every border in the system is 1px. 2px and heavier borders were deliberately removed from this build; reintroducing one is a regression, not a variant.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do paint every section as a full-bleed roll surface (roll white on the cooler page ground) and divide sections with the 32px dotted tear strip.",
+      "Do keep every corner square (0 radius) and every border one pixel, overriding any library default with rounded-none.",
+      "Do stamp headings in condensed 800 uppercase at line-height 0.92, and set all prose in Archivo at 1rem / 1.55.",
+      "Do reserve monospace for figures, step numbers, list markers, form input text and nav chrome.",
+      "Do limit fluorescent price-gun orange to one primary action per viewport, always with printhead-black type on it.",
+      "Do state the broken present in printhead grey and the resolved future in thermal red in every diagram.",
+      "Do define grid cells with a top hairline and 16px of padding rather than a box.",
+      "Do carry both the light and dark roll for any new surface; the paper darkens and the red brightens, but the palette never warms."
+    ],
+    "donts": [
+      "Don't add a section eyebrow, kicker or overline above a heading. Sections open on the stamped headline and nothing else.",
+      "Don't reintroduce 2px or heavier borders; they were deliberately removed from this build.",
+      "Don't add a shadow to a panel, card, button, input or dropdown — the system's two shadows are already assigned to the roll and the label.",
+      "Don't set body prose, subheads or long copy in monospace.",
+      "Don't use warm neutrals (cream, ivory, warm white) or the predecessor's indigo; the stock is cold grey-blue.",
+      "Don't centre the hero or place a screenshot beneath a centred pitch; the first viewport is a left-weighted stamped headline with the shot as a co-equal column.",
+      "Don't use thermal red as a danger or error-only colour — it is the resolved/total colour and loses that meaning if it also means \"wrong\".",
+      "Don't wrap a section in a centred max-width container; cap the content inside it instead."
+    ]
+  }
+}
