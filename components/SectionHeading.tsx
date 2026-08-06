@@ -1,13 +1,8 @@
 import type { ReactNode } from "react"
 
-const SectionHeading = ({ eyebrow, title, children }: { eyebrow: string; title: string; children: ReactNode }) => (
+const SectionHeading = ({ title, children }: { title: string; children: ReactNode }) => (
   <>
-    {eyebrow ? (
-      <p className="text-xs font-semibold uppercase tracking-widest text-primary dark:text-brand-light mb-3">
-        {eyebrow}
-      </p>
-    ) : null}
-    <h2 className="text-3xl font-bold tracking-tight mb-4">{title}</h2>
+    <h2 className="claim text-ink text-[clamp(1.875rem,3.6vw,2.5rem)] mb-5 max-w-2xl">{title}</h2>
     {children}
   </>
 )

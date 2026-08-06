@@ -76,12 +76,16 @@ export const FEATURE_KEYS = [
   "backups",
 ] as const
 
-export const AI_POINT_KEYS = ["servers", "connect", "translation", "dataEntry", "audit", "howIBuild"] as const
+export const VALUE_ICONS = ["fit", "stock", "commission", "ownership"] as const
 
-export const PRICE_KEYS = ["moves", "yours"] as const
+export const PAIN_KEYS =["stock", "money", "commission", "catalog", "orders", "staff"] as const
+
+export const AI_POINT_KEYS =["servers", "connect", "translation", "dataEntry", "audit", "howIBuild"] as const
+
+export const PRICE_KEYS = ["setup", "moves", "warranty", "yours", "notFixed"] as const
 
 export const PROCESS_KEYS = ["talk", "seeData", "shape", "launch"] as const
 
-export const STAT_KEYS = ["tools", "languages", "stock", "commission"] as const
+export const STAT_KEYS = ["stock", "languages", "tools", "commission"] as const
 
 export const CALL_KEYS = ["bring", "cover", "leave"] as const

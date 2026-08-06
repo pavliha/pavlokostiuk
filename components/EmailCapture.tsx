@@ -4,6 +4,8 @@ import { useState } from "react"
 
 import { track } from "@/lib/track"
 import { Button } from "@/components/ui/button"
+import { Input } from "@/components/ui/input"
+import { Label } from "@/components/ui/label"
 
 const ENDPOINT = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT
 
@@ -57,20 +59,20 @@ const EmailCapture = ({
   if (state === "done")
     return (
       <section className="border-t border-rule pt-6">
-        <h3 className="font-semibold mb-1.5 text-ink">{heading}</h3>
+        <h3 className="text-xl font-semibold mb-2 text-ink">{heading}</h3>
         <p className="text-sm text-muted-foreground">{done}</p>
       </section>
     )
 
   return (
     <section className="border-t border-rule pt-6">
-      <h3 className="font-semibold mb-1.5 text-ink">{heading}</h3>
+      <h3 className="text-xl font-semibold mb-2 text-ink">{heading}</h3>
       <p className="text-sm text-muted-foreground mb-4 max-w-xl leading-relaxed">{body}</p>
       <form onSubmit={submit} className="flex flex-wrap gap-2 items-start max-w-lg">
-        <label htmlFor="subscribe-email" className="sr-only">
+        <Label htmlFor="subscribe-email" className="sr-only">
           {label}
-        </label>
-        <input
+        </Label>
+        <Input
           id="subscribe-email"
           name="email"
           type="email"
@@ -79,7 +81,7 @@ const EmailCapture = ({
           value={email}
           onChange={(event) => setEmail(event.target.value)}
           placeholder={placeholder}
-          className="flex-1 min-w-56 h-11 px-3 rounded-xl bg-card border border-border text-sm text-ink placeholder:text-muted-foreground focus-visible:outline-2 focus-visible:outline-ring"
+          className="flex-1 min-w-56"
         />
         <input
           type="text"
@@ -89,7 +91,7 @@ const EmailCapture = ({
           aria-hidden="true"
           className="hidden"
         />
-        <Button type="submit" size="lg" disabled={state === "sending"} className="h-11 rounded-xl px-5">
+        <Button type="submit" variant="outline" size="lg" disabled={state === "sending"} className="">
           {action}
         </Button>
       </form>

@@ -1,7 +1,5 @@
 import Image from "next/image"
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-
 export type Screenshot = {
   src: string
   alt: string
@@ -12,15 +10,13 @@ export type Screenshot = {
 }
 
 const ScreenshotCard = ({ src, alt, title, body, width, height }: Screenshot) => (
-  <Card className="overflow-hidden gap-0 py-0">
-    <Image src={src} alt={alt} width={width} height={height} className="w-full h-auto" loading="lazy" />
-    <CardHeader className="pt-6">
-      <CardTitle className="text-lg">{title}</CardTitle>
-    </CardHeader>
-    <CardContent className="pb-6">
-      <p className="text-muted-foreground text-sm leading-relaxed">{body}</p>
-    </CardContent>
-  </Card>
+  <figure className="border border-rule bg-card rounded-xl overflow-hidden">
+    <Image src={src} alt={alt} width={width} height={height} className="w-full h-auto border-b border-rule" loading="lazy" />
+    <figcaption className="p-5 sm:p-6">
+      <h3 className="text-lg font-semibold text-ink mb-2">{title}</h3>
+      <p className="text-base text-ink-2 leading-[1.55]">{body}</p>
+    </figcaption>
+  </figure>
 )
 
 export default ScreenshotCard

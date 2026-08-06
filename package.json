@@ -3,13 +3,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3020",
-    "build": "node scripts/check-messages.mjs && next build",
+    "build": "node scripts/check-messages.mjs && node scripts/check-capture.mjs && next build",
     "start": "npx --yes serve out -l 3020 --no-clipboard",
     "lint": "next lint",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
     "preview": "npm run build && npm run start",
-    "check:messages": "node scripts/check-messages.mjs"
+    "check:messages": "node scripts/check-messages.mjs",
+    "check:capture": "node scripts/check-capture.mjs"
   },
   "dependencies": {
     "class-variance-authority": "^0.7.1",

@@ -2,28 +2,41 @@
 
 import { useLocale } from "next-intl"
 
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { Button } from "@/components/ui/button"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { LOCALE_LABELS, locales, type Locale } from "@/i18n/routing"
+import { LOCALE_CODES, LOCALE_LABELS, locales, type Locale } from "@/i18n/routing"
 
 const LocaleSwitcher = ({ label }: { label: string }) => {
-  const locale = useLocale()
+  const locale = useLocale() as Locale
   const pathname = usePathname()
   const router = useRouter()
 
   return (
-    <Select value={locale} onValueChange={(next) => router.replace(pathname, { locale: next as Locale })}>
-      <SelectTrigger aria-label={label} size="sm" className="w-auto gap-1 border-none shadow-none bg-transparent">
-        <SelectValue />
-      </SelectTrigger>
-      <SelectContent align="end">
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant="ghost" size="sm" aria-label={label} className="gap-2">
+          <span className="text-sm font-medium">{LOCALE_CODES[locale]}</span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end">
         {locales.map((option) => (
-          <SelectItem key={option} value={option}>
+          <DropdownMenuItem
+            key={option}
+            onClick={() => router.replace(pathname, { locale: option })}
+            className={locale === option ? "bg-accent" : ""}
+          >
+            <span className="mr-2 font-medium">{LOCALE_CODES[option]}</span>
             {LOCALE_LABELS[option]}
-          </SelectItem>
+          </DropdownMenuItem>
         ))}
-      </SelectContent>
-    </Select>
+      </DropdownMenuContent>
+    </DropdownMenu>
   )
 }
 

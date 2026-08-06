@@ -30,4 +30,8 @@ export const PLATFORM_SHOTS: readonly MediaAsset[] = [
   shot("mcp", "into-ge-admin-mcp.png", 2880, 1800),
 ]
 
-export const PORTRAIT: MediaAsset = { key: "portrait", src: "/pavlo.webp", width: 576, height: 768 }
+export const PLATFORM_HERO_SHOT: MediaAsset = shot("heroStorefront", "hero-storefront.webp", 1800, 975)
+
+export const PRIMARY_SHOT_KEYS: readonly string[] = ["homepage", "dashboard", "pos"]
+
+export const PORTRAIT: MediaAsset ={ key: "portrait", src: "/pavlo.webp", width: 576, height: 768 }
