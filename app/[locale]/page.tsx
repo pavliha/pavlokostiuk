@@ -145,7 +145,7 @@ const HomeContent = () => {
       <Separator />
 
       <section id="experience" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
-        <SectionHeading eyebrow={t("experience.eyebrow")} title={t("experience.title")}>
+        <SectionHeading title={t("experience.title")}>
           <p className="text-muted-foreground max-w-xl mb-12">{t("experience.intro")}</p>
         </SectionHeading>
         <div className="flex flex-col gap-4">
@@ -166,7 +166,7 @@ const HomeContent = () => {
       <Separator />
 
       <section id="projects" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
-        <SectionHeading eyebrow={t("aircast.eyebrow")} title={t("aircast.title")}>
+        <SectionHeading title={t("aircast.title")}>
           <p className="text-muted-foreground max-w-2xl mb-4">{t("aircast.intro")}</p>
         </SectionHeading>
         <div className="flex items-center gap-3 mb-10 flex-wrap">
@@ -191,7 +191,7 @@ const HomeContent = () => {
       <Separator />
 
       <section className="py-20 px-6 max-w-5xl mx-auto">
-        <SectionHeading eyebrow="" title={t("intoGe.title")}>
+        <SectionHeading title={t("intoGe.title")}>
           <p className="text-muted-foreground max-w-2xl mb-4">{t("intoGe.intro")}</p>
           <p className="text-muted-foreground max-w-2xl mb-4">
             {t("intoGe.offerLead")}{" "}
@@ -231,7 +231,7 @@ const HomeContent = () => {
       <Separator />
 
       <section id="skills" className="py-20 px-6 max-w-5xl mx-auto scroll-mt-20">
-        <SectionHeading eyebrow={t("skills.eyebrow")} title={t("skills.title")}>
+        <SectionHeading title={t("skills.title")}>
           <p className="text-muted-foreground max-w-xl mb-12">{t("skills.intro")}</p>
         </SectionHeading>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8">
@@ -249,7 +249,7 @@ const HomeContent = () => {
       <Separator />
 
       <section className="py-20 px-6 max-w-5xl mx-auto">
-        <SectionHeading eyebrow={t("background.eyebrow")} title={t("background.title")}>
+        <SectionHeading title={t("background.title")}>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-10">
             <section className="border-t border-rule pt-4">
               <h3 className="text-[11px] font-semibold uppercase tracking-[0.1em] text-primary dark:text-brand-light mb-3">
@@ -277,7 +277,7 @@ const HomeContent = () => {
       <Separator />
 
       <section id="contact" className="py-24 px-6 max-w-5xl mx-auto text-center scroll-mt-20">
-        <SectionHeading eyebrow={t("contact.eyebrow")} title={t("contact.title")}>
+        <SectionHeading title={t("contact.title")}>
           <p className="text-muted-foreground max-w-md mx-auto mb-8">{t("contact.body")}</p>
         </SectionHeading>
         <CallToActionLink

@@ -10,7 +10,7 @@ const toggle = () => {
 }
 
 const ThemeToggle = ({ label }: { label: string }) => (
-  <Button onClick={toggle} aria-label={label} variant="ghost" size="icon" className="shrink-0">
+  <Button onClick={toggle} aria-label={label} variant="ghost" size="icon" className="shrink-0 size-11">
     <Sun className="hidden dark:block" />
     <Moon className="block dark:hidden" />
   </Button>

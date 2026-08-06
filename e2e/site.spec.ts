@@ -30,19 +30,20 @@ test.describe("locales", () => {
 
   test("the switcher moves between locales and keeps the page", async ({ page }) => {
     await page.goto("/en/ecommerce")
-    await page.getByRole("combobox").click()
-    await page.getByRole("option", { name: "Русский" }).click()
+    await page.getByRole("button", { name: "Language" }).click()
+    await page.getByRole("menuitem", { name: /RU/ }).click()
     await expect(page).toHaveURL(/\/ru\/ecommerce/)
     await expect(page.locator("html")).toHaveAttribute("lang", "ru")
   })
 
-  test("the switcher is reachable by keyboard", async ({ page }) => {
+  test("the switcher shows the current locale and is reachable by keyboard", async ({ page }) => {
     await page.goto("/en")
-    const trigger = page.getByRole("combobox")
+    const trigger = page.getByRole("button", { name: "Language" })
+    await expect(trigger).toContainText("EN")
     await trigger.focus()
     await expect(trigger).toBeFocused()
     await page.keyboard.press("Enter")
-    await expect(page.getByRole("option", { name: "ქართული" })).toBeVisible()
+    await expect(page.getByRole("menuitem", { name: /KA/ })).toBeVisible()
   })
 })
 
@@ -82,7 +83,9 @@ test.describe("email capture", () => {
     await expect(field).toBeVisible()
     await expect(field).toHaveAttribute("type", "email")
     await expect(field).toHaveAttribute("autocomplete", "email")
-    await expect(page.locator('input[name="company"]')).toBeHidden()
+    const honeypots = await page.locator('input[name="company"]').all()
+    expect(honeypots.length).toBeGreaterThan(0)
+    await Promise.all(honeypots.map((honeypot) => expect(honeypot).toBeHidden()))
   })
 
   test("says so instead of failing silently when it cannot send", async ({ page }) => {
