@@ -42,6 +42,7 @@ const LocaleLayout = async ({ children, params }: { children: ReactNode; params:
     <html
       lang={locale}
       className={`scroll-smooth ${sans.variable} ${mono.variable}`}
+      suppressHydrationWarning
     >
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />

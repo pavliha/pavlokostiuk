@@ -59,7 +59,7 @@ test("theme toggle flips the class and persists it", async ({ page }) => {
 test("the mobile sticky call bar hides at the top and shows after a screen", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 })
   await page.goto("/en/ecommerce")
-  const bar = page.locator("#stickyCta, div:has(> a[href*='calendly']).fixed.bottom-0").last()
+  const bar = page.locator("#stickyCta")
   await expect(bar).toHaveClass(/translate-y-full/)
   await page.evaluate(() => window.scrollTo(0, window.innerHeight + 200))
   await expect(bar).not.toHaveClass(/translate-y-full/)
@@ -93,6 +93,31 @@ test.describe("email capture", () => {
     await page.getByLabel("Email address").fill("shop@example.com")
     await page.getByRole("button", { name: "Send them" }).click()
     await expect(page.locator("form ~ p[role=alert]")).toContainText("didn't send")
+  })
+})
+
+test.describe("prototype request", () => {
+  test("refuses to send and says what is missing", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    await page.getByRole("button", { name: "Get my shop link" }).first().click()
+    const problem = page.getByRole("alert").filter({ hasText: "There is a problem" }).first()
+    await expect(problem).toBeVisible()
+    await expect(
+      problem.getByRole("link", { name: /Add a link to your catalog, or attach a file/ })
+    ).toBeVisible()
+  })
+
+  test("accepts a catalog file as well as a link", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    const file = page.getByLabel("Or attach the file").first()
+    await expect(file).toHaveAttribute("type", "file")
+    await expect(file).toHaveAttribute("multiple", "")
+  })
+
+  test("every element id on the page is unique", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    const ids = await page.locator("[id]").evaluateAll((nodes) => nodes.map((node) => node.id))
+    expect(new Set(ids).size).toBe(ids.length)
   })
 })
 

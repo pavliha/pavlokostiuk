@@ -29,18 +29,6 @@ const JOINED_BARS = [
 ]
 
 const FIGURES: Record<PainKey, ReactNode> = {
-  stock: (
-    <>
-      <path d="M8 48 H392" className="stroke-rule" strokeDasharray="3 5" />
-      <path d="M8 14 H110 V28 H210 V48 H286" className="stroke-ledger" strokeWidth="2" />
-      <path
-        d="M286 48 V68 H392"
-        className="stroke-primary dark:stroke-brand-light"
-        strokeWidth="2.5"
-      />
-      <circle cx="286" cy="48" r="4" className="fill-primary dark:fill-brand-light" stroke="none" />
-    </>
-  ),
   money: (
     <>
       {SCATTERED_BARS.map(({ x, y, h }) => (

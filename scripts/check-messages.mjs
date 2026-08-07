@@ -3,6 +3,14 @@ import { readFileSync, readdirSync } from "fs"
 const LATIN = /[A-Za-z]/
 const NATIVE = { ka: /[Ⴀ-ჿ]/, uk: /[Ѐ-ӿ]/, ru: /[Ѐ-ӿ]/ }
 
+const BANNED = [
+  {
+    pattern: /(?<![\p{L}])(бойов|боев)[\p{L}]*/giu,
+    locales: ["uk", "ru"],
+    why: 'dev slang for "production" translated literally — reads as "combat". Use "якими користуються щодня" / "которыми пользуются каждый день", or "у продакшені" for a technical reader.',
+  },
+]
+
 const walk = (node, path = "") =>
   typeof node === "string"
     ? [[path, node]]
@@ -31,7 +39,14 @@ const problems = locales
             .map((word) => `${locale}: mixed-script "${word}" at ${path}`),
         )
       : []
-    return [...missing, ...extra, ...mixed]
+    const banned = BANNED.filter((rule) => rule.locales.includes(locale)).flatMap((rule) =>
+      entries.flatMap(([path, text]) =>
+        (text.match(rule.pattern) ?? []).map(
+          (hit) => `${locale}: banned "${hit}" at ${path} — ${rule.why}`,
+        ),
+      ),
+    )
+    return [...missing, ...extra, ...mixed, ...banned]
   })
 
 problems.forEach((p) => console.error(p))

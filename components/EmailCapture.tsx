@@ -6,8 +6,7 @@ import { track } from "@/lib/track"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-
-const ENDPOINT = process.env.NEXT_PUBLIC_SUBSCRIBE_ENDPOINT
+import { SUBSCRIBE_ENDPOINT } from "@/content/site"
 
 type State = "idle" | "sending" | "done" | "error"
 
@@ -37,13 +36,9 @@ const EmailCapture = ({
     event.preventDefault()
     const form = event.currentTarget
     if ((form.elements.namedItem("company") as HTMLInputElement).value) return
-    if (!ENDPOINT) {
-      setState("error")
-      return
-    }
     setState("sending")
     try {
-      const response = await fetch(ENDPOINT, {
+      const response = await fetch(SUBSCRIBE_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify({ email, source }),

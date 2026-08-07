@@ -1,429 +1,363 @@
 ---
 name: Pavlo Kostiuk — Owned E-commerce
-description: A two-colour thermal till roll that prints the case for a shop the owner owns outright.
+description: Monochrome product marketing on a cool neutral ground, structured as a ledger and proved by real screenshots.
 colors:
-  thermal-red: "#d81f26"
-  thermal-red-deep: "#a8161c"
-  price-gun-orange: "#ff5c1a"
-  printhead-black: "#14161a"
-  carbon-grey: "#3f4a50"
-  printhead-grey: "#8b979d"
-  hairline-grey: "#c9d2d6"
-  muted-ink: "#5b666c"
-  roll-white: "#fbfcfc"
-  thermal-white: "#eef1f2"
-  passed-grey: "#e2e7e9"
+  background: "#fbfbfc"
+  background-dark: "#0c0d10"
+  card: "#ffffff"
+  card-dark: "#141619"
+  ink: "#16181d"
+  ink-dark: "#f4f5f7"
+  ink-2: "#565d6b"
+  ink-2-dark: "#aeb5c0"
+  muted-foreground: "#6b7280"
+  muted-foreground-dark: "#9aa1ad"
+  rule: "#e6e8ec"
+  rule-dark: "#24272d"
+  ledger: "#b6bcc6"
+  ledger-dark: "#4b525d"
+  primary: "#2f5cff"
+  primary-dark: "#4f74ff"
+  primary-foreground: "#ffffff"
+  brand-strong: "#1e40ff"
+  brand-strong-dark: "#8aa4ff"
+  brand-light: "#2f5cff"
+  brand-light-dark: "#6b8cff"
+  secondary: "#f2f3f5"
+  secondary-dark: "#1b1e22"
+  shot-ground: "#f2f3f5"
+  shot-ground-dark: "#141619"
+  shot-glow: "#e8ebf2"
+  shot-glow-dark: "#1c2030"
 typography:
   display:
-    fontFamily: "Fira Sans Condensed, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2.5rem, 11vw, 5.4rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "0.005em"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(2.5rem, 6vw, 3.5rem)"
+    fontWeight: 500
+    lineHeight: 1.04
+    letterSpacing: "-0.028em"
   headline:
-    fontFamily: "Fira Sans Condensed, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "clamp(2rem, 9vw, 3.75rem)"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "0.005em"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(1.875rem, 3.6vw, 2.5rem)"
+    fontWeight: 600
+    lineHeight: 1.04
+    letterSpacing: "-0.028em"
   title:
-    fontFamily: "Fira Sans Condensed, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 800
-    lineHeight: 0.92
-    letterSpacing: "0.005em"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.125rem"
+    fontWeight: 600
+    lineHeight: 1.55
   subhead:
-    fontFamily: "Archivo, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
-    fontSize: "1.25rem"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.125rem"
     fontWeight: 400
-    lineHeight: 1.5
+    lineHeight: 1.6
   body:
-    fontFamily: "Archivo, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.55
   figure:
-    fontFamily: "Roboto Mono, ui-monospace, SF Mono, monospace"
-    fontSize: "clamp(1.5rem, 4vw, 2.25rem)"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "clamp(3.75rem, 6vw, 4.5rem)"
     fontWeight: 700
-    lineHeight: 1.1
-    letterSpacing: "-0.01em"
-  label:
-    fontFamily: "Roboto Mono, ui-monospace, SF Mono, monospace"
-    fontSize: "0.8125rem"
-    fontWeight: 400
+    lineHeight: 0.9
+    letterSpacing: "-0.045em"
+  figure-supporting:
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "1.25rem"
+    fontWeight: 600
     lineHeight: 1.4
-    letterSpacing: "-0.01em"
+    letterSpacing: "-0.045em"
+  printed:
+    fontFamily: "Geist Mono, ui-monospace, SF Mono, monospace"
+    fontSize: "1.875rem"
+    fontWeight: 500
+    letterSpacing: "-0.02em"
+  label:
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontSize: "0.875rem"
+    fontWeight: 400
+    lineHeight: 1.55
   caption:
-    fontFamily: "Archivo, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "Geist, Noto Sans Georgian, ui-sans-serif, system-ui, sans-serif"
     fontSize: "0.75rem"
     fontWeight: 400
-    lineHeight: 1.375
+    lineHeight: 1.4
 rounded:
   none: "0"
-  diagram-node: "4px"
-  diagram-capsule: "10px"
+  control: "10px"
+  shot-frame: "14px"
 spacing:
   hairline-gap: "4px"
   tight: "8px"
   field: "12px"
   block: "16px"
   gutter: "24px"
-  tear: "32px"
-  column-gap: "48px"
+  card-pad: "40px"
+  ledger-gutter: "48px"
+  ledger-gutter-wide: "56px"
   section: "80px"
+  section-wide: "96px"
 components:
-  price-label:
-    backgroundColor: "{colors.price-gun-orange}"
-    textColor: "{colors.printhead-black}"
-    typography: "{typography.title}"
-    rounded: "{rounded.none}"
-    padding: "16px 24px"
-  price-label-compact:
-    backgroundColor: "{colors.price-gun-orange}"
-    textColor: "{colors.printhead-black}"
-    rounded: "{rounded.none}"
-    padding: "8px 16px"
+  button-primary:
+    backgroundColor: "{colors.primary}"
+    backgroundImage: "linear-gradient(to bottom, color-mix(in oklch, {colors.primary}, white 10%), {colors.primary})"
+    textColor: "{colors.primary-foreground}"
+    typography: "{typography.label}"
+    fontWeight: 500
+    fontSize: "1rem"
+    rounded: "{rounded.control}"
+    height: "52px"
+    padding: "0 28px"
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.20), inset 0 0 0 1px rgba(0,0,0,0.08), 0 1px 2px color-mix(in oklch, {colors.primary}, transparent 70%), 0 6px 16px -6px color-mix(in oklch, {colors.primary}, transparent 55%)"
+  button-primary-dark:
+    boxShadow: "inset 0 1px 0 rgba(255,255,255,0.26), inset 0 0 0 1px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.40), 0 6px 16px -8px rgba(0,0,0,0.60)"
+  button-primary-hover:
+    backgroundImage: "linear-gradient(to bottom, color-mix(in oklch, {colors.primary}, white 20%), color-mix(in oklch, {colors.primary}, white 6%))"
+  button-primary-active:
+    backgroundImage: "linear-gradient(to bottom, {colors.primary}, color-mix(in oklch, {colors.primary}, black 8%))"
+    boxShadow: "inset 0 1px 3px rgba(0,0,0,0.18), 0 1px 1px color-mix(in oklch, {colors.primary}, transparent 80%)"
+    transform: "translateY(1px)"
   link-inline:
-    textColor: "{colors.thermal-red}"
+    textColor: "{colors.primary}"
     typography: "{typography.body}"
+    textDecoration: "underline"
+    textUnderlineOffset: "4px"
   link-inline-hover:
-    textColor: "{colors.thermal-red-deep}"
-  roll-panel:
-    backgroundColor: "{colors.roll-white}"
-    rounded: "{rounded.none}"
-    padding: "24px"
-  roll-panel-wide:
-    backgroundColor: "{colors.roll-white}"
-    rounded: "{rounded.none}"
-    padding: "40px"
-  input-field:
-    backgroundColor: "transparent"
-    textColor: "{colors.printhead-black}"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 12px"
-    height: "48px"
-  locale-select:
-    backgroundColor: "transparent"
-    textColor: "{colors.printhead-black}"
-    typography: "{typography.label}"
-    rounded: "{rounded.none}"
-    padding: "0 12px"
-    height: "44px"
+    textColor: "{colors.brand-strong}"
   nav-link:
-    textColor: "{colors.carbon-grey}"
+    textColor: "{colors.muted-foreground}"
     typography: "{typography.label}"
     padding: "0 8px"
     height: "44px"
   nav-link-hover:
-    textColor: "{colors.thermal-red}"
+    textColor: "{colors.ink}"
+  artifact-card:
+    backgroundColor: "{colors.card}"
+    borderColor: "{colors.rule}"
+    borderWidth: "1px"
+    rounded: "{rounded.none}"
+    padding: "{spacing.card-pad}"
+  shot-frame:
+    backgroundColor: "{colors.shot-ground}"
+    borderColor: "{colors.rule}"
+    borderWidth: "1px"
+    rounded: "{rounded.shot-frame}"
+    padding: "12px"
+    boxShadow: "0 12px 32px -16px rgba(16, 18, 29, 0.22)"
+  rule:
+    backgroundColor: "{colors.rule}"
+    height: "1px"
+  ledger-tick:
+    backgroundColor: "{colors.ledger}"
+    size: "4px"
 ---
 
 # Design System: Pavlo Kostiuk — Owned E-commerce
 
 ## Overview
 
-**Creative North Star: "The Till Roll You Keep"**
+**Creative North Star: "Proof, not brochure."**
 
-The page is the artifact the counter prints. Every surface behaves like a continuous
-thermal receipt unspooling down the viewport: an unbroken roll of near-white stock,
-divided not by cards or containers but by perforated dot rules where the paper would
-tear. Content is stamped onto the roll rather than placed on top of it. There is no
-floating panel, no lifted card, no drop-shadowed hero — only what a two-colour
-printhead could physically put down: black at full density, thermal red for totals and
-voids, and a single unprinted object, the fluorescent price-gun label, stuck on at an
-angle.
+The page argues that a claimed system is real and checkable, so it borrows from records —
+the ledger, the goods-in book, the audit log — rather than from SaaS marketing. It refuses
+decoration entirely: no metaphor, no illustration, no invented world. Every claim is welded
+to a screenshot detail that proves it.
 
-The density is a printout's: full-bleed to the roll's edges with generous vertical
-silence between tear lines, columns separated by wide gutters and hairline rules
-instead of boxes. Type does the structural work. Heavy condensed caps are stamped at
-roll width for headlines; a quiet grotesque carries every sentence a human reads;
-monospace is reserved strictly for figures, codes and chrome — never for prose. The
-palette is cold, not warm: the paper is grey-blue thermal stock, never cream.
+The surface is a single cool neutral ground running the whole scroll, divided only by
+hairline rules. Structure comes from weight, size and air — never from fills or heavy
+borders. A box appears only when something is a real artifact you could go and verify.
 
-Two rejections are load-bearing and confirmed by the build. It refuses the centred
-hero-plus-screenshot arrangement the category ships — the first viewport is a
-left-weighted stamped headline with the product shot as a co-equal column, not a
-centred pitch above a device mock. And it refuses the warm-paper editorial ledger
-that preceded it here: no cream, no indigo, no system sans, no serif.
-
-**Key Characteristics:**
-- Continuous roll, not stacked cards — sections are divided by perforation, not elevation
-- Zero corner radius on every authored surface; borders are hairlines, never heavy strokes
-- Exactly one unprinted element per screen: the fluorescent price-gun label CTA
-- Monospace is a figures-and-chrome material, never a body material
-- Full light and dark roll, with red brightening rather than the paper going warm
-- Diagrams carry meaning without labels: grey stroke is the broken present, red is the resolved future
+Eleven hairline rules and one framed screenshot carry the entire page. That restraint is
+the design.
 
 ## Colors
 
-A two-colour thermal print on cold grey-white stock, with one fluorescent adhesive
-accent that reads as physically stuck on rather than printed.
+Monochrome by construction: a single near-neutral ramp from `#fbfbfc` to `#16181d`, with
+exactly one chromatic accent. The accent is a true blue (`#2f5cff`) and it appears on
+roughly a tenth of the screen — primary actions, inline links, and the one commercially
+decisive figure. Nothing else is coloured.
 
 ### Primary
-- **Thermal Red** (`#d81f26`, brightening to `#ff3b41` on the dark roll): The printhead's
-  second colour. It carries totals, figures, void markers, the resolved line in every
-  diagram, list bullets, step numbers, inline links, the caret and the selection
-  highlight. It is the only hue in the system with authority.
-- **Thermal Red Deep** (`#a8161c`, lifting to `#ff6a6f` on the dark roll): The hover state
-  of any red link or red text. Never used at rest.
 
-### Secondary
-- **Price-Gun Orange** (`#ff5c1a`, softening to `#ff7a3d` on the dark roll): The adhesive
-  label. Reserved exclusively for primary calls to action — the hero label, the sticky
-  mobile bar, the submit button, the nav CTA, the disclosure toggles. It is never a
-  background, never a text colour, never a border.
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `primary` | `#2f5cff` | `#4f74ff` | primary action, the one decisive figure |
+| `primary-foreground` | `#ffffff` | `#ffffff` | label on the primary action |
+| `brand-strong` | `#1e40ff` | `#8aa4ff` | link hover |
+| `brand-light` | `#2f5cff` | `#6b8cff` | accent text on that theme's ground |
+
+The accent stays saturated in both themes. It never inverts into a near-white ghost.
 
 ### Neutral
-- **Printhead Black** (`#14161a`): Full-density ink. All headings, stamped type, and any
-  text sitting on the orange label. Inverts to the paper colour on the dark roll.
-- **Carbon Grey** (`#3f4a50`): Body prose. Slightly lifted off full black so stamped
-  headings stay the darkest thing on the roll.
-- **Muted Ink** (`#5b666c`): Captions, footnotes, figure labels, disclaimers.
-- **Printhead Grey** (`#8b979d`): The greyed pass — where the head touched but did not
-  burn. Dotted tear rules, diagram strokes for the unresolved state, field underlines,
-  scrollbar thumb, the nav's bottom edge.
-- **Hairline Grey** (`#c9d2d6`): Every structural rule and panel border in the system.
-  One pixel, always.
-- **Passed Grey** (`#e2e7e9`): The only tonal fill — quoted promise blocks and audit
-  findings, always at 60% opacity behind a red left edge.
-- **Roll White** (`#fbfcfc`): The paper itself. Every section surface and every inset panel.
-- **Thermal White** (`#eef1f2`): The page beneath the roll, one step cooler and darker so
-  the roll's edge reads as a physical object.
+
+| Token | Light | Dark | Use |
+|---|---|---|---|
+| `background` | `#fbfbfc` | `#0c0d10` | the page ground, edge to edge |
+| `card` | `#ffffff` | `#141619` | artifacts only |
+| `ink` | `#16181d` | `#f4f5f7` | headings, hero figures |
+| `ink-2` | `#565d6b` | `#aeb5c0` | ledger body text |
+| `muted-foreground` | `#6b7280` | `#9aa1ad` | supporting and meta |
+| `rule` | `#e6e8ec` | `#24272d` | every hairline |
+| `ledger` | `#b6bcc6` | `#4b525d` | the tick before a ledger line |
 
 ### Named Rules
-**The One Unprinted Object Rule.** Price-gun orange is the only colour a thermal head
-cannot produce. It appears on primary actions only, at most once per viewport, and
-always with black type on it. If two orange objects are visible at once, one of them is
-not a primary action.
 
-**The Cold Stock Rule.** The paper is grey-blue, never cream, ivory or warm white. Any
-neutral introduced must sit on the same cold axis as `#eef1f2` / `#fbfcfc`.
-
-**The Red Means Resolved Rule.** In every diagram, chart and step list, grey stroke is
-the broken present and red is the resolved future. Red is never decorative and never
-signals danger here — the destructive role is a separate token that the page does not use.
+- **One accent, ~10% coverage.** If a second colour is needed, the design is wrong.
+- **Surfaces never invert between themes.** `card` sits above `background` in both
+  (luminance 100.0 vs 98.5 light; 8.5 vs 5.1 dark). Do not introduce a mid-tone section
+  band: `secondary` is darker than `card` in light and lighter in dark, so a band flips the
+  elevation reading.
+- **`secondary` is for component interiors only** — muted inputs, quoted blocks — never as
+  a full-width section fill.
+- Every token has a dark counterpart. There is no light-only value.
 
 ## Typography
 
-**Display Font:** Fira Sans Condensed (600/700/800, self-hosted, `--font-stamp`)
-**Body Font:** Archivo (400/500/600, self-hosted, `--font-body`)
-**Label/Mono Font:** Roboto Mono (400/500/700, self-hosted, `--font-printout`)
+One family, Geist, at four weights. Geist Mono appears only where a figure is set in the
+`printed` style. Georgian falls through to Noto Sans Georgian on the same metrics.
 
-**Character:** Condensed caps stamped hard enough to bruise the paper, set against a
-plain-spoken grotesque that never raises its voice, with a monospace that shows up only
-where a machine would have printed digits. Georgian and Cyrillic are covered by the
-loaded subsets plus a Noto Sans Georgian fallback in every stack — the page ships in
-four locales and the type ramp must survive all of them.
+Georgian has no uppercase, so no hierarchy anywhere depends on `text-transform`.
 
 ### Hierarchy
-- **Display** (800, `11vw` fluid capping at `5.4rem`, line-height 0.92, uppercase): The page
-  headline only. Constrained to `18ch` so it wraps at roll width instead of running thin.
-- **Headline** (800, `9vw` fluid, `3rem` from small, `3.75rem` from large, uppercase): Section
-  titles. Capped at `max-w-3xl`, and the only heading level allowed to hit viewport-scale type.
-- **Title** (800, `1.125rem`–`1.5rem`, uppercase): Panel and group headings, plan steps,
-  screenshot captions, form labels. Same stamped treatment at small scale.
-- **Subhead** (400, `1.125rem`–`1.25rem`, line-height 1.5–1.6): The sentence under a headline.
-  Held to `max-w-2xl`.
-- **Body** (400, `1rem`, line-height 1.55): Every paragraph and list item. Long-form
-  explanatory prose loosens to 1.7. Column width is governed by grid gutters, not by a
-  character cap, except in prose blocks held to `max-w-3xl`.
-- **Figure** (mono 700, `1.5rem`–`2.25rem`, tabular): Stat values and price figures. Red at
-  page scale, black in the authority row.
-- **Label** (mono 400, `0.8125rem`): Navigation, locale switcher, form input text, step
-  numbers, list markers. Occasionally uppercase at `0.6875rem` for speaker tags.
-- **Caption** (400, `0.75rem`, muted): Figure labels, footnotes, scarcity notes, copyright.
+
+| Role | Size | Weight | Line height | Tracking |
+|---|---|---|---|---|
+| display (`h1`) | `clamp(2.5rem, 6vw, 3.5rem)` → 56px | 500 | 1.04 | `-0.028em` |
+| headline (`h2`) | `clamp(1.875rem, 3.6vw, 2.5rem)` → 40px | 600 | 1.04 | `-0.028em` |
+| title (`h3`) | 18px | 600 | 1.55 | normal |
+| subhead | 18px | 400 | 1.6 | normal |
+| body | 16px | 400 | 1.55 | normal |
+| hero figure | 72px | 700 | 0.9 | `-0.045em` |
+| supporting figure | 20px | 600 | 1.4 | `-0.045em` |
+| label | 14px | 400 | 1.55 | normal |
+| caption | 12px | 400 | 1.4 | normal |
 
 ### Named Rules
-**The Figures-Only Mono Rule.** Roboto Mono carries numbers, codes, step markers, list
-glyphs and interface chrome. It never sets a sentence a human reads. If a mono run
-exceeds a short phrase, it is the wrong font.
 
-**The Stamped-or-Set Rule.** A heading is either stamped (condensed 800, uppercase,
-line-height 0.92) or it is plain body semibold. There is no third heading style, and
-Archivo is never set in caps.
-
-**The Sixteen Rule.** Root size is exactly 16px and body line-height exactly 1.55. This
-is canonical, not inherited default — no surface may shrink base prose below `1rem`.
+- **Three levers, never size alone.** Size + weight + colour together: `ink` for the
+  figure, `ink-2` for body, `muted-foreground` for meta.
+- **Large type is tracked in.** Anything above 32px carries `-0.028em`; figures carry
+  `-0.045em`. Untracked large type reads as a document, not a design.
+- **Tabular numerals on every real number**, via the `figure` utility. Signals measured,
+  not marketing.
+- **Headings balance.** `text-wrap: balance` on `h1` and `h2` so no heading orphans a word
+  — this matters most in `uk` and `ka`, which run longest.
 
 ## Layout
 
-The page is a single continuous roll: sections are full-bleed `width: 100%` surfaces
-painted with the roll background, padded `24px` at mobile, `40px` from small, `64px` from
-large, with `80px` of vertical breathing above and below. No max-width container wraps
-the page; only the fixed navigation is centred and capped (`max-w-5xl`). Content blocks
-inside a section take their own caps — `max-w-2xl` for subheads, `max-w-3xl` for prose and
-grouped lists, `max-w-5xl` for two-column lists.
-
-Between sections sits a `32px` roll strip carrying a dotted tear rule at its vertical
-centre: the perforation. It is the only section divider in the system. Some adjacent
-sections deliberately share a roll with no perforation between them, which reads as one
-continuous printed block.
-
-Grids are content-count-driven, not a fixed 12-column: two columns from `sm` for paired
-lists, three or four from `xl` for value props and price figures, `1.05fr 1fr` for the
-hero's headline-and-shot split. Column gutters are wide (`48px` horizontal, `40–48px`
-vertical) because there are no card borders to do the separating. Every grid cell that
-needs definition takes a `border-t` hairline and `16px` of top padding — a printed rule,
-not a box.
-
-Anchored sections carry `scroll-mt-24` to clear the fixed nav. The mobile sticky call bar
-occupies the bottom edge below `sm` and the footer reserves `96px` for it.
+- Container `max-w-6xl` (1152px), gutters `px-6` rising to `px-10`.
+- Section rhythm `py-24` (96px), with `py-20` (80px) for the short stakes section.
+- Ledger column gutters run 40–56px, most commonly `gap-x-12` (48px); wide gutters do the
+  separating work that borders would.
+- Hero is a two-column grid at `lg`, `1.05fr / 1fr`, aligned to the top — the claim and the
+  screenshot are co-equal, neither dominating.
 
 ### Named Rules
-**The Full-Bleed Roll Rule.** Sections span the full viewport width and paint their own
-background. Never wrap a section in a centred max-width container — the roll runs edge to
-edge or it is not a roll.
 
-**The Rule-Not-Box Rule.** Separation is achieved with a single hairline on one edge plus
-padding. Reach for a four-sided border only when the content is a genuinely inset panel
-(the prototype form, the audit transcript, a screenshot card).
+- **Sections are divided by a rule, not by a fill.** One `1px` `rule` line inside the
+  container, never a full-bleed band.
+- **Content width is capped independently of container width.** Prose sits at `max-w-2xl`
+  or `max-w-3xl` so the measure stays readable while the container stays wide.
+- **Ledger columns use CSS grid, never `columns`.** Georgian and Ukrainian run noticeably
+  longer than English and multi-column flow breaks unpredictably across scripts.
 
 ## Elevation & Depth
 
-The system is flat by intent. There are no elevation tiers, no hover lifts on surfaces,
-and no shadow vocabulary for containers. Depth comes from three physical facts instead:
-the roll sits one step lighter than the page behind it, hairline rules describe planes,
-and the perforated tear edge cuts through the stock.
-
-Two shadows exist and both are material effects, not elevation. The roll carries a
-near-invisible top edge and a long low curl shadow that reads as paper lifting off the
-page. The price-gun label carries a tight offset shadow because it is a physical sticker
-sitting proud of the paper — the only object in the system entitled to one.
+**Hairlines for structure; depth only where something is physical.** Sections, ledgers and
+cards are separated by 1px rules and air — never by a shadow. Exactly two things in the
+design are lifted, and both are objects you are meant to read as physical: the hero
+screenshot frame, and the primary control.
 
 ### Shadow Vocabulary
-- **Roll curl** (`box-shadow: 0 1px 0 0 color-mix(in oklab, var(--ink) 6%, transparent), 0 18px 40px -28px color-mix(in oklab, var(--ink) 55%, transparent)`): Applied by the roll surface itself. Never applied to anything else.
-- **Label lift** (`box-shadow: 0 10px 24px -16px rgba(20,22,26,0.9)`): The price-gun label only.
+
+| Name | Value | Applied to |
+|---|---|---|
+| `shot-lift` | `0 12px 32px -16px rgba(16, 18, 29, 0.22)` | the hero screenshot frame |
+| `shot-lift-dark` | `0 12px 40px -16px rgba(0, 0, 0, 0.75)` | same, dark theme |
+| `control-face` | `inset 0 1px 0 white/20%`, `inset 0 0 0 1px black/8%` | the lit top edge of the primary control |
+| `control-lift` | `0 1px 2px primary/30%`, `0 6px 16px -6px primary/45%` | primary control, light theme |
+| `control-lift-dark` | `0 1px 2px black/40%`, `0 6px 16px -8px black/60%` | primary control, dark theme |
 
 ### Named Rules
-**The Two Shadows Rule.** The system has exactly two shadows and both are already
-assigned. Panels, cards, buttons, inputs, dropdowns and nav all carry `box-shadow: none`.
 
-**The Motion-Is-Peel Rule.** The only motion in the system is a sticker responding to the
-cursor: a `200ms` rotate-to-zero and a `2px` rise on the label and its siblings, plus colour
-transitions on links and field underlines. Nothing fades in, nothing slides on scroll.
+- **A tinted shadow in light, a neutral shadow in dark.** The accent-tinted lift reads as a
+  shadow on a white ground but as a *glow* on a dark one, so the dark theme drops to black.
+  This is why `control-lift` has a separate dark value rather than a shared one.
+- **The lit edge is what makes a control feel physical** — a 1px inset white highlight along
+  the top plus a ~4% vertical gradient in the fill. Both are below the threshold of reading
+  as "a gradient"; they read as a surface with a light source above it.
+- **Never fade a solid control on hover.** Opacity lets the page show through and muddies
+  the fill. The primary control brightens instead (L 0.598 → 0.643) and presses in on
+  `:active` — inset shadow, lift removed, `translate-y-px`.
+- **A screenshot is always framed on `shot-ground`,** never placed directly on the page —
+  white product chrome on a near-white page has no edge otherwise.
 
 ## Shapes
 
-Zero radius is the law. Every authored surface — panels, screenshot frames, the label, the
-submit button, the locale select and its dropdown, the scrollbar thumb — has square
-corners, and shadcn primitives that ship with a radius are explicitly reset with
-`rounded-none`. The only curves in the system are inside the SVG diagrams, where nodes
-take a `4px` corner and the capsule marker takes `10px`, because they depict objects rather
-than being surfaces.
-
-Borders are hairlines and only hairlines: one pixel in hairline grey for structure, one
-pixel in printhead grey for the tear rules, field underlines and the nav's bottom edge,
-one pixel in thermal red for the left edge of any quoted or resolved block. Heavy strokes
-were removed from this build deliberately and must not return.
-
-The recurring silhouettes are the perforation (a repeating radial mask punching 12px holes
-along a 14px pitch at the roll's bottom edge), the dotted rule (3px on, 4px off, one pixel
-tall, in printhead grey), and the tilted label (`-1.4deg` at rest, straightening on hover).
+- Controls are `10px` (`--radius`).
+- The screenshot frame is `14px`, its inner image `10px` — concentric, outer = inner + padding.
+- Artifact cards and ledger blocks are square (`0`). The ledger has no rounded corners.
 
 ### Named Rules
-**The Square Corners Rule.** `border-radius: 0` on every surface a user can touch. If a
-component library supplies a radius, override it.
 
-**The Hairline Rule.** Every border in the system is `1px`. `2px` and heavier borders were
-deliberately removed from this build; reintroducing one is a regression, not a variant.
+- **Nested radii are concentric.** Never the same radius on a parent and its padded child.
 
 ## Components
 
-The component set is deliberately thin — the page is mostly type, rules and figures. What
-exists is printed hardware.
-
 ### Buttons
-- **Shape:** Square (`0` radius), no border.
-- **Primary — the Price Label:** Fluorescent orange ground, printhead-black stamped caps at
-  `1.125rem`–`1.25rem`, `16px 24px` padding, tilted `-1.4deg`, with a dashed black adhesive strip
-  down the left edge at 60% opacity and a trailing mono `↵` glyph at 70%. A tight label-lift
-  shadow. Compact variants use `8px 16px` (nav) or `12px 20px` (disclosure toggles).
-- **Hover / Focus:** Rotates to `0deg` and rises `2px` over `200ms` ease-out; `focus-visible`
-  straightens without the rise. Disabled drops to 60% opacity and cancels the rise.
-- **Secondary:** A red underlined text link (`decoration-2`, `underline-offset-4`) rising to
-  thermal red deep on hover. There is no filled secondary button in this world.
+
+Primary is the only filled control: `primary` ground, white label, 52px tall, `0 28px`
+padding, `10px` radius. Long localized labels wrap rather than overflow — the CTAs carry
+`whitespace-normal` with `h-auto min-h-13`, because every label runs long in at least one
+of the four locales.
 
 ### Cards / Containers
-- **Corner Style:** Square (`0`).
-- **Background:** Roll white on the section's own roll, so the panel reads as a printed
-  frame rather than a raised card.
-- **Shadow Strategy:** None. See Elevation & Depth.
-- **Border:** One-pixel hairline on all four sides for inset panels; a single `border-t`
-  hairline for grid cells; a `border-l` in thermal red for resolved/quoted blocks, which
-  also take a passed-grey fill at 60%.
-- **Internal Padding:** `24px` at mobile, `40px` from small for major panels; `20–24px` for
-  minor ones.
 
-### Inputs / Fields
-- **Style:** Paper-form fields — transparent ground, no border except a one-pixel
-  printhead-grey underline, `48px` tall, `12px` horizontal padding, input text set in mono at
-  `1rem`. Labels above are stamped caps at `1rem`; the "optional" marker is mono `0.6875rem`.
-- **Focus:** Outline suppressed; the underline transitions to thermal red. Caret is thermal
-  red globally.
-- **Error:** A mono `0.8125rem` alert line in thermal red beneath the form, carrying an
-  underlined mailto fallback. Success replaces the form with a red left-edge note.
+`card` ground, `1px` `rule` border, square, `40px` padding. **Reserved for real artifacts**
+— product screenshots, the live catalog-audit transcript, the real AI prompts. Features,
+pricing terms, process steps and bio are ledger entries, not cards. When everything is a
+card, a card means nothing.
 
-### Navigation
-- Fixed to the top edge, full width, `92%`-opaque page background with a `12px` backdrop blur
-  and a printhead-grey bottom hairline. Brand wordmark in stamped caps at `1.25rem`, hidden
-  below `sm`. Links are mono `0.8125rem` in carbon grey with a `44px` minimum touch target,
-  turning thermal red on hover. The nav closes with the locale select, theme toggle and a
-  compact price label CTA that appears from `md`.
-- **Locale switcher:** shadcn Select forced square — hairline border, transparent ground, no
-  shadow, mono `0.8125rem`, showing the locale code only. Border turns thermal red on focus and
-  while open; the checked item is thermal red on a passed-grey highlight.
-- **Mobile sticky bar:** Below `sm`, a full-width price label pinned to the bottom edge on a
-  blurred background, appearing past the first viewport and retracting via `translate-y-full`
-  when the prototype form is in view.
+### Stat Ledger (signature)
 
-### Pain Figure (signature)
-Six label-free line diagrams on a shared `400×80` viewBox, `1.5` default stroke with round
-caps and joins, sitting directly above the pain they illustrate with `20px` of clearance.
-Each figure says the same sentence in a different shape: printhead-grey strokes at
-`2–2.5` weight describe the broken present (a stepping stock line, scattered bars,
-diverging trend, dashed dead days, tangled channels), thermal red describes the resolved
-future (a flat committed line, joined bars, a bounded capsule, a filled node). Dashed
-strokes (`3 5`, `3 4`) mark the absent or unmeasured. Nothing is annotated — no axis labels,
-no legend, no numerals. On the dark roll, red switches to the lifted brand-light tone.
+The page's focal-point mechanism. One hero figure at 72px/700 with its label set beside it
+on the baseline, a muted note beneath, then the supporting figures on a top rule at
+20px/600 — the last of which carries the accent. This is how a section gets a focal point;
+a flat row of equal-sized numbers is the failure mode it exists to prevent.
 
 ### Ledger Group (signature)
-A stamped caps heading over a hairline bottom rule, followed by a list where each item is
-prefixed with a mono thermal-red `>` — the printout's line marker. Body items are `1rem` carbon
-grey at line-height 1.55. This is the system's standard way to print any grouped list, used
-for features, price groups and secondary pains.
+
+A 16px/600 `ink` heading over a bottom rule, then list items at 16px/1.55 in `ink-2`, each
+preceded by a 4px round `ledger` tick set at `0.6em` so it aligns to the first line's
+x-height. No padding, no fill, no box.
+
+### Navigation
+
+Fixed, `background/80` with `backdrop-blur-md` and a bottom border. Links at 14px in
+`muted-foreground`, 44px minimum hit height, resolving to `ink` on hover.
 
 ## Do's and Don'ts
 
 ### Do:
-- **Do** paint every section as a full-bleed roll surface (roll white on the cooler page
-  ground) and divide sections with the `32px` dotted tear strip.
-- **Do** keep every corner square (`0` radius) and every border one pixel, overriding any
-  library default with `rounded-none`.
-- **Do** stamp headings in condensed 800 uppercase at line-height 0.92, and set all prose in
-  Archivo at `1rem` / 1.55.
-- **Do** reserve monospace for figures, step numbers, list markers, form input text and nav
-  chrome.
-- **Do** limit fluorescent price-gun orange to one primary action per viewport, always with
-  printhead-black type on it.
-- **Do** state the broken present in printhead grey and the resolved future in thermal red in
-  every diagram.
-- **Do** define grid cells with a top hairline and `16px` of padding rather than a box.
-- **Do** carry both the light and dark roll for any new surface; the paper darkens and the red
-  brightens, but the palette never warms.
+
+- Divide sections with a hairline rule inside the container
+- Build hierarchy from weight, size and air
+- Lead a stat section with one large figure and accent only the decisive number
+- Frame every screenshot on `shot-ground`
+- Keep the accent under roughly 10% of the screen
+- Cap prose measure independently of the container
+- Verify any layout change in `ka` — the longest script — before shipping it
 
 ### Don't:
-- **Don't** add a section eyebrow, kicker or overline above a heading. Sections open on the
-  stamped headline and nothing else.
-- **Don't** reintroduce `2px` or heavier borders; they were deliberately removed from this build.
-- **Don't** add a shadow to a panel, card, button, input or dropdown — the system's two shadows
-  are already assigned to the roll and the label.
-- **Don't** set body prose, subheads or long copy in monospace.
-- **Don't** use warm neutrals (cream, ivory, warm white) or the predecessor's indigo; the stock
-  is cold grey-blue.
-- **Don't** centre the hero or place a screenshot beneath a centred pitch; the first viewport is
-  a left-weighted stamped headline with the shot as a co-equal column.
-- **Don't** use thermal red as a danger or error-only colour — it is the resolved/total colour and
-  loses that meaning if it also means "wrong".
-- **Don't** wrap a section in a centred max-width container; cap the content inside it instead.
+
+- Fill a section with `secondary` to create rhythm — it breaks the depth model and inverts
+  between themes
+- Add a decorative gradient, a glow, a backdrop pattern, or a tilted screenshot
+- Put a shadow on anything but the hero screenshot frame and the primary control
+- Carry the accent-tinted shadow into dark mode — on a dark ground it becomes a glow
+- Fade a solid control with opacity on hover; brighten the fill instead
+- Make everything a card
+- Rely on `text-transform: uppercase` for hierarchy — it is invisible in `ka`
+- Let a heading or figure sit at default tracking above 32px

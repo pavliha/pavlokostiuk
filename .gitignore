@@ -9,3 +9,6 @@ playwright-report
 .idea
 .impeccable/hook.cache.json
 .impeccable/questions
+.env
+.env.local
+.playwright-mcp

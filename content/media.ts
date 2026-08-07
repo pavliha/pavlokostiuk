@@ -23,15 +23,30 @@ export const INTO_GE_SHOTS: readonly MediaAsset[] = [
   shot("products", "into-ge-admin-products.png", 2880, 1800),
 ]
 
-export const PLATFORM_SHOTS: readonly MediaAsset[] = [
+const PLATFORM_SHOTS: readonly MediaAsset[] = [
   ...INTO_GE_SHOTS,
   shot("pos", "into-ge-admin-pos.png", 2880, 1800),
   shot("movements", "into-ge-admin-inventory.png", 2880, 1800),
   shot("mcp", "into-ge-admin-mcp.png", 2880, 1800),
 ]
 
-export const PLATFORM_HERO_SHOT: MediaAsset = shot("heroStorefront", "hero-storefront.webp", 1800, 975)
+const group = (...keys: string[]): readonly MediaAsset[] =>
+  keys.flatMap((key) => PLATFORM_SHOTS.filter((asset) => asset.key === key))
 
-export const PRIMARY_SHOT_KEYS: readonly string[] = ["homepage", "dashboard", "pos"]
+export const STOREFRONT_SHOTS = group("homepage", "shop", "product", "services")
+
+export const ADMIN_SHOTS = group("dashboard", "pos", "products", "movements")
+
+export const MCP_SHOTS = group("mcp")
+
+export const PAIN_SHOTS: Readonly<Record<string, MediaAsset>> = {
+  stock: shot("stockLocations", "into-ge-stock-locations.png", 2880, 1800),
+  money: shot("profitLoss", "into-ge-admin-profit-loss.png", 2880, 1800),
+  catalog: shot("productSpecs", "into-ge-product-specs.png", 2880, 1800),
+  orders: shot("adminOrders", "into-ge-admin-orders.png", 2880, 1800),
+  staff: shot("adminTeam", "into-ge-admin-team.png", 2880, 1800),
+}
+
+export const PLATFORM_HERO_SHOT: MediaAsset = shot("heroStorefront", "hero-storefront.webp", 1800, 975)
 
 export const PORTRAIT: MediaAsset ={ key: "portrait", src: "/pavlo.webp", width: 576, height: 768 }

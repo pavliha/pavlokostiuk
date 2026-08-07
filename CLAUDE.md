@@ -6,14 +6,38 @@ no API routes, no server runtime — everything is prerendered at build time.
 
 ## Dev Server
 
+**The dev server is the user's. Never touch it.** These are absolute — no exception,
+no "just to verify", no "it looked broken so I recovered it":
+
+- **NEVER run `rm -rf .next`.** Deleting it under a running dev server pulls the
+  manifests out from beneath it and 500s every route. Only the user runs this
+- **NEVER kill the dev server** — no `lsof -ti:3020 | xargs kill`, no `pkill next`,
+  no `pkill next-server`. The user may have several servers running; killing "a stray"
+  kills theirs
+- **NEVER start a dev server** — no `npm run dev`. If nothing answers on 3020, say so
+  and let the user start it
+- **NEVER run `npm run build`** while dev is up (it corrupts `.next` the same way)
+
 - Local dev server runs on port **3020** (`http://localhost:3020`)
-- Prefer leaving it running — the user watches it. Don't restart it to "check" something
-- If it returns 500s, read `/tmp/dev.log` and find the cause in code before restarting
+- The user watches it. Don't restart it to "check" something
 - `next dev` and `next build` share `.next` and write incompatible artifacts. Running a
   build while dev is up corrupts it; starting dev on a directory a build just wrote gives
   `ENOENT .next/dev/routes-manifest.json` and a 500 on every route
 
-When a build is genuinely needed (running the e2e suite), the order that works:
+### When it 500s
+
+Read the log, find the cause **in code**, report it, and stop. Fixing source is your job;
+restarting, clearing caches and killing processes is not.
+
+- `/tmp/dev.log` is only correct if you started the server — and you must not. The user's
+  server logs to their own terminal, so treat `/tmp/dev.log` as stale unless proven otherwise
+- Get the real error from the response body (`curl -s localhost:3020/<route>`) or from
+  `npx tsc --noEmit`, not from a log you don't own
+- A 500 on *every* route with `ENOENT .next/...` means `.next` was destroyed, not that
+  the code is broken. Say so and let the user restart
+
+When a build is genuinely needed (running the e2e suite), **the user runs this, not you** —
+ask them to, and wait:
 
 ```bash
 lsof -ti:3020 | xargs kill -9   # stop dev
@@ -123,8 +147,12 @@ it does not inherit `/ecommerce`'s BrandScript.
 
 Environment variables are `NEXT_PUBLIC_*` and therefore inlined at **build** time. A local
 `.env` never reaches the deployed site — pass them as Docker build args (see `Dockerfile`
-and `.env.example`). `NEXT_PUBLIC_SUBSCRIBE_ENDPOINT` being unset means every form on the
-site shows its failure state.
+and `.env.example`). Only PostHog is env-driven, and it stays off when unset.
+
+Public constants that never differ between environments — the lead-capture endpoint, the
+WhatsApp link, the contact addresses — live in `content/site.ts`, not in the environment.
+They end up in the static HTML either way, so an env var buys nothing and adds a value
+that can go missing at build time.
 
 ## Verifying
 

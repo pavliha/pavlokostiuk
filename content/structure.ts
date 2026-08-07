@@ -78,11 +78,15 @@ export const FEATURE_KEYS = [
 
 export const VALUE_ICONS = ["fit", "stock", "commission", "ownership"] as const
 
-export const PAIN_KEYS =["stock", "money", "commission", "catalog", "orders", "staff"] as const
+export const LEAD_PAIN_KEY = "stock"
+
+export const PAIN_KEYS = ["money", "commission", "catalog", "orders", "staff"] as const
 
 export const AI_POINT_KEYS =["servers", "connect", "translation", "dataEntry", "audit", "howIBuild"] as const
 
-export const PRICE_KEYS = ["setup", "moves", "warranty", "yours", "notFixed"] as const
+export const PRICE_KEYS = ["setup", "moves"] as const
+
+export const PRICE_DETAIL_KEYS = ["warranty", "yours", "notFixed"] as const
 
 export const PROCESS_KEYS = ["talk", "seeData", "shape", "launch"] as const
 

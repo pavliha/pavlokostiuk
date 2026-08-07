@@ -43,7 +43,9 @@ const StickyCallBar = ({
       }`}
     >
       <Button asChild size="lg" className="w-full">
-        <a href={href}>{label}</a>
+        <a href={href} target="_blank" rel="noopener">
+          {label}
+        </a>
       </Button>
     </div>
   )

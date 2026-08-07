@@ -10,6 +10,9 @@ concurrency:
   group: ci-${{ github.ref }}
   cancel-in-progress: true
 
+permissions:
+  contents: read
+
 jobs:
   verify:
     runs-on: ubuntu-latest
@@ -23,14 +26,11 @@ jobs:
 
       - run: npm ci
 
-      - name: Check message catalogues
-        run: npm run check:messages
-
       - name: Typecheck
         run: npm run typecheck
 
       - name: Build static export
-        run: npx next build
+        run: npm run build
 
       - name: Install Playwright browser
         run: npx playwright install --with-deps chromium
@@ -48,6 +48,7 @@ jobs:
 
   docker:
     runs-on: ubuntu-latest
+    needs: verify
     steps:
       - uses: actions/checkout@v5
 
@@ -56,6 +57,7 @@ jobs:
 
       - name: Serve it and check every locale
         run: |
+          trap 'docker rm -f site > /dev/null 2>&1 || true' EXIT
           docker run -d --name site -p 8099:80 pavlokostiuk-cloud
           ready=0
           for i in $(seq 1 30); do
@@ -80,5 +82,4 @@ jobs:
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
             [ "$code" = "301" ] || { echo "FAIL $path -> $code (expected 301)"; fail=1; }
           done
-          docker rm -f site > /dev/null
           exit $fail

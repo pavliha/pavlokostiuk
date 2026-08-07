@@ -60,6 +60,66 @@
   border-top: 1px solid var(--rule);
 }
 
+@utility control-primary {
+  background-color: var(--primary);
+  background-image: linear-gradient(
+    to bottom,
+    color-mix(in oklch, var(--primary), white 10%),
+    var(--primary)
+  );
+  box-shadow:
+    inset 0 1px 0 color-mix(in oklch, white, transparent 80%),
+    inset 0 0 0 1px color-mix(in oklch, black, transparent 92%),
+    0 1px 2px color-mix(in oklch, var(--primary), transparent 70%),
+    0 6px 16px -6px color-mix(in oklch, var(--primary), transparent 55%);
+
+  &:hover {
+    background-image: linear-gradient(
+      to bottom,
+      color-mix(in oklch, var(--primary), white 20%),
+      color-mix(in oklch, var(--primary), white 6%)
+    );
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white, transparent 72%),
+      inset 0 0 0 1px color-mix(in oklch, black, transparent 92%),
+      0 1px 2px color-mix(in oklch, var(--primary), transparent 65%),
+      0 8px 22px -6px color-mix(in oklch, var(--primary), transparent 45%);
+  }
+
+  &:active {
+    background-image: linear-gradient(
+      to bottom,
+      var(--primary),
+      color-mix(in oklch, var(--primary), black 8%)
+    );
+    box-shadow:
+      inset 0 1px 3px color-mix(in oklch, black, transparent 82%),
+      0 1px 1px color-mix(in oklch, var(--primary), transparent 80%);
+  }
+
+  :where(.dark) & {
+    box-shadow:
+      inset 0 1px 0 color-mix(in oklch, white, transparent 74%),
+      inset 0 0 0 1px color-mix(in oklch, black, transparent 88%),
+      0 1px 2px color-mix(in oklch, black, transparent 60%),
+      0 6px 16px -8px color-mix(in oklch, black, transparent 40%);
+
+    &:hover {
+      box-shadow:
+        inset 0 1px 0 color-mix(in oklch, white, transparent 66%),
+        inset 0 0 0 1px color-mix(in oklch, black, transparent 88%),
+        0 1px 2px color-mix(in oklch, black, transparent 55%),
+        0 8px 20px -8px color-mix(in oklch, black, transparent 30%);
+    }
+
+    &:active {
+      box-shadow:
+        inset 0 1px 3px color-mix(in oklch, black, transparent 70%),
+        0 1px 1px color-mix(in oklch, black, transparent 70%);
+    }
+  }
+}
+
 @theme inline {
   --color-brand-strong: var(--brand-strong);
   --color-brand-light: var(--brand-light);

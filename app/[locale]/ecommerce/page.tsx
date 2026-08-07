@@ -1,6 +1,6 @@
 import type { Metadata } from "next"
 import Image from "next/image"
-import { Boxes, MonitorCheck, Rocket, Send, Server, SlidersHorizontal, Wallet } from "lucide-react"
+import { MonitorCheck, Rocket, Send } from "lucide-react"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { useTranslations } from "next-intl"
 import { use } from "react"
@@ -10,6 +10,8 @@ import McpChat from "@/components/McpChat"
 import LedgerNote from "@/components/LedgerNote"
 import EmailCapture from "@/components/EmailCapture"
 import PainFigure from "@/components/PainFigure"
+import PainPromise from "@/components/PainPromise"
+import PainRow from "@/components/PainRow"
 import PrototypeRequest from "@/components/PrototypeRequest"
 import {
   Accordion,
@@ -21,17 +23,19 @@ import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
 import ScreenshotCard from "@/components/ScreenshotCard"
 import SectionHeading from "@/components/SectionHeading"
+import StatLedger from "@/components/StatLedger"
 import SiteFooter from "@/components/SiteFooter"
 import SiteNav from "@/components/SiteNav"
 import StickyCallBar from "@/components/StickyCallBar"
-import { PLATFORM_HERO_SHOT, PLATFORM_SHOTS, PRIMARY_SHOT_KEYS } from "@/content/media"
-import { CALENDLY_URL, EMAIL, TELEGRAM } from "@/content/site"
+import { ADMIN_SHOTS, MCP_SHOTS, PAIN_SHOTS, PLATFORM_HERO_SHOT, STOREFRONT_SHOTS } from "@/content/media"
+import { EMAIL, TELEGRAM, WHATSAPP } from "@/content/site"
 import {
   AI_POINT_KEYS,
   CALL_KEYS,
   FEATURE_KEYS,
+  LEAD_PAIN_KEY,
   PAIN_KEYS,
-  VALUE_ICONS,
+  PRICE_DETAIL_KEYS,
   PRICE_KEYS,
   PROCESS_KEYS,
 } from "@/content/structure"
@@ -65,13 +69,6 @@ const EcommercePage = ({ params }: { params: Promise<{ locale: string }> }) => {
 
 const PLAN_ICON_COMPONENTS = [Send, MonitorCheck, Rocket] as const
 
-const VALUE_ICON_COMPONENTS = {
-  fit: SlidersHorizontal,
-  stock: Boxes,
-  commission: Wallet,
-  ownership: Server,
-} as const
-
 const EcommerceContent = () => {
   const t = useTranslations("platform")
   const nav = useTranslations("nav")
@@ -91,21 +88,21 @@ const EcommerceContent = () => {
         links={links}
         themeLabel={nav("toggleTheme")}
         languageLabel={nav("language")}
-        cta={{ label: t("hero.ctaDirect"), href: CALENDLY_URL }}
+        cta={{ label: common("bookCall"), href: WHATSAPP }}
       />
 
       <section className="pt-24 pb-0">
         <div className="w-full max-w-6xl mx-auto px-6 sm:px-10 pt-16 pb-20">
           <div className="grid lg:grid-cols-[1.05fr_1fr] gap-12 lg:gap-16 items-start">
             <div>
-              <h1 className="claim text-ink text-[clamp(2.5rem,6vw,3.5rem)] mb-6 max-w-[16ch]">
+              <h1 className="claim text-ink text-[clamp(2.5rem,6vw,3.5rem)] mb-6 max-w-[17ch] text-balance">
                 {t("hero.headline")}
               </h1>
               <p className="text-lg text-ink-2 max-w-xl mb-9 leading-[1.6]">{t("hero.subhead")}</p>
               <div className="flex flex-wrap items-center gap-4">
-                <Button asChild size="lg">
-                  <a href={CALENDLY_URL} target="_blank" rel="noopener">
-                    {t("hero.ctaDirect")}
+                <Button asChild size="lg" className="h-auto min-h-13 shrink py-3 whitespace-normal text-center">
+                  <a href={WHATSAPP} target="_blank" rel="noopener">
+                    {common("bookCall")}
                   </a>
                 </Button>
                 <a
@@ -119,7 +116,7 @@ const EcommerceContent = () => {
                 {t("hero.proof")}
               </p>
             </div>
-            <div className="shot rounded-xl border border-rule p-2 lg:p-3">
+            <div className="shot rounded-xl border border-rule p-2 lg:p-3 shadow-[0_12px_32px_-16px_rgba(16,18,29,0.22)] dark:shadow-[0_12px_40px_-16px_rgba(0,0,0,0.75)]">
               <Image
                 src={PLATFORM_HERO_SHOT.src}
                 width={PLATFORM_HERO_SHOT.width}
@@ -137,7 +134,7 @@ const EcommerceContent = () => {
         <Separator />
       </div>
 
-      <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-16">
+      <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-20">
         <SectionHeading title={t("stakes.title")}>{null}</SectionHeading>
         <ul className="max-w-3xl mt-8">
           {t.raw("stakes.items").map((item: string, index: number, all: string[]) => (
@@ -160,27 +157,19 @@ const EcommerceContent = () => {
       </div>
 
       <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24">
-        <SectionHeading title={t("value.title")}>{null}</SectionHeading>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-x-12 gap-y-10 mt-10">
-          {t.raw("value.items").map((item: { title: string; body: string }, index: number) => {
-            const Icon = VALUE_ICON_COMPONENTS[VALUE_ICONS[index]]
-            return (
-              <div key={item.title} className="border-t border-rule pt-5">
-                <Icon aria-hidden="true" strokeWidth={1.5} className="size-10 text-primary mb-5" />
-                <h3 className="text-lg font-semibold text-ink mb-2">{item.title}</h3>
-                <p className="text-base text-ink-2 leading-[1.55]">{item.body}</p>
-              </div>
-            )
-          })}
-        </div>
-      </section>
-
-      <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24">
         <SectionHeading title={t("authority.title")}>
           <p className="text-lg text-ink-2 max-w-2xl mb-10 leading-[1.6]">
             {t("authority.body")}
           </p>
         </SectionHeading>
+        <ul className="grid sm:grid-cols-2 gap-x-12 gap-y-3 mb-10 max-w-4xl">
+          {t.raw("authority.hows").map((how: string) => (
+            <li key={how} className="flex gap-3 text-base text-ink leading-[1.55]">
+              <span aria-hidden="true" className="mt-[0.6em] size-1 shrink-0 rounded-full bg-primary" />
+              <span>{how}</span>
+            </li>
+          ))}
+        </ul>
         <dl className="grid grid-cols-1 sm:grid-cols-2 border-t border-rule">
           {t.raw("authority.items").map((item: { value: string; label: string }, index: number, all: unknown[]) => (
             <div
@@ -200,48 +189,60 @@ const EcommerceContent = () => {
         <Separator />
       </div>
 
-      <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24">
-        <SectionHeading title={t("plan.title")}>{null}</SectionHeading>
-        <ol className="grid sm:grid-cols-3 gap-x-12 gap-y-8 mt-10 max-w-5xl">
-          {t.raw("plan.steps").map((step: string, index: number) => (
-            <li key={step} className="border-t border-rule pt-5">
-              {(() => {
-                const Icon = PLAN_ICON_COMPONENTS[index]
-                return <Icon aria-hidden="true" strokeWidth={1.5} className="size-10 text-primary mb-5" />
-              })()}
-              <p className="text-lg font-semibold text-ink">{step}</p>
-            </li>
-          ))}
-        </ol>
-      </section>
-
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-        <Separator />
-      </div>
-
       <section id="pains" className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24 scroll-mt-24">
         <SectionHeading title={t("pains.title")}>
           <p className="text-lg text-ink-2 max-w-2xl mb-12 leading-[1.6]">{t("pains.intro")}</p>
         </SectionHeading>
 
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-12">
+        <section
+          id={`pain-${LEAD_PAIN_KEY}`}
+          className="border-t border-rule pt-6 scroll-mt-24 grid lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16 items-start"
+        >
+          <div>
+            <p className="figure text-sm text-muted-foreground mb-3">01</p>
+            <h3 className="claim text-2xl sm:text-3xl text-ink mb-4 text-balance">
+              &ldquo;{t(`pains.items.${LEAD_PAIN_KEY}.misery`)}&rdquo;
+            </h3>
+            <p className="text-lg text-ink-2 leading-[1.6] mb-6">
+              {t(`pains.items.${LEAD_PAIN_KEY}.moment`)}
+            </p>
+            <PainPromise
+              promise={t(`pains.items.${LEAD_PAIN_KEY}.promise`)}
+              proof={t(`pains.items.${LEAD_PAIN_KEY}.proof`)}
+            />
+          </div>
+          <StatLedger
+            hero={t.raw("pains.lead.hero")}
+            note={t("pains.lead.note")}
+            rest={t.raw("pains.lead.stats")}
+          />
+        </section>
+
+        <div className="shot rounded-xl border border-rule p-2 mt-10 shadow-[0_10px_28px_-16px_rgba(16,18,29,0.2)] dark:shadow-[0_10px_32px_-16px_rgba(0,0,0,0.7)]">
+          <Image
+            src={PAIN_SHOTS[LEAD_PAIN_KEY].src}
+            width={PAIN_SHOTS[LEAD_PAIN_KEY].width}
+            height={PAIN_SHOTS[LEAD_PAIN_KEY].height}
+            alt={t(`pains.items.${LEAD_PAIN_KEY}.shotAlt`)}
+            loading="lazy"
+            className="w-full h-auto rounded-lg border border-rule"
+          />
+        </div>
+
+        <div className="grid gap-16 mt-16">
           {PAIN_KEYS.map((key, index) => (
-            <section key={key} id={`pain-${key}`} className="border-t border-rule pt-4 scroll-mt-24">
-              <PainFigure name={key} />
-              <h3 className={`font-semibold mb-2 text-ink ${index < 2 ? "text-lg" : ""}`}>
-                &ldquo;{t(`pains.items.${key}.misery`)}&rdquo;
-              </h3>
-              <p className="text-base text-ink-2 leading-relaxed mb-4">
-                {t(`pains.items.${key}.moment`)}
-              </p>
-              <div className="border-l border-accent-blue bg-secondary/60 pl-4 py-3">
-                <p className="claim text-base text-ink mb-1.5">
-                  {t(`pains.items.${key}.promise`)}
-                </p>
-                <p className="text-xs text-muted-foreground leading-relaxed">
-                  {t(`pains.items.${key}.proof`)}
-                </p>
-              </div>
+            <section key={key} id={`pain-${key}`} className="scroll-mt-24">
+              <PainRow
+                index={`0${index + 2}`}
+                misery={t(`pains.items.${key}.misery`)}
+                moment={t(`pains.items.${key}.moment`)}
+                promise={t(`pains.items.${key}.promise`)}
+                proof={t(`pains.items.${key}.proof`)}
+                shot={PAIN_SHOTS[key]}
+                shotAlt={PAIN_SHOTS[key] ? t(`pains.items.${key}.shotAlt`) : undefined}
+                figure={PAIN_SHOTS[key] ? null : <PainFigure name={key} />}
+                flipped={index % 2 === 1}
+              />
             </section>
           ))}
         </div>
@@ -251,7 +252,7 @@ const EcommerceContent = () => {
         </div>
 
         <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-rule pt-8">
-          <Button asChild size="lg">
+          <Button asChild size="lg" className="h-auto min-h-13 shrink py-3 whitespace-normal text-center">
             <a href="#prototype">{t("prototype.cta")}</a>
           </Button>
           <p className="text-sm text-muted-foreground max-w-sm leading-relaxed">
@@ -260,21 +261,31 @@ const EcommerceContent = () => {
         </div>
       </section>
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
-        <Separator />
-      </div>
 
       <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24">
-        <SectionHeading title={t("moments.title")}>
-          {null}
-        </SectionHeading>
-        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-x-12 gap-y-8 mt-10">
-          {t.raw("moments.items").map((item: string) => (
-            <p key={item} className="text-base text-ink-2 leading-relaxed border-t border-rule pt-4">
-              {item}
-            </p>
-          ))}
-        </div>
+        <SectionHeading title={t("plan.title")}>{null}</SectionHeading>
+        <ol className="grid sm:grid-cols-3 gap-x-12 gap-y-10 mt-10">
+          {t.raw("plan.steps").map(
+            (step: { when: string; title: string; body: string }, index: number) => {
+              const Icon = PLAN_ICON_COMPONENTS[index]
+              return (
+                <li key={step.title} className="border-t border-rule pt-5">
+                  <div className="flex items-baseline justify-between gap-4 mb-6">
+                    <span className="printed text-2xl font-bold text-ink">{`0${index + 1}`}</span>
+                    <span className="text-xs text-muted-foreground text-right">{step.when}</span>
+                  </div>
+                  <Icon
+                    aria-hidden="true"
+                    strokeWidth={1.5}
+                    className="size-10 text-primary mb-5"
+                  />
+                  <p className="text-lg font-semibold text-ink mb-2">{step.title}</p>
+                  <p className="text-base text-ink-2 leading-[1.55]">{step.body}</p>
+                </li>
+              )
+            }
+          )}
+        </ol>
       </section>
 
       <div className="max-w-6xl mx-auto px-6 sm:px-10">
@@ -299,21 +310,14 @@ const EcommerceContent = () => {
             ))}
           </ol>
           <PrototypeRequest
-            sellLabel={t("prototype.form.sellLabel")}
-            sellPlaceholder={t("prototype.form.sellPlaceholder")}
-            emailLabel={t("prototype.form.emailLabel")}
-            linkLabel={t("prototype.form.linkLabel")}
-            linkPlaceholder={t("prototype.form.linkPlaceholder")}
-            optional={t("prototype.form.optional")}
-            action={t("prototype.form.action")}
-            done={t("prototype.form.done")}
-            error={t("prototype.form.error")}
-            mailtoHref={`mailto:${EMAIL}?subject=${encodeURIComponent(t("prototype.mailSubject"))}`}
-            mailtoLabel={EMAIL}
+            id="prototype-form"
+            copy={t.raw("prototype.form")}
+            contactEmail={EMAIL}
+            mailSubject={t("prototype.mailSubject")}
           />
           <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-2">
             <a
-              href={CALENDLY_URL}
+              href={WHATSAPP}
               target="_blank"
               rel="noopener"
               className="text-sm text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
@@ -346,7 +350,21 @@ const EcommerceContent = () => {
             turns={t.raw("ai.chat.turns")}
           />
         </div>
-        <p className="text-base text-ink-2 leading-[1.55] mb-12">{t("ai.chat.caption")}</p>
+        <p className="text-base text-ink-2 leading-[1.55] mb-10">{t("ai.chat.caption")}</p>
+
+        <div className="mb-12">
+          {MCP_SHOTS.map((shot) => (
+            <ScreenshotCard
+              key={shot.key}
+              src={shot.src}
+              width={shot.width}
+              height={shot.height}
+              alt={t(`screens.shots.${shot.key}.alt`)}
+              title={t(`screens.shots.${shot.key}.title`)}
+              body={t(`screens.shots.${shot.key}.body`)}
+            />
+          ))}
+        </div>
 
         <div className="border border-rule bg-card p-6 mb-6">
           <h3 className="text-base font-semibold text-ink mb-5">
@@ -382,6 +400,41 @@ const EcommerceContent = () => {
           <p className="text-lg text-ink-2 max-w-2xl mb-10 leading-[1.6]">{t("features.intro")}</p>
         </SectionHeading>
 
+        <p className="text-sm text-muted-foreground mb-6">
+          {t("features.tally", {
+            areas: FEATURE_KEYS.length,
+            items: FEATURE_KEYS.reduce(
+              (total, key) => total + t.raw(`features.groups.${key}.bullets`).length,
+              0,
+            ),
+          })}
+        </p>
+
+        <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-6 gap-px bg-rule border border-rule mb-10">
+          {FEATURE_KEYS.map((key) => (
+            <div
+              key={key}
+              className="bg-background px-4 py-3.5 text-sm font-medium text-ink leading-snug"
+            >
+              {t(`features.groups.${key}.title`)}
+            </div>
+          ))}
+        </div>
+
+        <div className="grid lg:grid-cols-2 gap-8 mb-10">
+          {ADMIN_SHOTS.map((shot) => (
+            <ScreenshotCard
+              key={shot.key}
+              src={shot.src}
+              width={shot.width}
+              height={shot.height}
+              alt={t(`screens.shots.${shot.key}.alt`)}
+              title={t(`screens.shots.${shot.key}.title`)}
+              body={t(`screens.shots.${shot.key}.body`)}
+            />
+          ))}
+        </div>
+
         <Accordion type="single" collapsible className="">
           <AccordionItem value="all" className="border-none">
             <AccordionTrigger className="text-base font-medium hover:no-underline">
@@ -408,11 +461,15 @@ const EcommerceContent = () => {
 
       <section className="w-full max-w-6xl mx-auto px-6 sm:px-10 py-24">
         <SectionHeading title={t("explanatory.title")}>{null}</SectionHeading>
-        <div className="max-w-3xl space-y-5 mt-8">
-          {t.raw("explanatory.body").map((para: string) => (
-            <p key={para.slice(0, 40)} className="text-base text-ink-2 leading-[1.7]">
-              {para}
-            </p>
+        <div className="max-w-4xl mt-8">
+          {t.raw("explanatory.blocks").map((block: { title: string; body: string }) => (
+            <div
+              key={block.title}
+              className="grid md:grid-cols-[14rem_1fr] gap-x-10 gap-y-2 border-t border-rule py-6"
+            >
+              <h3 className="claim text-base text-ink text-balance">{block.title}</h3>
+              <p className="text-base text-ink-2 leading-[1.7]">{block.body}</p>
+            </div>
           ))}
         </div>
       </section>
@@ -425,25 +482,26 @@ const EcommerceContent = () => {
         <SectionHeading title={t("price.title")}>
           <p className="text-lg text-ink-2 max-w-2xl mb-10 leading-[1.6]">{t("price.intro")}</p>
         </SectionHeading>
-        <div className="border border-rule bg-card p-6 sm:p-10 mb-12">
+
+        <div className="max-w-3xl mb-14">
+          <StatLedger
+            hero={t.raw("price.figures")[0]}
+            note={t("price.anchor.note")}
+            rest={t.raw("price.figures").slice(1)}
+          />
+        </div>
+
+        <div className="border-t border-rule pt-6 mb-12 max-w-3xl">
           <h3 className="text-2xl font-semibold text-ink mb-4">
             {t("price.rate.headline")}
           </h3>
-          <p className="text-sm text-ink-2 max-w-2xl leading-relaxed mb-5">{t("price.rate.body")}</p>
-          <p className="text-sm text-muted-foreground max-w-2xl leading-relaxed pt-5 border-t border-rule">
+          <p className="text-sm text-ink-2 leading-relaxed mb-5">{t("price.rate.body")}</p>
+          <p className="text-sm text-ink-2 leading-relaxed pt-5 border-t border-rule">
+            {t("price.rate.terms")}
+          </p>
+          <p className="text-sm text-ink-2 leading-relaxed mt-5">
             {t("price.rate.hourly")}
           </p>
-          <p className="text-sm text-ink-2 max-w-2xl leading-relaxed mt-5">{t("price.anchor.note")}</p>
-          <dl className="grid grid-cols-2 sm:grid-cols-4 gap-y-6 mt-8 pt-6 border-t border-rule">
-            {t.raw("price.figures").map((item: { value: string; label: string }) => (
-              <div key={item.label} className="pr-4">
-                <dt className="printed text-3xl sm:text-4xl font-medium text-ink mb-1.5">
-                  {item.value}
-                </dt>
-                <dd className="text-xs text-muted-foreground leading-snug">{item.label}</dd>
-              </div>
-            ))}
-          </dl>
         </div>
 
         <div className="mb-12 max-w-2xl">
@@ -452,7 +510,7 @@ const EcommerceContent = () => {
             bullets={t.raw("price.anchor.neverStop")}
           />
         </div>
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-12">
+        <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
           {PRICE_KEYS.map((key) => (
             <LedgerGroup
               key={key}
@@ -460,6 +518,32 @@ const EcommerceContent = () => {
               bullets={t.raw(`price.groups.${key}.bullets`)}
             />
           ))}
+        </div>
+
+        <Accordion type="single" collapsible className="mt-12">
+          <AccordionItem value="all" className="border-none">
+            <AccordionTrigger className="text-base font-medium hover:no-underline">
+              {t("price.showAll")}
+            </AccordionTrigger>
+            <AccordionContent>
+              <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-x-12 gap-y-12 mt-10">
+                {PRICE_DETAIL_KEYS.map((key) => (
+                  <LedgerGroup
+                    key={key}
+                    title={t(`price.groups.${key}.title`)}
+                    bullets={t.raw(`price.groups.${key}.bullets`)}
+                  />
+                ))}
+              </div>
+            </AccordionContent>
+          </AccordionItem>
+        </Accordion>
+
+        <div className="mt-12 flex flex-wrap items-center gap-4 border-t border-rule pt-8">
+          <Button asChild size="lg" className="h-auto min-h-13 shrink py-3 whitespace-normal text-center">
+            <a href="#prototype">{t("prototype.cta")}</a>
+          </Button>
+          <p className="text-sm text-ink-2 max-w-sm leading-relaxed">{t("price.ctaNote")}</p>
         </div>
       </section>
 
@@ -472,7 +556,7 @@ const EcommerceContent = () => {
           {null}
         </SectionHeading>
         <div className="grid lg:grid-cols-2 gap-8 mt-8">
-          {PLATFORM_SHOTS.filter((shot) => PRIMARY_SHOT_KEYS.includes(shot.key)).map((shot) => (
+          {STOREFRONT_SHOTS.map((shot) => (
             <ScreenshotCard
               key={shot.key}
               src={shot.src}
@@ -484,29 +568,6 @@ const EcommerceContent = () => {
             />
           ))}
         </div>
-
-        <Accordion type="single" collapsible className="mt-8">
-          <AccordionItem value="all" className="border-none">
-            <AccordionTrigger className="text-base font-medium hover:no-underline">
-              {t("screens.showAll")}
-            </AccordionTrigger>
-            <AccordionContent>
-              <div className="grid lg:grid-cols-2 gap-8 mt-8">
-            {PLATFORM_SHOTS.filter((shot) => !PRIMARY_SHOT_KEYS.includes(shot.key)).map((shot) => (
-              <ScreenshotCard
-                key={shot.key}
-                src={shot.src}
-                width={shot.width}
-                height={shot.height}
-                alt={t(`screens.shots.${shot.key}.alt`)}
-                title={t(`screens.shots.${shot.key}.title`)}
-                body={t(`screens.shots.${shot.key}.body`)}
-              />
-            ))}
-          </div>
-            </AccordionContent>
-          </AccordionItem>
-        </Accordion>
 
         <div className="border border-rule bg-card mt-8 p-6">
           <h3 className="text-xl font-semibold text-ink mb-3">{t("audit.title")}</h3>
@@ -619,29 +680,26 @@ const EcommerceContent = () => {
               </div>
             ))}
           </div>
-          <PrototypeRequest
-            sellLabel={t("prototype.form.sellLabel")}
-            sellPlaceholder={t("prototype.form.sellPlaceholder")}
-            emailLabel={t("prototype.form.emailLabel")}
-            linkLabel={t("prototype.form.linkLabel")}
-            linkPlaceholder={t("prototype.form.linkPlaceholder")}
-            optional={t("prototype.form.optional")}
-            action={t("prototype.form.action")}
-            done={t("prototype.form.done")}
-            error={t("prototype.form.error")}
-            mailtoHref={`mailto:${EMAIL}?subject=${encodeURIComponent(t("prototype.mailSubject"))}`}
-            mailtoLabel={EMAIL}
-          />
-          <p className="text-sm text-muted-foreground mt-6">
-            <a
-              href={CALENDLY_URL}
-              target="_blank"
-              rel="noopener"
-              className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
-            >
-              {t("prototype.orBook")}
+          <Button asChild size="lg" className="h-auto min-h-13 shrink py-3 whitespace-normal text-center">
+            <a href={WHATSAPP} target="_blank" rel="noopener">
+              {common("bookCall")}
             </a>
-            {" · "}
+          </Button>
+
+          <div className="mt-16 border-t border-rule pt-8">
+            <h3 className="text-lg font-semibold text-ink mb-2">{t("cta.notReady.title")}</h3>
+            <p className="text-base text-ink-2 max-w-xl mb-8 leading-relaxed">
+              {t("cta.notReady.body")}
+            </p>
+            <PrototypeRequest
+              id="cta-form"
+              copy={t.raw("prototype.form")}
+              contactEmail={EMAIL}
+              mailSubject={t("prototype.mailSubject")}
+            />
+          </div>
+
+          <p className="text-sm text-muted-foreground mt-10">
             <a
               href={`mailto:${EMAIL}`}
               className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
@@ -650,12 +708,21 @@ const EcommerceContent = () => {
             </a>
             {" · "}
             <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener"
+              className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
+            >
+              WhatsApp
+            </a>
+            {" · "}
+            <a
               href={TELEGRAM}
               target="_blank"
               rel="noopener"
               className="text-primary dark:text-brand-light hover:text-brand-strong underline underline-offset-4"
             >
-              @pavliha
+              Telegram
             </a>
           </p>
         </div>
@@ -667,7 +734,7 @@ const EcommerceContent = () => {
         </Link>
       </SiteFooter>
 
-      <StickyCallBar label={t("hero.ctaDirect")} href={CALENDLY_URL} hideNear="#prototype" />
+      <StickyCallBar label={common("bookCall")} href={WHATSAPP} hideNear="#prototype" />
     </>
   )
 }

@@ -16,8 +16,7 @@
   },
   "common": {
     "visitSite": "Visit Site",
-    "bookCall": "Book a free call",
-    "bookCall30": "Book a free 30-minute call",
+    "bookCall": "Message me on WhatsApp",
     "orReachMe": "or reach me directly",
     "backToSite": "← Back to pavlokostiuk.cloud",
     "copyright": "© 2026 Pavlo Kostiuk",
@@ -28,16 +27,16 @@
   },
   "home": {
     "meta": {
-      "title": "Pavlo Kostiuk | Custom software, faster and cheaper with AI",
-      "description": "I help business owners design, build and launch custom software in weeks instead of months. AI handles the repetitive work, which is what brings the price down, and not by cutting corners."
+      "title": "Pavlo Kostiuk | A working online store, fitted to your shop",
+      "description": "I sell the e-commerce platform I built and still run — storefront, admin, stock, till, bank integration — and fit it exactly to how your shop works. You own it outright: no monthly fee, no commission."
     },
     "hero": {
-      "available": "Available for new projects",
-      "role": "Pavlo Kostiuk, full-stack engineer",
-      "titleStart": "Custom software,",
-      "titleGradient": "shipped faster & cheaper",
-      "titleEnd": "with AI.",
-      "body": "Most business owners wait months and overpay for software that ships late. I design, build and launch yours in weeks instead. AI handles the repetitive work, which is what brings the price down.",
+      "available": "Taking three to five shops at a time",
+      "role": "Pavlo Kostiuk — the developer behind into.ge",
+      "titleStart": "A store that already works,",
+      "titleGradient": "fitted exactly",
+      "titleEnd": "to yours.",
+      "body": "Not a template you bend your business into, and not a year-long build from scratch. It is the platform running into.ge today — storefront, admin, stock, till, bank — and I fit it to how your shop actually works. You own it outright.",
       "seeWork": "See my work",
       "portraitAlt": "Pavlo Kostiuk",
       "stats": {
@@ -58,7 +57,7 @@
     "experience": {
       "eyebrow": "Experience",
       "title": "Professional work",
-      "intro": "10 years of shipping products across e-commerce, fintech, drone tech, and enterprise SaaS.",
+      "intro": "Ten years on systems that had to stay up — e-commerce, fintech, drones, enterprise SaaS. That is where the platform comes from.",
       "via": "via {company}",
       "items": {
         "homeWarranty": {
@@ -149,7 +148,7 @@
     "intoGe": {
       "title": "Into.ge",
       "intro": "Full-stack e-commerce platform for a 3D printing store in Tbilisi, Georgia. Built from scratch as a solo developer: storefront, admin panel, inventory management, point of sale, checkout with bank integration, and three languages (English, Georgian, Russian). An AI assistant can operate the whole store over MCP.",
-      "offerLead": "I now offer this as a tailored platform for other small business owners:",
+      "offerLead": "This is the platform I sell — fitted to your shop, and yours outright:",
       "offerLink": "see the full functionality overview",
       "builtTitle": "What I built",
       "built": [
@@ -250,8 +249,8 @@
     },
     "contact": {
       "eyebrow": "Contact",
-      "title": "Let's build it faster",
-      "body": "Book a free 30-minute call. Tell me what you're building and I'll show you how AI-accelerated development gets it shipped sooner and for less."
+      "title": "Tell me about your shop",
+      "body": "Write on WhatsApp and we will talk it through, free. Tell me what you sell and how, and I will tell you honestly whether this fits — including if a rented platform would serve you better."
     }
   },
   "platform": {
@@ -261,9 +260,8 @@
     },
     "hero": {
       "shotAlt": "The into.ge storefront and its point of sale, showing the same product and the same stock number",
-      "headline": "Not a template site. An online store built around your goals and how you work.",
+      "headline": "A working online store, built around how you actually trade.",
       "subhead": "Most owners bend their business to the software they rent. This one is fitted to you — your counter, your stock, your delivery rules, your languages — with an AI assistant plugged into all of it. And it is entirely yours.",
-      "ctaDirect": "Book a call",
       "ctaTransitional": "See your shop, free",
       "proof": "Live today at into.ge — a real shop in Tbilisi. Ten years building production software."
     },
@@ -278,7 +276,7 @@
     },
     "authority": {
       "title": "Built for a real shop, and I still run it",
-      "body": "I'm Pavlo Kostiuk. I built into.ge for a shop in Tbilisi and I still run it, end to end: storefront, admin, inventory, point of sale, bank integration, three languages. It takes orders every day, and when something breaks on a Saturday I get the call — so I hit the problems before you do. Before that I spent ten years on systems that have to stay up, including three years leading engineering on a US e-commerce platform used by 1.9 million households. You get the version that already works.",
+      "body": "I do not believe a shop should have to bend itself to the software it pays for. So I build it the other way round — and everything I build stays yours. I'm Pavlo Kostiuk. I built into.ge for a shop in Tbilisi and I still run it, end to end: storefront, admin, inventory, point of sale, bank integration, three languages. It takes orders every day, and when something breaks on a Saturday I get the call — so I hit the problems before you do. Before that I spent ten years on systems that have to stay up, including three years leading engineering on a US e-commerce platform used by 1.9 million households. You get the version that already works.",
       "items": [
         {
           "value": "10+",
@@ -288,23 +286,52 @@
           "value": "1.9M+",
           "label": "Households on the US platform I led engineering for"
         }
+      ],
+      "hows": [
+        "Tell you when you do not need me — including \"use Shopify, you will be fine\"",
+        "Hand over the catalogue audit whether you buy or not",
+        "Take the Saturday call myself",
+        "Take fewer shops than I could, so each one is built properly"
       ]
     },
     "pains": {
       "title": "Six things that break, and what replaces them",
       "intro": "Every one of these came out of running a real shop. If none of them sound familiar, you probably don't need this.",
+      "lead": {
+        "hero": {
+          "value": "1:30",
+          "label": "hours the website kept selling something that was already gone"
+        },
+        "note": "An ordinary day in a shop where stock lives in two places.",
+        "stats": [
+          {
+            "value": "11:40",
+            "label": "the last unit sells at the counter"
+          },
+          {
+            "value": "13:10",
+            "label": "the website sells the same unit"
+          },
+          {
+            "value": "0",
+            "label": "units in stock when the website took the payment"
+          }
+        ]
+      },
       "items": {
         "stock": {
           "misery": "Sold it twice.",
           "moment": "The counter sold the last one at 11:40. The website sold it again at 13:10. Now you are phoning a customer to take the order back.",
           "promise": "One stock number, shared by the till, the warehouse and the website.",
-          "proof": "Counter sales draw down web stock instantly, and the count is checked again at the moment of purchase."
+          "proof": "Counter sales draw down web stock instantly, and the count is checked again at the moment of purchase.",
+          "shotAlt": "The into.ge product page showing stock per location: out of stock at the service point, two left in the shop"
         },
         "money": {
           "misery": "What did I actually earn?",
           "moment": "Card sales in the bank app, the marketplace settlement in an email, supplier invoices in a folder, cost of goods in your head. So you price by feel and never find out which products lose money.",
           "promise": "Ask in plain language, get the figure with cost of goods already in it.",
-          "proof": "Weighted average cost kept per item, profit and loss against real costs, and sales history for every product."
+          "proof": "Weighted average cost kept per item, profit and loss against real costs, and sales history for every product.",
+          "shotAlt": "The profit and loss screen in the into.ge admin, with revenue, VAT and net profit month by month"
         },
         "commission": {
           "misery": "A good month costs me more.",
@@ -316,19 +343,22 @@
           "misery": "The box is still by the door.",
           "moment": "Stock arrived on the 3rd. Photos, descriptions, technical specifications, then all of it again in two more languages. It is the 14th. You have paid for goods nobody can buy yet.",
           "promise": "Paste the supplier sheet and get filterable products in every language, unpublished until you have looked.",
-          "proof": "Spec sheets parsed into product attributes, machine translation filling the rest, every line editable by hand."
+          "proof": "Spec sheets parsed into product attributes, machine translation filling the rest, every line editable by hand.",
+          "shotAlt": "An into.ge product page with description, specifications and material properties filled in"
         },
         "orders": {
           "misery": "The address came as a voice message.",
           "moment": "A screenshot of the item, is it available, the price agreed in one thread and the address in another. Nothing countable, and the shop cannot run without you inside it.",
           "promise": "Web, counter, marketplace and phone orders in one queue, each with its own status.",
-          "proof": "A single queue across channels, manual entry for phone customers, and a Telegram message the moment an order lands."
+          "proof": "A single queue across channels, manual entry for phone customers, and a Telegram message the moment an order lands.",
+          "shotAlt": "The into.ge orders list: 2741 orders in one queue with customer, amount, date, status and source"
         },
         "staff": {
           "misery": "I can't take Saturday off.",
           "moment": "Your cashier could serve the queue, but the only login you have also shows margins and can delete an order. So the login stays with you, and so does the work.",
           "promise": "The cashier sees the till. You see the margins. Both are on the record.",
-          "proof": "Separate owner, manager and cashier roles, with an audit log of who changed what and when."
+          "proof": "Separate owner, manager and cashier roles, with an audit log of who changed what and when.",
+          "shotAlt": "The into.ge team screen: five members with admin and cashier roles"
         }
       },
       "alsoTitle": "Smaller, and just as constant",
@@ -342,39 +372,42 @@
       ],
       "ctaNote": "Recognise two or more of these? Send your catalog and see them fixed in your own shop before you pay anything."
     },
-    "moments": {
-      "title": "Nobody looks for a new system until something breaks",
-      "items": [
-        "You're opening a second location, and the stock has to be right in two places at once",
-        "You're hiring someone who isn't family, and they need the till without your margins",
-        "New Year came and went, and the stock count didn't survive it",
-        "The website you paid for two years ago has quietly stopped matching the shop"
-      ]
-    },
     "prototype": {
       "title": "See your own shop, running, with your own products in it",
-      "body": "Send me your product list in whatever form it exists. A few days later you get a private link to a store that is already yours: your products, your prices, your categories, your languages. You install nothing, you sign nothing, and you can walk away.",
+      "body": "Send me your product list in whatever form it exists. Within three working days you get a private link to a store that is already yours: your products, your prices, your categories, your languages. You install nothing, you sign nothing, and you can walk away.",
       "steps": [
         "You send whatever you already have: a spreadsheet, a WooCommerce export, or photographs of the shelves",
         "I import it and send you a private URL with your own catalog running inside the platform",
         "The catalog audit comes with it: every product missing a photo, a category, a price, or stock that doesn't add up",
         "Then you decide. If the answer is no, the audit is yours to keep and fix wherever you sell today"
       ],
-      "note": "It takes me an afternoon because the platform already exists. That is the whole argument for buying one that does.",
+      "note": "It takes me an afternoon of work because the platform already exists. That is the whole argument for buying one that does.",
       "cta": "See your shop, free",
       "mailSubject": "My product list",
-      "orBook": "or book a call first",
+      "orBook": "or message me on WhatsApp first",
       "scarcity": "I take on a small number of these at a time — three to five shops — so each one gets built properly and stays supported afterwards.",
       "form": {
         "sellLabel": "What do you sell?",
         "sellPlaceholder": "Filament and 3D printers, kids' clothes, car parts…",
         "emailLabel": "Your email",
+        "emailHint": "This is where the link to your shop goes.",
         "linkLabel": "A link to your catalog",
+        "linkHint": "Or attach a file below — either one is enough.",
         "linkPlaceholder": "Your site, your Instagram, a spreadsheet — anything",
-        "optional": "(optional)",
-        "action": "Send it over",
-        "done": "Got it. I'll look at your catalog and come back within a few days with a link to your own shop, plus the audit. If I need anything else I'll just ask.",
-        "error": "That didn't send. Try again, or"
+        "fileLabel": "Or attach the file",
+        "fileHint": "Spreadsheet, export, PDF, or photos of your shelves. Up to 10 MB per file.",
+        "privacy": "Your catalog stays between us. I use it to build your preview and nothing else, and I delete it if you walk away.",
+        "action": "Get my shop link",
+        "sending": "Sending…",
+        "done": "Got it. Within three working days you'll get an email with a link to your own shop and the catalog audit — check your spam folder if it hasn't arrived. If I need anything else I'll just ask.",
+        "error": "That didn't send. Try again, or",
+        "errorSummary": "There is a problem",
+        "errors": {
+          "sell": "Tell me what you sell.",
+          "email": "Enter an email address I can reply to.",
+          "catalog": "Add a link to your catalog, or attach a file.",
+          "file": "One of those files is over 10 MB. Send a link instead."
+        }
       }
     },
     "ai": {
@@ -679,7 +712,8 @@
           ]
         }
       },
-      "showAll": "Open the full functionality overview"
+      "showAll": "Open every area, item by item",
+      "tally": "{areas} areas, {items} things it already does. Not a roadmap."
     },
     "screens": {
       "title": "What it looks like",
@@ -729,8 +763,7 @@
           "alt": "Into.ge admin settings page for connecting Claude, ChatGPT and Gemini to the store over MCP",
           "body": "This is the actual settings page, not a mock-up. Copy the address, paste it into Claude, ChatGPT or Gemini, sign in with your own admin account, approve. Your staff each connect with their own login, so a cashier's assistant gets a cashier's permissions."
         }
-      },
-      "showAll": "See the other six screens"
+      }
     },
     "audit": {
       "title": "A real answer, from the real store",
@@ -752,7 +785,8 @@
       "rate": {
         "headline": "One setup fee. Then the shop is yours.",
         "body": "Quoted for your shop once I've seen your catalog. A hundred products with clean data and eight hundred with none are not the same job. No monthly fee, and no commission per sale at any volume.",
-        "hourly": "Change work after launch is ₾80 an hour, estimated and approved before I start. Anything broken in the first two months is fixed at no charge."
+        "hourly": "Change work after launch is $30 an hour, estimated and approved before I start. Anything broken in the first two months is fixed at no charge.",
+        "terms": "Nothing upfront. You pay the full amount once the shop is live and you have signed it off. Invoices are in US dollars."
       },
       "groups": {
         "setup": {
@@ -821,21 +855,23 @@
       "figures": [
         {
           "value": "0",
+          "label": "Commission per sale, ever"
+        },
+        {
+          "value": "0",
           "label": "Monthly fee, at any volume"
         },
         {
           "value": "0",
-          "label": "Commission per sale, ever"
+          "label": "Upfront. You pay when it is live"
         },
         {
           "value": "2",
           "label": "Months of fixes at no charge"
-        },
-        {
-          "value": "₾80",
-          "label": "An hour, for new work after launch"
         }
-      ]
+      ],
+      "ctaNote": "Send your catalog, or message me on WhatsApp, and you get a figure for your own shop. Both are free and neither commits you to anything.",
+      "showAll": "Open the full terms: warranty, ownership and limits"
     },
     "process": {
       "title": "What each step actually involves",
@@ -884,10 +920,10 @@
     },
     "cta": {
       "title": "Tell me what you sell",
-      "intro": "Thirty minutes, free, no obligation. I'll also tell you if you'd be better off on Shopify.",
+      "intro": "Write, and we take it from there — by message or a call, whichever suits you. Free, no obligation. I'll also tell you if you'd be better off on Shopify.",
       "expectations": {
         "bring": {
-          "label": "Bring",
+          "label": "Have ready",
           "body": "Your product list in any form, and the admin task you hate most."
         },
         "cover": {
@@ -895,9 +931,13 @@
           "body": "What you sell, what breaks today, what it would cost and how long it takes."
         },
         "leave": {
-          "label": "You leave with",
+          "label": "You get",
           "body": "A price, a timeline, and an offer to load your catalog in so you can see it before deciding."
         }
+      },
+      "notReady": {
+        "title": "Not ready to talk yet?",
+        "body": "Send your product list instead. In a few days you get a private link to your own shop, with your products in it. No call, no commitment."
       }
     },
     "subscribe": {
@@ -909,42 +949,45 @@
       "done": "You're on the list. First one arrives when there's something worth writing up.",
       "error": "That didn't send. Email me at kostyk.pavel.09@gmail.com and I'll add you by hand."
     },
-    "value": {
-      "title": "What changes on day one",
-      "items": [
-        {
-          "title": "Fitted to your trade",
-          "body": "Your product fields, your delivery rules, your bank, your couriers, your languages, your modules. What you don’t need is switched off, not hidden."
-        },
-        {
-          "title": "One stock number",
-          "body": "The till sells it, the website knows immediately. You stop overselling."
-        },
-        {
-          "title": "Nobody takes a cut",
-          "body": "No monthly fee, no commission. Ten times the orders costs the same as one."
-        },
-        {
-          "title": "It's yours",
-          "body": "Your server, your database, your customer list, exportable any time."
-        }
-      ]
-    },
     "plan": {
       "title": "Three steps",
       "steps": [
-        "Send your product list",
-        "See your shop running",
-        "Launch on your domain"
+        {
+          "when": "Today",
+          "title": "Send your product list",
+          "body": "A spreadsheet, a WooCommerce export, or photographs of the shelves. Whatever already exists."
+        },
+        {
+          "when": "Three working days",
+          "title": "See your shop running",
+          "body": "A private link to your own catalog inside the platform, and the audit that comes with it. Nothing signed yet."
+        },
+        {
+          "when": "When you say go",
+          "title": "Launch on your domain",
+          "body": "Your servers, your database, your domain. Two months of free fixes after launch."
+        }
       ]
     },
     "explanatory": {
       "title": "The longer version",
-      "body": [
-        "Every rented shop platform has an opinion about how you should sell, and you spend your first year working around it. Your products don't fit its fields, your delivery rules aren't one of its options, and the gaps get patched with apps that charge monthly and still don't talk to each other. Meanwhile it takes a percentage of every sale, and takes more the better your month goes.",
-        "I build one system fitted the other way round. Your product fields are the ones your trade actually uses, your delivery and payment rules are yours, and the modules you don't need are switched off rather than sitting there confusing your staff. The counter and the website draw down the same stock, orders from every channel land in one queue, and the money side knows what things cost, so you can ask what you actually earned and get an answer.",
-        "It runs on your own hosting, against your own database. The catalogue, the orders and the customer list stay exportable and yours. When you need something that does not exist yet, I build it and bill it by the hour, and it becomes a real part of your store rather than a private patch.",
-        "I am not a platform. I am one developer who built this for a shop in Tbilisi and still runs it. into.ge sells 3D printers and filament on it today, in three languages, with a bank integration and a point of sale. When it breaks on a Saturday, I get the call. Send me your product list and a few days later you get a private link to your own shop with your own products in it, plus an audit of everything broken in your catalogue — yours to keep whether you buy or not."
+      "blocks": [
+        {
+          "title": "The platform decides how you sell",
+          "body": "Every rented shop platform has an opinion about how you should sell, and you spend the first year working around it. Your products don't fit its fields, your delivery rules aren't among its options, and you patch the gaps with apps that charge monthly and know nothing about each other. It takes a percentage of every sale regardless, and takes more the better your month goes."
+        },
+        {
+          "title": "Shaped to your trade, not the reverse",
+          "body": "I build it the other way round. The product fields describe what you actually trade in, the delivery and payment rules are your own, and the modules you don't need are switched off instead of sitting there confusing your staff. The counter and the website draw down the same stock, orders from every channel land in one queue, the money side knows what things cost. So you can ask what you earned last month and get an answer."
+        },
+        {
+          "title": "Your hosting, your data, your export",
+          "body": "It runs on your hosting, against your database. The catalogue, the orders and the customer list stay yours, and you can export them whenever you want. When you need something that doesn't exist yet, I build it and bill it by the hour, and after that it lives in your shop like any other feature rather than a patch bolted on the side."
+        },
+        {
+          "title": "One developer, and it is already live",
+          "body": "I'm not a platform, I'm one developer who built this for a shop in Tbilisi and still runs it. into.ge sells 3D printers and filament on it today, in three languages, with a bank integration and a point of sale. When it breaks on a Saturday, I get the call. Send me your product list and a few days later you get a private link to your own shop with your own products in it, plus an audit of everything broken in your catalogue. The audit is yours to keep whether you buy or not."
+        }
       ]
     }
   }

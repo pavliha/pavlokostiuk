@@ -112,7 +112,6 @@ const HomeContent = () => {
             </div>
             <div className="flex flex-wrap items-center gap-3 mb-8">
               <CallToActionLink
-                source="home-hero"
                 label={common("bookCall")}
                 size="lg"
                 className="rounded-lg px-6 py-6 text-sm font-semibold shadow-lg shadow-primary/25"
@@ -281,7 +280,6 @@ const HomeContent = () => {
           <p className="text-muted-foreground max-w-md mx-auto mb-8">{t("contact.body")}</p>
         </SectionHeading>
         <CallToActionLink
-          source="home-contact"
           label={common("bookCall")}
           size="lg"
             className="rounded-xl px-6 py-6 text-sm mb-10"
