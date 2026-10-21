@@ -16,7 +16,7 @@ import TagList from "@/components/TagList"
 import VisitSiteButton from "@/components/VisitSiteButton"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { AIRCAST_SHOTS } from "@/content/media"
+import { AIRCAST_SHOTS, DRONE_SHOTS } from "@/content/media"
 import { AIRCAST, EMAIL } from "@/content/site"
 import { DRONE_REPOS, DRONE_SECTION_KEYS, DRONE_TAGS } from "@/content/structure"
 import { locales, routing } from "@/i18n/routing"
@@ -92,9 +92,17 @@ const DronesPage = ({ params }: { params: Promise<{ locale: string }> }) => {
               </SectionHeading>
               <BulletList
                 items={drones[key].bullets}
-                className="space-y-3 max-w-3xl"
+                className="space-y-3 max-w-3xl mb-10"
                 itemClassName="text-base text-ink-2 leading-[1.55]"
                 dotClassName="bg-ledger"
+              />
+              <ScreenshotCard
+                src={DRONE_SHOTS[key].src}
+                width={DRONE_SHOTS[key].width}
+                height={DRONE_SHOTS[key].height}
+                alt={t(`${key}.shot.alt`)}
+                title={t(`${key}.shot.title`)}
+                body={t(`${key}.shot.body`)}
               />
             </div>
           </section>

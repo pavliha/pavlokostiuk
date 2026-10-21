@@ -1056,7 +1056,12 @@
         "Device pages are a JSON API drawn natively in each app's Device tab — transport, forms, charts, setup wizard and joystick wording live in the core once",
         "Windows 11 head designed in Fluent: 53 screens covering every macOS view on a 48 px rail",
         "Phone simulator rehearses a whole mission by the drone's own parameters: DO items, terrain, failsafes, wind, GPS and motor faults — SITL is kept for real flight code and feel"
-      ]
+      ],
+      "shot": {
+        "title": "The iOS head flying an Auto mission",
+        "alt": "Aircast iOS ground station in Auto mode flying waypoint 5 of 8 over a city map with the route drawn",
+        "body": "Native SwiftUI head over the shared core: mission progress, waypoints and the link status drawn from the same state every other platform uses."
+      }
     },
     "telemetry": {
       "title": "Telemetry, video and protocols",
@@ -1068,7 +1073,12 @@
         "TypeScript MAVLink toolkit: types generated from the XML dialects plus a real-time message parser — public",
         "Own NTRIP caster (v1 and v2) feeding RTK corrections from a Leica base into the ground station",
         "Starlink dish client over the real SpaceX gRPC protocol, with a fake dish for tests without hardware"
-      ]
+      ],
+      "shot": {
+        "title": "Live video with the on-board OSD",
+        "alt": "Live FBWA video from a fixed-wing drone at 56 km/h with altitude, distance from home, 4G link bitrate and battery overlaid",
+        "body": "A real flight over the Alazani valley: altitude, speed, distance from home, 4G link at 3.2 Mbit/s and battery voltage burned into the stream by the unit on the drone."
+      }
     },
     "missions": {
       "title": "Missions and payloads",
@@ -1079,7 +1089,12 @@
         "Grab / hold-to-release on the camera page sends DO_GRIPPER and shows the flight controller's ack",
         "Tap-to-aim on the SIYI ZR30 gimbal: tap the video, the camera points there — accuracy measured and corrected",
         "Loiter's 1.5 s speed time constant made the sticks feel wooden; cut to ~1 s in a parameter file the real drone loads too"
-      ]
+      ],
+      "shot": {
+        "title": "A nine-waypoint mission across the ridge",
+        "alt": "Ground station map with a nine-waypoint mission over mountains and the live camera feed in a corner",
+        "body": "Auto mode at 155 m with the camera feed picture-in-picture; the route was planned on the phone and flown by the autopilot."
+      }
     },
     "hardware": {
       "title": "Hardware, gimbals and the bench",
@@ -1090,7 +1105,12 @@
         "A real drone's stored tune on the simulated frame caused a ±5 m weave on go-to; the bench now resets to firmware defaults before every flight (±0.5 m)",
         "Viewpro and Topotek gimbal cameras bridged to MAVLink as Go libraries; SIYI ZR30 driven natively",
         "RadioMaster AX12 radio and Starlink client readiness checked and documented"
-      ]
+      ],
+      "shot": {
+        "title": "Synthetic view over real terrain",
+        "alt": "Synthetic 3D camera view of a city rendered from real terrain and building data, loitering at 80 m",
+        "body": "The simulated camera renders the real ground and buildings, so the bench and the phone simulator rehearse over the same terrain the drone will see."
+      }
     },
     "device": {
       "title": "The unit on the drone",
@@ -1101,7 +1121,12 @@
         "Opt-in LUKS2 encrypted data partition unlocked by Clevis from a Tang server or a per-card cloud key — a VM boot harness and the first real Zero 2 W cards each caught bugs that would have locked every card out",
         "Per-device HTTPS: Let's Encrypt certs under a computed-DNS domain, because Cloudflare's free tier caps records at 200",
         "Cellular modem, interface priority and failover, data budget with alerts, all from the browser"
-      ]
+      ],
+      "shot": {
+        "title": "Flasher: Wi-Fi and hostname written to the card",
+        "alt": "Aircast Flasher customisation step with Wi-Fi network, password and hostname fields",
+        "body": "Step three of four: the card leaves the laptop already knowing its network and its name on it."
+      }
     },
     "repos": {
       "title": "Public code",

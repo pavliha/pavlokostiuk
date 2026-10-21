@@ -36,6 +36,14 @@ export const AIRCAST_SHOTS = [
   shot("network", "aircast-network.png", 1760, 1684),
 ] as const
 
+export const DRONE_SHOTS = {
+  gcs: shot("gcs", "drones-gcs.webp", 1200, 552),
+  telemetry: shot("telemetry", "drones-telemetry.webp", 1600, 900),
+  missions: shot("missions", "drones-missions.webp", 2000, 1126),
+  hardware: shot("hardware", "drones-hardware.webp", 1200, 552),
+  device: shot("device", "drones-device.webp", 1600, 1140),
+} as const
+
 export const INTO_GE_SHOTS = [
   HOMEPAGE,
   SHOP,
