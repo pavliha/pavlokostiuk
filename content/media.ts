@@ -30,10 +30,10 @@ const MOVEMENTS = shot("movements", "into-ge-admin-inventory.png", 2880, 1800)
 const MCP = shot("mcp", "into-ge-admin-mcp.png", 2880, 1800)
 
 export const AIRCAST_SHOTS = [
-  shot("overview", "aircast-overview.png", 1760, 1100),
-  shot("streaming", "aircast-streaming.png", 1760, 1100),
-  shot("telemetry", "aircast-telemetry.png", 1760, 1100),
-  shot("network", "aircast-network.png", 1760, 1684),
+  shot("flight", "console-flight.png", 1760, 1100),
+  shot("cameras", "console-cameras.png", 1760, 1100),
+  shot("connection", "console-connection.png", 1760, 1100),
+  shot("flightlog", "console-flightlog.png", 1760, 1100),
 ] as const
 
 export const DRONE_SHOTS = {

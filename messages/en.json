@@ -136,25 +136,25 @@
       "title": "Aircast",
       "intro": "A drone connectivity platform I founded. It streams live video and MAVLink telemetry over 4G/LTE from a Raspberry Pi payload to a browser anywhere in the world. The web console lets operators watch live RTSP/WebRTC/HLS feeds, manage the camera source, monitor the cellular link, and connect a ground station, with secure remote access over Tailscale.",
       "shots": {
-        "overview": {
-          "title": "Operations overview",
-          "alt": "Aircast console overview showing live video links, telemetry, and cellular status",
-          "body": "Single-pane status for each drone unit: services up, cellular link quality, data usage, and a live video panel with one-click RTSP, WebRTC, and HLS stream URLs. The telemetry endpoint sits right alongside for ground-station connection."
+        "flight": {
+          "title": "Flight view",
+          "alt": "Aircast flight view: full-screen live video from the drone with the on-board OSD, a Ready-to-fly badge, signal and battery, and the measured 130 ms latency",
+          "body": "The page an operator keeps open: live video edge to edge, arm state, link signal and battery in the corners, and the glass-to-glass latency the browser measured itself — 130 ms here."
         },
-        "streaming": {
-          "title": "Live video streaming",
-          "alt": "Aircast streaming page with RTSP, WebRTC, HLS endpoints and camera source config",
-          "body": "MediaMTX-backed streaming with simultaneous RTSP, WebRTC, and HLS outputs from a single camera source. Operators set the upstream camera URL and changes apply live, with a reachability check on the feed."
+        "cameras": {
+          "title": "Cameras",
+          "alt": "Aircast cameras page: cam2 live with a preview, source RTSP URL, measured 4.1 Mbit/s bitrate graph, and every link a ground station could use to watch it",
+          "body": "One camera, every way to watch it: the RTSP source, the bitrate the unit measured, and the watch, RTSP and HLS links with a live check of which ones answer from where you are."
         },
-        "telemetry": {
-          "title": "MAVLink telemetry",
-          "alt": "Aircast telemetry page exposing a MAVLink UDP endpoint for ground stations",
-          "body": "MAVP2P bridges the drone's MAVLink stream to a public UDP endpoint, so QGroundControl or Mission Planner can connect over the cellular link as if the aircraft were on the local network."
+        "connection": {
+          "title": "Connection",
+          "alt": "Aircast connection page: primary uplink over Wi-Fi, LTE modem connected to MAGTI at 83% with a signal history graph, APN and IP, Starlink and Tailscale rows",
+          "body": "Which uplink carries the video and what it will fall back to: the LTE modem with its signal over the last hour, APN and SIM, Starlink, Wi-Fi, interface priority and the Tailscale address."
         },
-        "network": {
-          "title": "Network & connectivity",
-          "alt": "Aircast network page showing cellular modem, interface priority, and Tailscale connection",
-          "body": "Live view of the cellular modem (signal, APN, data usage) with interface priority and failover between cellular, wired, and Wi-Fi uplinks. Tailscale provides secure remote access to every field unit without any port forwarding."
+        "flightlog": {
+          "title": "Flight log",
+          "alt": "Aircast flight log: one entry per flight with timestamped lines — armed, takeoff, a 4G link dip, a battery warning, landed — and CSV and JSON export",
+          "body": "What happened while you were flying, one entry per run: arm, takeoff, a link dip the video rode through, the battery warning, the landing. Samples as CSV, everything as JSON."
         }
       }
     },
