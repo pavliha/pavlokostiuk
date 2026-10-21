@@ -70,16 +70,25 @@ jobs:
             exit 1
           fi
           fail=0
-          for path in /en /ka /uk /ru /en/ecommerce /ka/ecommerce /uk/ecommerce /ru/ecommerce; do
-            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
-            [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
+          for locale in en ka uk ru; do
+            for page in "" /ecommerce /about /drones; do
+              path="/$locale$page"
+              code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
+              [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
+            done
           done
           for path in /sitemap.xml /robots.txt; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
             [ "$code" = "200" ] || { echo "FAIL $path -> $code"; fail=1; }
           done
-          for path in / /ecommerce /ecommerce.html /index.html; do
+          for path in / /ecommerce; do
             code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
-            [ "$code" = "301" ] || { echo "FAIL $path -> $code (expected 301)"; fail=1; }
+            [ "$code" = "307" ] || { echo "FAIL $path -> $code (expected 307)"; fail=1; }
           done
+          for path in /index.html /ecommerce.html; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099$path")
+            [ "$code" = "308" ] || { echo "FAIL $path -> $code (expected 308)"; fail=1; }
+          done
+          code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099/nonsense")
+          [ "$code" = "404" ] || { echo "FAIL /nonsense -> $code (expected 404)"; fail=1; }
           exit $fail

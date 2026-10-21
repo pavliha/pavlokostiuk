@@ -8,6 +8,8 @@ const nextConfig: NextConfig = {
     return [
       { source: "/", destination: "/en", permanent: false },
       { source: "/ecommerce", destination: "/en/ecommerce", permanent: false },
+      { source: "/index.html", destination: "/en", permanent: true },
+      { source: "/ecommerce.html", destination: "/en/ecommerce", permanent: true },
     ]
   },
 }
