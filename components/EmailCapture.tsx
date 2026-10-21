@@ -6,9 +6,9 @@ import { track } from "@/lib/track"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
-import { SUBSCRIBE_ENDPOINT } from "@/content/site"
+import { WHATSAPP } from "@/content/site"
 
-type State = "idle" | "sending" | "done" | "error"
+type State = "idle" | "done" | "blocked"
 
 const EmailCapture = ({
   heading,
@@ -32,23 +32,19 @@ const EmailCapture = ({
   const [state, setState] = useState<State>("idle")
   const [email, setEmail] = useState("")
 
-  const submit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const submit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     const form = event.currentTarget
     if ((form.elements.namedItem("company") as HTMLInputElement).value) return
-    setState("sending")
-    try {
-      const response = await fetch(SUBSCRIBE_ENDPOINT, {
-        method: "POST",
-        headers: { "Content-Type": "application/json", Accept: "application/json" },
-        body: JSON.stringify({ email, source }),
-      })
-      if (!response.ok) throw new Error(String(response.status))
-      setState("done")
-      track("subscribed", { source })
-    } catch {
-      setState("error")
+    const text = encodeURIComponent(`${heading}\n${label}: ${email}`)
+    const opened = window.open(`${WHATSAPP}?text=${text}`, "_blank")
+    if (!opened) {
+      setState("blocked")
+      return
     }
+    opened.opener = null
+    track("subscribed", { source })
+    setState("done")
   }
 
   if (state === "done")
@@ -86,11 +82,11 @@ const EmailCapture = ({
           aria-hidden="true"
           className="hidden"
         />
-        <Button type="submit" variant="outline" size="lg" disabled={state === "sending"} className="">
+        <Button type="submit" variant="outline" size="lg">
           {action}
         </Button>
       </form>
-      {state === "error" ? (
+      {state === "blocked" ? (
         <p role="alert" className="text-sm text-destructive mt-2">
           {error}
         </p>

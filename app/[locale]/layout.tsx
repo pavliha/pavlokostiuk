@@ -17,6 +17,8 @@ export const metadata: Metadata = {
 
 export const generateStaticParams = () => locales.map((locale) => ({ locale }))
 
+export const dynamicParams = false
+
 const sans = Geist({
   subsets: ["latin", "latin-ext", "cyrillic"],
   weight: ["400", "500", "600", "700"],

@@ -12,7 +12,7 @@ const StickyCallBar = ({
 }: {
   label: string
   href: string
-  hideNear?: string
+  hideNear: string
 }) => {
   const [scrolled, setScrolled] = useState(false)
   const [nearTarget, setNearTarget] = useState(false)
@@ -25,7 +25,7 @@ const StickyCallBar = ({
   }, [])
 
   useEffect(() => {
-    const target = hideNear ? document.querySelector(hideNear) : null
+    const target = document.querySelector(hideNear)
     if (!target) return
     const observer = new IntersectionObserver(
       ([entry]) => setNearTarget(entry.isIntersecting),
@@ -43,7 +43,7 @@ const StickyCallBar = ({
       }`}
     >
       <Button asChild size="lg" className="w-full">
-        <a href={href} target="_blank" rel="noopener">
+        <a href={href} target="_blank" rel="noopener noreferrer">
           {label}
         </a>
       </Button>

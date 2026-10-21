@@ -1,8 +1,7 @@
-import Image from "next/image"
 import type { ReactNode } from "react"
 
 import PainPromise from "@/components/PainPromise"
-import type { MediaAsset } from "@/content/media"
+import { cn } from "@/lib/utils"
 
 const PainRow = ({
   index,
@@ -10,48 +9,41 @@ const PainRow = ({
   moment,
   promise,
   proof,
-  shot,
-  shotAlt,
-  figure,
+  visual,
   flipped,
+  lead,
 }: {
   index: string
   misery: string
   moment: string
   promise: string
   proof: string
-  shot?: MediaAsset
-  shotAlt?: string
-  figure?: ReactNode
+  visual: ReactNode
   flipped: boolean
+  lead: boolean
 }) => (
-  <div className="border-t border-rule pt-6 grid lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-14 items-start">
+  <div
+    className={cn(
+      "border-t border-rule pt-6 grid items-start",
+      lead ? "lg:grid-cols-[1fr_1.15fr] gap-10 lg:gap-16" : "lg:grid-cols-[1fr_1.2fr] gap-8 lg:gap-14",
+    )}
+  >
     <div className={flipped ? "lg:order-2" : ""}>
-      <div className="flex items-baseline gap-3 mb-3">
+      <div className={cn("flex gap-3", lead ? "flex-col mb-4" : "items-baseline mb-3")}>
         <span className="figure text-sm text-muted-foreground shrink-0">{index}</span>
-        <h3 className="claim text-xl sm:text-2xl text-ink text-balance">&ldquo;{misery}&rdquo;</h3>
+        <h3
+          className={cn(
+            "claim text-ink text-balance",
+            lead ? "text-2xl sm:text-3xl" : "text-xl sm:text-2xl",
+          )}
+        >
+          &ldquo;{misery}&rdquo;
+        </h3>
       </div>
-      <p className="text-base text-ink-2 leading-[1.6] mb-6">{moment}</p>
+      <p className={cn("text-ink-2 leading-[1.6] mb-6", lead ? "text-lg" : "text-base")}>{moment}</p>
       <PainPromise promise={promise} proof={proof} />
     </div>
-    {shot && shotAlt ? (
-      <div
-        className={`shot rounded-xl border border-rule p-2 shadow-[0_10px_28px_-16px_rgba(16,18,29,0.2)] dark:shadow-[0_10px_32px_-16px_rgba(0,0,0,0.7)] ${
-          flipped ? "lg:order-1" : ""
-        }`}
-      >
-        <Image
-          src={shot.src}
-          width={shot.width}
-          height={shot.height}
-          alt={shotAlt}
-          loading="lazy"
-          className="w-full h-auto rounded-lg border border-rule"
-        />
-      </div>
-    ) : (
-      <div className={flipped ? "lg:order-1" : ""}>{figure}</div>
-    )}
+    <div className={flipped ? "lg:order-1" : ""}>{visual}</div>
   </div>
 )
 

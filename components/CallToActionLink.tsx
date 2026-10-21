@@ -11,7 +11,7 @@ const CallToActionLink = ({
   className: string
 }) => (
   <Button asChild size={size} className={className}>
-    <a href={WHATSAPP} target="_blank" rel="noopener">
+    <a href={WHATSAPP} target="_blank" rel="noopener noreferrer">
       {label}
     </a>
   </Button>

@@ -1,52 +1,73 @@
-export type MediaAsset = { key: string; src: string; width: number; height: number }
+import type { PainKey } from "@/content/structure"
 
-const shot = (key: string, file: string, width: number, height: number): MediaAsset => ({
+export type MediaAsset<Key extends string = string> = {
+  key: Key
+  src: string
+  width: number
+  height: number
+}
+
+const shot = <Key extends string>(
+  key: Key,
+  file: string,
+  width: number,
+  height: number,
+): MediaAsset<Key> => ({
   key,
   src: `/screenshots/${file}`,
   width,
   height,
 })
 
-export const AIRCAST_SHOTS: readonly MediaAsset[] = [
+const HOMEPAGE = shot("homepage", "into-ge-homepage.png", 2880, 1800)
+const SHOP = shot("shop", "into-ge-shop.png", 2880, 1800)
+const PRODUCT = shot("product", "into-ge-product.png", 2880, 1800)
+const SERVICES = shot("services", "into-ge-services.png", 2880, 1800)
+const DASHBOARD = shot("dashboard", "into-ge-admin-dashboard.png", 2880, 1800)
+const PRODUCTS = shot("products", "into-ge-admin-products.png", 2880, 1800)
+const POS = shot("pos", "into-ge-admin-pos.png", 2880, 1800)
+const MOVEMENTS = shot("movements", "into-ge-admin-inventory.png", 2880, 1800)
+const MCP = shot("mcp", "into-ge-admin-mcp.png", 2880, 1800)
+
+export const AIRCAST_SHOTS = [
   shot("overview", "aircast-overview.png", 1760, 1100),
   shot("streaming", "aircast-streaming.png", 1760, 1100),
   shot("telemetry", "aircast-telemetry.png", 1760, 1100),
   shot("network", "aircast-network.png", 1760, 1684),
-]
+] as const
 
-export const INTO_GE_SHOTS: readonly MediaAsset[] = [
-  shot("homepage", "into-ge-homepage.png", 2880, 1800),
-  shot("shop", "into-ge-shop.png", 2880, 1800),
-  shot("product", "into-ge-product.png", 2880, 1800),
-  shot("services", "into-ge-services.png", 2880, 1800),
-  shot("dashboard", "into-ge-admin-dashboard.png", 2880, 1800),
-  shot("products", "into-ge-admin-products.png", 2880, 1800),
-]
+export const INTO_GE_SHOTS = [
+  HOMEPAGE,
+  SHOP,
+  PRODUCT,
+  SERVICES,
+  DASHBOARD,
+  PRODUCTS,
+] as const
 
-const PLATFORM_SHOTS: readonly MediaAsset[] = [
-  ...INTO_GE_SHOTS,
-  shot("pos", "into-ge-admin-pos.png", 2880, 1800),
-  shot("movements", "into-ge-admin-inventory.png", 2880, 1800),
-  shot("mcp", "into-ge-admin-mcp.png", 2880, 1800),
-]
+export const STOREFRONT_SHOTS = [HOMEPAGE, SHOP, PRODUCT, SERVICES] as const
 
-const group = (...keys: string[]): readonly MediaAsset[] =>
-  keys.flatMap((key) => PLATFORM_SHOTS.filter((asset) => asset.key === key))
+export const ADMIN_SHOTS = [DASHBOARD, POS, PRODUCTS, MOVEMENTS] as const
 
-export const STOREFRONT_SHOTS = group("homepage", "shop", "product", "services")
+export const MCP_SHOTS = [MCP] as const
 
-export const ADMIN_SHOTS = group("dashboard", "pos", "products", "movements")
-
-export const MCP_SHOTS = group("mcp")
-
-export const PAIN_SHOTS: Readonly<Record<string, MediaAsset>> = {
+export const PAIN_SHOTS = {
   stock: shot("stockLocations", "into-ge-stock-locations.png", 2880, 1800),
   money: shot("profitLoss", "into-ge-admin-profit-loss.png", 2880, 1800),
   catalog: shot("productSpecs", "into-ge-product-specs.png", 2880, 1800),
   orders: shot("adminOrders", "into-ge-admin-orders.png", 2880, 1800),
   staff: shot("adminTeam", "into-ge-admin-team.png", 2880, 1800),
+} satisfies Record<string, MediaAsset>
+
+export type ShotPainKey = keyof typeof PAIN_SHOTS
+
+export const hasShot = (key: PainKey): key is ShotPainKey => key in PAIN_SHOTS
+
+export const PLATFORM_HERO_SHOT = shot("heroStorefront", "hero-storefront.webp", 1800, 975)
+
+export const PORTRAIT: MediaAsset = {
+  key: "portrait",
+  src: "/pavlo.webp",
+  width: 576,
+  height: 768,
 }
-
-export const PLATFORM_HERO_SHOT: MediaAsset = shot("heroStorefront", "hero-storefront.webp", 1800, 975)
-
-export const PORTRAIT: MediaAsset ={ key: "portrait", src: "/pavlo.webp", width: 576, height: 768 }

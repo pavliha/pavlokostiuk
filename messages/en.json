@@ -12,7 +12,9 @@
     "price": "Price",
     "process": "Process",
     "toggleTheme": "Toggle theme",
-    "language": "Language"
+    "language": "Language",
+    "about": "About",
+    "prototype": "Your shop, free"
   },
   "common": {
     "visitSite": "Visit Site",
@@ -23,20 +25,21 @@
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "telegram": "Telegram",
-    "email": "Email"
+    "email": "Email",
+    "footerNav": "Site navigation"
   },
   "home": {
     "meta": {
       "title": "Pavlo Kostiuk | A working online store, fitted to your shop",
-      "description": "I sell the e-commerce platform I built and still run — storefront, admin, stock, till, bank integration — and fit it exactly to how your shop works. You own it outright: no monthly fee, no commission."
+      "description": "I sell the e-commerce platform I built and still run: storefront, admin, stock, till, bank integration. I fit it exactly to how your shop works. Your server, your data, no monthly fee and no commission per sale."
     },
     "hero": {
-      "available": "Taking three to five shops at a time",
-      "role": "Pavlo Kostiuk — the developer behind into.ge",
-      "titleStart": "A store that already works,",
-      "titleGradient": "fitted exactly",
-      "titleEnd": "to yours.",
-      "body": "Not a template you bend your business into, and not a year-long build from scratch. It is the platform running into.ge today — storefront, admin, stock, till, bank — and I fit it to how your shop actually works. You own it outright.",
+      "available": "Available for new projects",
+      "role": "Pavlo Kostiuk — Full-stack engineer",
+      "titleStart": "Custom software,",
+      "titleGradient": "shipped faster & cheaper",
+      "titleEnd": "with AI.",
+      "body": "Most business owners wait months and overpay for software that ships late. I help you design, build, and launch yours in weeks — AI-accelerated development that cuts cost without cutting quality.",
       "seeWork": "See my work",
       "portraitAlt": "Pavlo Kostiuk",
       "stats": {
@@ -52,7 +55,10 @@
           "value": "Founder",
           "label": "of Aircast"
         }
-      }
+      },
+      "aboutLead": "Curious who builds it?",
+      "aboutLink": "About me",
+      "bookCall": "Book a free call"
     },
     "experience": {
       "eyebrow": "Experience",
@@ -60,6 +66,13 @@
       "intro": "Ten years on systems that had to stay up — e-commerce, fintech, drones, enterprise SaaS. That is where the platform comes from.",
       "via": "via {company}",
       "items": {
+        "intoGe": {
+          "title": "Into.ge — e-commerce platform",
+          "role": "Solo developer, still running it",
+          "via": "",
+          "duration": "ongoing",
+          "body": "Full e-commerce platform for a 3D printing shop in Tbilisi: storefront, admin, inventory, point of sale, checkout with bank integration, three languages, and an MCP layer that lets an AI assistant operate the whole store. Built solo and still supported — the Saturday support calls come to me. This is the platform I now fit to other shops."
+        },
         "homeWarranty": {
           "title": "Home Warranty E-Commerce Platform",
           "role": "Lead Software Engineer",
@@ -146,9 +159,9 @@
       }
     },
     "intoGe": {
-      "title": "Into.ge",
+      "title": "The shop already running on it — into.ge",
       "intro": "Full-stack e-commerce platform for a 3D printing store in Tbilisi, Georgia. Built from scratch as a solo developer: storefront, admin panel, inventory management, point of sale, checkout with bank integration, and three languages (English, Georgian, Russian). An AI assistant can operate the whole store over MCP.",
-      "offerLead": "This is the platform I sell — fitted to your shop, and yours outright:",
+      "offerLead": "This is the platform I sell — fitted to your shop, running on your server:",
       "offerLink": "see the full functionality overview",
       "builtTitle": "What I built",
       "built": [
@@ -250,7 +263,7 @@
     "contact": {
       "eyebrow": "Contact",
       "title": "Tell me about your shop",
-      "body": "Write on WhatsApp and we will talk it through, free. Tell me what you sell and how, and I will tell you honestly whether this fits — including if a rented platform would serve you better."
+      "body": "Write on WhatsApp and we will talk it through, free. Tell me what you sell and how, and I will tell you honestly whether this fits, including if a rented platform would serve you better."
     }
   },
   "platform": {
@@ -260,8 +273,8 @@
     },
     "hero": {
       "shotAlt": "The into.ge storefront and its point of sale, showing the same product and the same stock number",
-      "headline": "A working online store, built around how you actually trade.",
-      "subhead": "Most owners bend their business to the software they rent. This one is fitted to you — your counter, your stock, your delivery rules, your languages — with an AI assistant plugged into all of it. And it is entirely yours.",
+      "headline": "Your shop starts from a finished one, not from scratch.",
+      "subhead": "into.ge takes orders every day in Tbilisi — that same platform becomes your shop, which is why this takes weeks and not months. Then I fit it to you: your counter, your stock, your delivery rules, your languages, with an AI assistant plugged into all of it. And the shop, and everything in it, is yours.",
       "ctaTransitional": "See your shop, free",
       "proof": "Live today at into.ge — a real shop in Tbilisi. Ten years building production software."
     },
@@ -275,8 +288,8 @@
       ]
     },
     "authority": {
-      "title": "Built for a real shop, and I still run it",
-      "body": "I do not believe a shop should have to bend itself to the software it pays for. So I build it the other way round — and everything I build stays yours. I'm Pavlo Kostiuk. I built into.ge for a shop in Tbilisi and I still run it, end to end: storefront, admin, inventory, point of sale, bank integration, three languages. It takes orders every day, and when something breaks on a Saturday I get the call — so I hit the problems before you do. Before that I spent ten years on systems that have to stay up, including three years leading engineering on a US e-commerce platform used by 1.9 million households. You get the version that already works.",
+      "title": "Why it is built this way, and who builds it",
+      "body": "I do not believe a shop should have to bend itself to the software it pays for. So I build it the other way round, and the shop, its data and the machines it runs on stay yours. I take three to five shops at a time, because that is how many I can build properly and still answer the phone on a Saturday. I'm Pavlo Kostiuk. I built into.ge for a shop in Tbilisi and I still run it, end to end: storefront, admin, inventory, point of sale, bank integration, three languages. It takes orders every day, and when something breaks on a Saturday I get the call, so I hit the problems before you do. Before that I spent ten years on systems that have to stay up, including three years leading engineering on a US e-commerce platform used by 1.9 million households. You get the version that already works.",
       "items": [
         {
           "value": "10+",
@@ -292,7 +305,8 @@
         "Hand over the catalogue audit whether you buy or not",
         "Take the Saturday call myself",
         "Take fewer shops than I could, so each one is built properly"
-      ]
+      ],
+      "howsLead": "Which in practice means I:"
     },
     "pains": {
       "title": "Six things that break, and what replaces them",
@@ -392,27 +406,22 @@
         "emailLabel": "Your email",
         "emailHint": "This is where the link to your shop goes.",
         "linkLabel": "A link to your catalog",
-        "linkHint": "Or attach a file below — either one is enough.",
         "linkPlaceholder": "Your site, your Instagram, a spreadsheet — anything",
-        "fileLabel": "Or attach the file",
-        "fileHint": "Spreadsheet, export, PDF, or photos of your shelves. Up to 10 MB per file.",
         "privacy": "Your catalog stays between us. I use it to build your preview and nothing else, and I delete it if you walk away.",
         "action": "Get my shop link",
-        "sending": "Sending…",
         "done": "Got it. Within three working days you'll get an email with a link to your own shop and the catalog audit — check your spam folder if it hasn't arrived. If I need anything else I'll just ask.",
         "error": "That didn't send. Try again, or",
         "errorSummary": "There is a problem",
         "errors": {
           "sell": "Tell me what you sell.",
           "email": "Enter an email address I can reply to.",
-          "catalog": "Add a link to your catalog, or attach a file.",
-          "file": "One of those files is over 10 MB. Send a link instead."
+          "catalog": "Add a link to your catalog."
         }
       }
     },
     "ai": {
       "title": "An AI assistant that actually operates the shop",
-      "intro": "You can talk to your shop the way you would talk to an assistant who never gets bored. Ask what needs attention this morning. Hand over the supplier invoice. Tell it to process a return. Most “AI for e-commerce” is a chatbot bolted onto the storefront to answer customer questions, and this is the opposite. Your store exposes itself as a set of tools over the Model Context Protocol, so Claude, ChatGPT or any MCP-capable assistant can read and change real data, with your permissions, your audit trail, and your approval on anything destructive.",
+      "intro": "You can talk to your shop the way you would talk to an assistant who never gets bored: ask what needs attention this morning, hand over the supplier invoice, tell it to process a return. Most \"AI for e-commerce\" is a chatbot bolted onto the storefront to answer customer questions, and this is the opposite. Your store exposes itself as a set of tools over the Model Context Protocol, so Claude, ChatGPT or any MCP-capable assistant can read and change real data, with your permissions, your audit trail, and your approval on anything destructive.",
       "asksTitle": "Things you can just ask for",
       "asks": [
         "Which products sold worst last month and still have stock sitting in the warehouse?",
@@ -646,7 +655,7 @@
         "services": {
           "title": "Services & quotes",
           "bullets": [
-            "For businesses that sell work, not only goods",
+            "For businesses that sell their own work alongside goods",
             "Customers submit a request with files and a description",
             "Request queue with statuses, quoting, and conversion to an order",
             "Portfolio gallery of finished jobs, managed from the admin"
@@ -713,7 +722,7 @@
         }
       },
       "showAll": "Open every area, item by item",
-      "tally": "{areas} areas, {items} things it already does. Not a roadmap."
+      "tally": "{areas} areas, {items} things it already does. None of it is something you wait for."
     },
     "screens": {
       "title": "What it looks like",
@@ -734,7 +743,7 @@
           "body": "Colour variants each with their own photos and stock, sold-out options greyed rather than hidden, the discount spelled out, and availability shown per location: one left in the shop, none in the workshop."
         },
         "services": {
-          "title": "Selling work, not just products",
+          "title": "Selling your own work",
           "alt": "Into.ge services page describing 3D printing and scanning",
           "body": "A request flow for custom jobs: the customer uploads files and describes what they need, you quote from the admin, and the accepted quote becomes an order like any other."
         },
@@ -781,27 +790,33 @@
     },
     "price": {
       "title": "What it costs",
-      "intro": "One setup fee to get your shop built, personalised and live. For the first two months after launch, anything that breaks I fix free. New features are quoted and billed by the hour, from day one. There's no monthly fee, and nothing is taken per sale.",
+      "intro": "The store itself is $800. Work shaped around your shop is $30 an hour, quoted before it starts. For the first two months after launch, anything that breaks I fix free. There is no monthly fee, and nothing is taken per sale.",
       "rate": {
-        "headline": "One setup fee. Then the shop is yours.",
-        "body": "Quoted for your shop once I've seen your catalog. A hundred products with clean data and eight hundred with none are not the same job. No monthly fee, and no commission per sale at any volume.",
-        "hourly": "Change work after launch is $30 an hour, estimated and approved before I start. Anything broken in the first two months is fixed at no charge.",
+        "headline": "$800 for the store. $30 an hour for the rest.",
+        "body": "A fixed price for the store, so you know it before we talk. Then only what you actually ask for on top: your catalogue imported, your delivery rules, your bank, more languages — each estimated and agreed before I start. No monthly fee, and no commission per sale at any volume.",
+        "hourly": "Customisation is $30 an hour, estimated and approved before I start — so you decide what is worth it and what is not. Anything broken in the first two months is fixed at no charge.",
         "terms": "Nothing upfront. You pay the full amount once the shop is live and you have signed it off. Invoices are in US dollars."
       },
       "groups": {
         "setup": {
-          "title": "What the setup fee covers",
+          "title": "What the $800 covers",
+          "bullets": [
+            "Installed and live on your own hosting, on your own domain",
+            "The modules you use switched on, the ones you don't left off",
+            "Your logo, your colours and your shop name applied throughout"
+          ]
+        },
+        "customisation": {
+          "title": "What is customisation, at $30 an hour",
           "bullets": [
             "Your catalog imported, whether that's a spreadsheet, a WooCommerce export, or photos of the shelves",
-            "Your branding, your product fields, your delivery rules, your languages",
-            "Your bank and your couriers connected and tested with real money",
-            "The modules you use switched on, the ones you don't left off",
-            "Installed and live on your own hosting, on your own domain",
+            "Your product fields, your delivery rules and the languages you sell in",
+            "Your bank and your couriers connected and tested with real money — their own fees and contracts stay yours",
             "Your staff trained on the admin and the till"
           ]
         },
         "moves": {
-          "title": "What moves the setup fee",
+          "title": "What decides the customisation hours",
           "bullets": [
             "How many products, and how messy the data is today",
             "How many languages you sell in",
@@ -818,8 +833,7 @@
             "A bug is the platform not doing what it's documented to do. That one is on me",
             "A change to what it's documented to do is a feature, quoted at the hourly rate",
             "After the two months, fixes are billed at the same rate as new work",
-            "Security patches and platform updates reach your install either way",
-            "Hosting is billed by your provider, in your own account. I never resell it"
+            "Security patches and platform updates reach your install either way"
           ]
         },
         "yours": {
@@ -838,13 +852,14 @@
           "bullets": [
             "It makes you findable, but it will not bring you traffic on its own",
             "Somebody still has to photograph the products",
-            "Bank and courier integration is the country-specific part, and it is quoted separately",
-            "Moving a shop with years of history across is work, not a button"
+            "Bank and courier setup outside Georgia is country-specific work, quoted separately from the fee above",
+            "Moving a shop with years of history across is work, not a button",
+            "Hosting is billed by your provider, in your own account. I never resell it"
           ]
         }
       },
       "anchor": {
-        "note": "For reference: building the first one from nothing took 311 hours. Yours starts from the finished version, which is the whole reason it costs less than that did.",
+        "note": "$800 is the store: built, installed and running on your own hosting and your own domain. Anything shaped around your shop specifically is customisation at $30 an hour — always estimated and agreed with you before I start.",
         "neverStopTitle": "Three costs that never stop, and that you won't have",
         "neverStop": [
           "A platform subscription, every month, whether you sold anything or not",
@@ -852,10 +867,14 @@
           "A fee per app bolted on to patch each gap, and a new one each time you need something"
         ]
       },
+      "hero": {
+        "value": "$800",
+        "label": "The store itself, built and live on your hosting"
+      },
       "figures": [
         {
-          "value": "0",
-          "label": "Commission per sale, ever"
+          "value": "$30",
+          "label": "An hour for customisation, estimated before I start"
         },
         {
           "value": "0",
@@ -863,15 +882,12 @@
         },
         {
           "value": "0",
-          "label": "Upfront. You pay when it is live"
-        },
-        {
-          "value": "2",
-          "label": "Months of fixes at no charge"
+          "label": "Commission per sale, ever"
         }
       ],
-      "ctaNote": "Send your catalog, or message me on WhatsApp, and you get a figure for your own shop. Both are free and neither commits you to anything.",
-      "showAll": "Open the full terms: warranty, ownership and limits"
+      "ctaNote": "Send your catalog, or message me on WhatsApp, and you get a figure for your own shop. Either way it costs nothing.",
+      "showAll": "Open the full terms: warranty, ownership and limits",
+      "ctaMid": "Get a figure for your shop"
     },
     "process": {
       "title": "What each step actually involves",
@@ -920,7 +936,7 @@
     },
     "cta": {
       "title": "Tell me what you sell",
-      "intro": "Write, and we take it from there — by message or a call, whichever suits you. Free, no obligation. I'll also tell you if you'd be better off on Shopify.",
+      "intro": "Write, and after that whichever suits you: by message or a call. It costs nothing, and you can walk away afterwards. I'll also tell you if you'd be better off on Shopify.",
       "expectations": {
         "bring": {
           "label": "Have ready",
@@ -951,23 +967,23 @@
     },
     "plan": {
       "title": "Three steps",
-      "steps": [
-        {
+      "steps": {
+        "send": {
           "when": "Today",
           "title": "Send your product list",
           "body": "A spreadsheet, a WooCommerce export, or photographs of the shelves. Whatever already exists."
         },
-        {
+        "see": {
           "when": "Three working days",
           "title": "See your shop running",
           "body": "A private link to your own catalog inside the platform, and the audit that comes with it. Nothing signed yet."
         },
-        {
+        "launch": {
           "when": "When you say go",
           "title": "Launch on your domain",
           "body": "Your servers, your database, your domain. Two months of free fixes after launch."
         }
-      ]
+      }
     },
     "explanatory": {
       "title": "The longer version",
@@ -989,6 +1005,142 @@
           "body": "I'm not a platform, I'm one developer who built this for a shop in Tbilisi and still runs it. into.ge sells 3D printers and filament on it today, in three languages, with a bank integration and a point of sale. When it breaks on a Saturday, I get the call. Send me your product list and a few days later you get a private link to your own shop with your own products in it, plus an audit of everything broken in your catalogue. The audit is yours to keep whether you buy or not."
         }
       ]
+    }
+  },
+  "about": {
+    "meta": {
+      "title": "About Pavlo Kostiuk | Ten years of software that had to stay up",
+      "description": "Experience, projects and background of Pavlo Kostiuk, the developer behind into.ge — the e-commerce platform I build and fit for other shops."
+    },
+    "title": "The developer behind into.ge",
+    "intro": "Ten years building software that had to stay up — e-commerce, fintech, drones, enterprise SaaS — and one shop in Tbilisi I built and still run. This page is the long version: where the platform came from, and who answers when it breaks."
+  },
+  "drones": {
+    "meta": {
+      "title": "Pavlo Kostiuk | Ground control software for ArduPilot and PX4 drones",
+      "description": "Ground control station, MAVLink telemetry, low-latency video, mission planning and payload control — three years of drone software, with the public code to read."
+    },
+    "hero": {
+      "role": "Pavlo Kostiuk — drone & ground control software",
+      "title": "Ground control software for ArduPilot and PX4 drones",
+      "intro": "I founded Aircast: a Raspberry Pi unit on the drone that streams video and MAVLink over 4G or Starlink, and a QGroundControl fork on the ground that flies it. This page is the engineering record — what was built, measured and flown, with the public code to read.",
+      "github": "Code on GitHub"
+    },
+    "ledger": {
+      "hero": {
+        "value": "~300 ms",
+        "label": "glass-to-glass video from the drone to the operator over 4G or Starlink"
+      },
+      "note": "Measured on the Aircast beta: H.264 encoded on the Raspberry Pi, carried by WebRTC, drawn in the ground station.",
+      "rest": [
+        {
+          "value": "5 targets",
+          "label": "one QGroundControl fork — Android, iOS, macOS, Linux, Windows — plus the core running in a browser"
+        },
+        {
+          "value": "963",
+          "label": "flight logs from real and simulated flights, kept and replayable"
+        },
+        {
+          "value": "79% → 2%",
+          "label": "Android CPU for the telemetry pump after the core rewrite; video now zero-copy"
+        }
+      ]
+    },
+    "gcs": {
+      "title": "Ground control station",
+      "intro": "Aircast ships a QGroundControl fork for every platform. Half of each native head turned out to be logic written twice, so the core is moving to Rust behind a C ABI — the heads only render.",
+      "bullets": [
+        "Rust core runs in a browser worker and flies a vehicle; missions and raw-socket links are still native-only",
+        "Android: the core re-did everything every 100 ms and video went GPU → CPU → GPU. Pump 79% → 1–2% of a core, video zero-copy, a 720p flight at ~61% on a OnePlus 6",
+        "Device pages are a JSON API drawn natively in each app's Device tab — transport, forms, charts, setup wizard and joystick wording live in the core once",
+        "Windows 11 head designed in Fluent: 53 screens covering every macOS view on a 48 px rail",
+        "Phone simulator rehearses a whole mission by the drone's own parameters: DO items, terrain, failsafes, wind, GPS and motor faults — SITL is kept for real flight code and feel"
+      ]
+    },
+    "telemetry": {
+      "title": "Telemetry, video and protocols",
+      "intro": "The unit on the drone speaks MAVLink to the flight controller and to any ground station, and turns one camera into every stream a client might want.",
+      "bullets": [
+        "MAVLink routed from the autopilot to a public UDP endpoint, so QGroundControl or Mission Planner connect from anywhere",
+        "RTSP camera advertised over MAVLink; the ground station finds the stream without typing a URL",
+        "One camera → RTSP, WebRTC, HLS and SRT from a Go media engine; WebRTC SFU for multi-viewer",
+        "TypeScript MAVLink toolkit: types generated from the XML dialects plus a real-time message parser — public",
+        "Own NTRIP caster (v1 and v2) feeding RTK corrections from a Leica base into the ground station",
+        "Starlink dish client over the real SpaceX gRPC protocol, with a fake dish for tests without hardware"
+      ]
+    },
+    "missions": {
+      "title": "Missions and payloads",
+      "intro": "Flight features are proven in SITL against the autopilot's own commands before a real drone carries them.",
+      "bullets": [
+        "Four-bay payload drop in sequence — by hand and from a mission; ArduPilot has one gripper, so each bay gets its own servo via DO_SET_SERVO",
+        "Auto-intercept drop on a moving car: release uses the target's real velocity and re-aims every second",
+        "Grab / hold-to-release on the camera page sends DO_GRIPPER and shows the flight controller's ack",
+        "Tap-to-aim on the SIYI ZR30 gimbal: tap the video, the camera points there — accuracy measured and corrected",
+        "Loiter's 1.5 s speed time constant made the sticks feel wooden; cut to ~1 s in a parameter file the real drone loads too"
+      ]
+    },
+    "hardware": {
+      "title": "Hardware, gimbals and the bench",
+      "intro": "Everything is checked on a hardware-in-the-loop bench before it meets a propeller.",
+      "bullets": [
+        "CUAV-X7 bench: the autopilot runs SimOnHardWare, is flashed through the on-drone daemon, and flies a 10 m takeoff and landing with real video — 5 of 5",
+        "Found and fixed the daemon dying for good on a probed serial port hang-up (SIGHUP)",
+        "A real drone's stored tune on the simulated frame caused a ±5 m weave on go-to; the bench now resets to firmware defaults before every flight (±0.5 m)",
+        "Viewpro and Topotek gimbal cameras bridged to MAVLink as Go libraries; SIYI ZR30 driven natively",
+        "RadioMaster AX12 radio and Starlink client readiness checked and documented"
+      ]
+    },
+    "device": {
+      "title": "The unit on the drone",
+      "intro": "A single Go daemon on a Raspberry Pi: video, telemetry, network and updates, with the apps drawing its API.",
+      "bullets": [
+        "Raspberry Pi OS image built with pi-gen; flasher writes a card with Wi-Fi, hostname, SSH key and VPN key in about 10 minutes",
+        "A/B OTA updates, so a bad release never bricks a card in the field",
+        "Opt-in LUKS2 encrypted data partition unlocked by Clevis from a Tang server or a per-card cloud key — a VM boot harness and the first real Zero 2 W cards each caught bugs that would have locked every card out",
+        "Per-device HTTPS: Let's Encrypt certs under a computed-DNS domain, because Cloudflare's free tier caps records at 200",
+        "Cellular modem, interface priority and failover, data budget with alerts, all from the browser"
+      ]
+    },
+    "repos": {
+      "title": "Public code",
+      "intro": "The parts you can read today. The daemon, media engine and gimbal bridges are private — I can walk through them on a call.",
+      "items": {
+        "qgroundcontrol": {
+          "title": "qgroundcontrol",
+          "body": "The ground station fork — Android, iOS, macOS, Linux, Windows; Rust core in progress"
+        },
+        "sitl": {
+          "title": "aircast-sitl",
+          "body": "Simulation harness, stock firmware and parameter files the bench and the phone simulator load"
+        },
+        "mavlink": {
+          "title": "aircast-mavlink",
+          "body": "TypeScript types generated from MAVLink XML dialects, plus a real-time parser"
+        },
+        "flasher": {
+          "title": "aircast-flasher",
+          "body": "SD card flasher: Wi-Fi, hostname, SSH, VPN keys and encryption at write time"
+        },
+        "pigen": {
+          "title": "aircast-pi-gen",
+          "body": "The Raspberry Pi OS image build"
+        },
+        "cli": {
+          "title": "aircast-cli",
+          "body": "Fleet and device command line"
+        }
+      }
+    },
+    "shots": {
+      "title": "The device console",
+      "intro": "What an operator sees on the unit itself, served from the daemon over the local network or VPN."
+    },
+    "contact": {
+      "title": "Hiring for ground control or drone software?",
+      "body": "Remote from Tbilisi (GMT+4). Send the role and I'll reply with the parts of this work that match it.",
+      "email": "Email me"
     }
   }
 }

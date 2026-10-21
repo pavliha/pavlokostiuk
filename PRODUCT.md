@@ -66,12 +66,15 @@ tenancy. The mechanism a neighbouring product cannot truthfully copy:
   requires new code goes into the core product for everyone, or does not happen.
 - Bank and courier integrations are country-specific and quoted separately.
 - Hosting is billed by the customer's own provider, in the customer's own account.
-- Commercial terms: one setup fee, quoted after seeing the customer's catalogue; two
-  months of free fixes after launch; change work billed hourly afterwards. No
-  recurring revenue. A bug is defined as the platform not doing what it is documented
-  to do; changing what it is documented to do is a feature.
+- Commercial terms: **$800 fixed for the bare-bones store** — the platform installed and
+  live on the customer's own hosting and domain, the modules they use switched on, their
+  branding applied. Everything shaped around a specific shop — catalogue import, product
+  fields, delivery rules, extra languages, bank and courier connection, staff training —
+  is **customisation at $30/hour**, estimated and approved before work starts. Nothing is
+  paid upfront: the $800 falls due once the shop is live and signed off. Two months of
+  free fixes after launch. No recurring revenue. A bug is defined as the platform not
+  doing what it is documented to do; changing what it is documented to do is a feature.
 - Capacity: 3–5 shops at a time (as of 2026-08-06 — a phase, not a permanent limit).
-- The published setup fee is deliberately undecided; the page quotes no figure.
 
 ## Brand Commitments
 

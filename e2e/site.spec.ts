@@ -47,6 +47,50 @@ test.describe("locales", () => {
   })
 })
 
+test.describe("404", () => {
+  test("an unmatched path serves the custom 404 with a 404 status", async ({ page }) => {
+    const response = await page.goto("/en/nonsense")
+    expect(response?.status()).toBe(404)
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText("That page does not exist")
+    await expect(page.getByRole("link", { name: "Home page" })).toBeVisible()
+  })
+
+  test("an unknown locale 404s instead of erroring", async ({ page }) => {
+    const response = await page.goto("/xx")
+    expect(response?.status()).toBe(404)
+  })
+
+  test("the 404 page is styled and uses the site font, not a bare fallback", async ({ page }) => {
+    await page.goto("/en/nonsense")
+    const { sheets, font } = await page.evaluate(() => ({
+      sheets: document.styleSheets.length,
+      font: getComputedStyle(document.documentElement).getPropertyValue("--font-sans-face").trim(),
+    }))
+    expect(sheets).toBeGreaterThan(0)
+    expect(font).not.toBe("")
+  })
+})
+
+test.describe("pains", () => {
+  const PAIN_KEYS = ["stock", "money", "commission", "catalog", "orders", "staff"] as const
+
+  test("every pain has its own anchored section", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    await Promise.all(
+      PAIN_KEYS.map((key) => expect(page.locator(`#pain-${key}`)).toBeAttached()),
+    )
+  })
+
+  test("every pain carries a visual, screenshot or figure", async ({ page }) => {
+    await page.goto("/en/ecommerce")
+    await Promise.all(
+      PAIN_KEYS.map((key) =>
+        expect(page.locator(`#pain-${key}`).locator("img, svg").first()).toBeAttached(),
+      ),
+    )
+  })
+})
+
 test("theme toggle flips the class and persists it", async ({ page }) => {
   await page.goto("/en")
   const before = await page.evaluate(() => document.documentElement.classList.contains("dark"))
@@ -88,11 +132,15 @@ test.describe("email capture", () => {
     await Promise.all(honeypots.map((honeypot) => expect(honeypot).toBeHidden()))
   })
 
-  test("says so instead of failing silently when it cannot send", async ({ page }) => {
+  test("hands off to WhatsApp with the address prefilled", async ({ page, context }) => {
+    await context.route("https://wa.me/**", (route) => route.fulfill({ status: 200, body: "ok" }))
     await page.goto("/en/ecommerce")
+    const popup = context.waitForEvent("page")
     await page.getByLabel("Email address").fill("shop@example.com")
     await page.getByRole("button", { name: "Send them" }).click()
-    await expect(page.locator("form ~ p[role=alert]")).toContainText("didn't send")
+    const opened = await popup
+    expect(decodeURIComponent(opened.url())).toContain("shop@example.com")
+    await expect(page.getByText("You're on the list")).toBeVisible()
   })
 })
 
@@ -103,15 +151,23 @@ test.describe("prototype request", () => {
     const problem = page.getByRole("alert").filter({ hasText: "There is a problem" }).first()
     await expect(problem).toBeVisible()
     await expect(
-      problem.getByRole("link", { name: /Add a link to your catalog, or attach a file/ })
+      problem.getByRole("link", { name: /Add a link to your catalog/ })
     ).toBeVisible()
   })
 
-  test("accepts a catalog file as well as a link", async ({ page }) => {
+
+  test("two failing forms do not compound the error prefix on the page title", async ({ page }) => {
     await page.goto("/en/ecommerce")
-    const file = page.getByLabel("Or attach the file").first()
-    await expect(file).toHaveAttribute("type", "file")
-    await expect(file).toHaveAttribute("multiple", "")
+    const original = await page.title()
+
+    await page.getByRole("button", { name: "Get my shop link" }).first().click()
+    await expect(page.getByRole("alert").filter({ hasText: "There is a problem" }).first()).toBeVisible()
+    expect(await page.title()).toBe(`Error: ${original}`)
+
+    await page.getByRole("button", { name: "See your shop, free" }).last().click()
+    await page.getByRole("button", { name: "Get my shop link" }).last().click()
+    await expect(page.getByRole("alert").filter({ hasText: "There is a problem" }).last()).toBeVisible()
+    expect(await page.title()).toBe(`Error: ${original}`)
   })
 
   test("every element id on the page is unique", async ({ page }) => {

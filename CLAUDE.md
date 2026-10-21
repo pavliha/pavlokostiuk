@@ -1,8 +1,9 @@
 # Project Guidelines
 
 Static Next.js marketing site for pavlokostiuk.cloud. Four locales (`en`, `ka`, `uk`,
-`ru`) via next-intl, exported to static HTML and served by nginx in Docker. No database,
-no API routes, no server runtime — everything is prerendered at build time.
+`ru`) via next-intl, served by `next start` in Docker. No database and no API routes; every
+page is prerendered at build time and the server exists to serve them, handle redirects,
+and return real 404s.
 
 ## Dev Server
 
@@ -135,8 +136,11 @@ it does not inherit `/ecommerce`'s BrandScript.
 
 ## E2E Tests (Playwright)
 
-- Tests run against the **static export**, not the dev server: `npm run build` first,
-  then `npm test` serves `out/` on port 4400
+- Tests run against a **production server**, not the dev server: `npm run build` first,
+  then `npm test` starts `next start` on port 4400
+- Build and test without disturbing the dev server by pointing the build at its own
+  directory: `NEXT_DIST_DIR=.next-e2e npm run build && NEXT_DIST_DIR=.next-e2e npm test`.
+  `.next` stays untouched, so `npm run dev` keeps working throughout
 - Target roles and accessible names, never markup or utility classes. The locale switcher
   has changed component three times; tests that named its classes broke each time
 - When a component changes shape (`Select` → `DropdownMenu`), update the test to the new
@@ -144,6 +148,22 @@ it does not inherit `/ecommerce`'s BrandScript.
 - **No 500s are acceptable.** A 500 is always a real bug — never mask it in a test
 
 ## Deployment
+
+Docker builds with `NEXT_OUTPUT=standalone` and runs `node server.js` on port 80. Standalone
+is a packaging choice only — it is the same compiled app that `next start` serves locally, and
+the full suite passes against both. Verify that parity after touching build config:
+
+```bash
+NEXT_OUTPUT=standalone NEXT_DIST_DIR=.next-e2e npm run build
+cp -r public .next-e2e/standalone/ && cp -r .next-e2e/static .next-e2e/standalone/.next-e2e/static
+PORT=4400 node .next-e2e/standalone/server.js &   # playwright reuses an existing 4400
+npm test
+```
+
+A request matching no route at all (`/nonsense`, an unknown locale) logs one internal
+`NoFallbackError` line. The response is still the styled 404 with a 404 status. Removing
+`dynamicParams = false` from `app/[locale]/layout.tsx` silences it and brings back a 500
+on unknown locales, so leave it.
 
 Environment variables are `NEXT_PUBLIC_*` and therefore inlined at **build** time. A local
 `.env` never reaches the deployed site — pass them as Docker build args (see `Dockerfile`
@@ -159,6 +179,6 @@ that can go missing at build time.
 ```bash
 npm run typecheck        # tsc --noEmit
 npm run check:messages   # locale key parity
-npm run build            # static export to out/
-npm test                 # playwright against out/
+npm run build            # production build to .next/
+npm test                 # playwright against next start on 4400
 ```

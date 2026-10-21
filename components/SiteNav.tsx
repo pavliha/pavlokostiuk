@@ -4,7 +4,7 @@ import { Link } from "@/i18n/navigation"
 import LocaleSwitcher from "./LocaleSwitcher"
 import ThemeToggle from "./ThemeToggle"
 
-export type NavLink = { label: string; href: string; accent: boolean; compact?: boolean }
+export type NavLink = { label: string; href: string; accent: boolean; compact?: boolean; current?: boolean }
 
 const SiteNav = ({
   brandHref,
@@ -21,19 +21,22 @@ const SiteNav = ({
 }) => (
   <nav className="fixed top-0 w-full z-50 px-4 sm:px-6 py-3 bg-background/80 backdrop-blur-md border-b">
     <div className="max-w-6xl mx-auto flex justify-between items-center gap-4">
-      <Link href={brandHref} className="text-base font-semibold tracking-tight whitespace-nowrap shrink-0 hidden sm:block">
+      <Link href={brandHref} className="text-base font-semibold tracking-tight whitespace-nowrap shrink-0">
         Pavlo Kostiuk
       </Link>
       <div className="flex items-center gap-2 min-w-0">
         <ul className="flex gap-1 sm:gap-3 overflow-x-auto whitespace-nowrap min-w-0">
-          {links.map(({ label, href, accent, compact }) => (
+          {links.map(({ label, href, accent, compact, current }) => (
             <li key={href} className={compact ? "hidden sm:block" : undefined}>
               <Link
                 href={href}
+                aria-current={current ? "page" : undefined}
                 className={`inline-flex items-center min-h-11 px-2 text-sm transition-colors ${
-                  accent
-                    ? "text-accent-blue hover:text-brand-strong"
-                    : "text-muted-foreground hover:text-foreground"
+                  current
+                    ? "text-foreground font-medium underline underline-offset-8 decoration-2 decoration-primary"
+                    : accent
+                      ? "text-accent-blue hover:text-brand-strong"
+                      : "text-muted-foreground hover:text-foreground"
                 }`}
               >
                 {label}

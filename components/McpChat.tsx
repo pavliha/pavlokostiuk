@@ -1,12 +1,18 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 
-type Turn = { role: "user" | "tool" | "reply"; text: string }
+type Turn = { role: string; text: string }
 
 const WINDOW = 8
 
-const HOLD: Record<Turn["role"], number> = { user: 1000, tool: 1200, reply: 2600 }
+const HOLD: Record<string, number> = { user: 1000, tool: 1200, reply: 2600 }
+
+const holdFor = (role: string) => {
+  const hold = HOLD[role]
+  if (hold === undefined) throw new Error(`McpChat: unknown turn role "${role}"`)
+  return hold
+}
 
 const SHELL =
   "rounded-2xl overflow-hidden border border-[#E0DED5] dark:border-[#3B3A37] bg-[#FAF9F5] dark:bg-[#262624]"
@@ -40,25 +46,41 @@ export default function McpChat({
 }: {
   title: string
   placeholder: string
-  turns: Turn[]
+  turns: readonly Turn[]
 }) {
   const [sent, setSent] = useState(1)
+  const [onScreen, setOnScreen] = useState(false)
+  const shell = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
+    const node = shell.current
+    if (!node) return
+    const observer = new IntersectionObserver(([entry]) => setOnScreen(entry.isIntersecting), {
+      threshold: 0,
+    })
+    observer.observe(node)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    if (!onScreen) return
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setSent(turns.length)
       return
     }
-    const id = setTimeout(() => setSent(sent + 1), HOLD[turns[(sent - 1) % turns.length].role])
+    const id = setTimeout(
+      () => setSent((current) => current + 1),
+      holdFor(turns[(sent - 1) % turns.length].role),
+    )
     return () => clearTimeout(id)
-  }, [sent, turns])
+  }, [sent, turns, onScreen])
 
   const visible = Array.from({ length: Math.min(sent, WINDOW) }, (_, i) =>
     Math.max(0, sent - WINDOW) + i,
   )
 
   return (
-    <div className={SHELL}>
+    <div ref={shell} className={SHELL}>
       <div className={`flex items-center gap-2.5 border-b px-4 py-3 ${BAR}`}>
         <ClaudeMark className="size-4 text-[#D97757]" />
         <span className="text-sm font-medium text-[#1F1E1C] dark:text-[#F2F0E9]">Claude</span>

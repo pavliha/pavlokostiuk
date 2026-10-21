@@ -1,4 +1,3 @@
-export const SUBSCRIBE_ENDPOINT = "https://REPLACE-ME.example/subscribe"
 export const WHATSAPP = "https://wa.me/995558936287"
 export const EMAIL = "kostyk.pavel.09@gmail.com"
 export const TELEGRAM = "https://t.me/pavliha"

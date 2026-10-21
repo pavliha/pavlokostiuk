@@ -10,10 +10,10 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import { usePathname, useRouter } from "@/i18n/navigation"
-import { LOCALE_CODES, LOCALE_LABELS, locales, type Locale } from "@/i18n/routing"
+import { LOCALE_CODES, LOCALE_LABELS, locales } from "@/i18n/routing"
 
 const LocaleSwitcher = ({ label }: { label: string }) => {
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const pathname = usePathname()
   const router = useRouter()
 
@@ -28,7 +28,7 @@ const LocaleSwitcher = ({ label }: { label: string }) => {
         {locales.map((option) => (
           <DropdownMenuItem
             key={option}
-            onClick={() => router.replace(pathname, { locale: option })}
+            onClick={() => router.replace(pathname + window.location.hash, { locale: option })}
             className={locale === option ? "bg-accent" : ""}
           >
             <span className="mr-2 font-medium">{LOCALE_CODES[option]}</span>
