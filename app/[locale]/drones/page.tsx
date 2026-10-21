@@ -1,27 +1,29 @@
 import type { Metadata } from "next"
+import Image from "next/image"
 import { notFound } from "next/navigation"
 import { getTranslations, setRequestLocale } from "next-intl/server"
 import { hasLocale, useMessages, useTranslations } from "next-intl"
 import { use } from "react"
-import { ArrowUpRight } from "lucide-react"
+import { ArrowUpRight, ExternalLink } from "lucide-react"
 
 import BulletList from "@/components/BulletList"
 import ScreenshotCard from "@/components/ScreenshotCard"
 import SectionHeading from "@/components/SectionHeading"
 import SectionIntro from "@/components/SectionIntro"
-import { GlobalFooter, GlobalNav } from "@/components/SiteChrome"
+import { GlobalFooter } from "@/components/SiteChrome"
+import SiteNav from "@/components/SiteNav"
 import SocialLinks from "@/components/SocialLinks"
 import StatLedger from "@/components/StatLedger"
 import TagList from "@/components/TagList"
-import VisitSiteButton from "@/components/VisitSiteButton"
 import { Button } from "@/components/ui/button"
 import { Separator } from "@/components/ui/separator"
-import { AIRCAST_SHOTS, DRONE_SHOTS } from "@/content/media"
+import { AIRCAST_SHOTS, DRONE_SHOTS, PORTRAIT } from "@/content/media"
 import { AIRCAST, EMAIL } from "@/content/site"
 import { DRONE_REPOS, DRONE_SECTION_KEYS, DRONE_TAGS } from "@/content/structure"
 import { locales, routing } from "@/i18n/routing"
 
 const GITHUB_ORG = "https://github.com/aircast-one"
+const HERO_SHOT = AIRCAST_SHOTS[0]
 
 export const generateStaticParams = () => locales.map((locale) => ({ locale }))
 
@@ -53,26 +55,72 @@ const DronesPage = ({ params }: { params: Promise<{ locale: string }> }) => {
   const t = useTranslations("drones")
   const home = useTranslations("home")
   const common = useTranslations("common")
+  const nav = useTranslations("nav")
   const { drones } = useMessages()
 
   return (
     <>
-      <GlobalNav ctaHref={`mailto:${EMAIL}`} />
+      <SiteNav
+        brandHref="/"
+        links={[
+          { label: nav("about"), href: "/about", accent: false, compact: true },
+          { label: nav("drones"), href: "/drones", accent: false, current: true },
+        ]}
+        themeLabel={nav("toggleTheme")}
+        languageLabel={nav("language")}
+        cta={{ label: t("contact.email"), href: `mailto:${EMAIL}` }}
+      />
 
       <main>
         <header className="px-6 sm:px-10 pt-32 pb-16">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-              {t("hero.role")}
-            </p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-6 max-w-3xl text-balance">
-              {t("hero.title")}
-            </h1>
-            <p className="text-foreground/80 text-lg max-w-2xl mb-8 leading-relaxed">{t("hero.intro")}</p>
-            <div className="flex items-center gap-3 mb-6 flex-wrap">
-              <VisitSiteButton href={GITHUB_ORG} label={t("hero.github")} />
-              <VisitSiteButton href={AIRCAST} label={common("visitSite")} />
+          <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.1fr)] gap-12 lg:gap-16 items-center">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-3">
+                {t("hero.role")}
+              </p>
+              <p className="text-sm font-medium text-primary dark:text-brand-light mb-5">{t("hero.available")}</p>
+              <h1 className="text-4xl sm:text-5xl font-extrabold tracking-tight leading-[1.05] text-foreground mb-6 text-balance">
+                {t("hero.title")}
+              </h1>
+              <p className="text-foreground/80 text-lg mb-6 leading-relaxed">{t("hero.intro")}</p>
+              <BulletList
+                items={drones.hero.tldr}
+                className="space-y-2 mb-8"
+                itemClassName="text-base text-ink leading-[1.5] font-medium"
+                dotClassName="bg-primary"
+              />
+              <div className="flex items-center gap-3 mb-6 flex-wrap">
+                <Button asChild size="lg" className="rounded-xl">
+                  <a href={`mailto:${EMAIL}`}>{t("contact.email")}</a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-xl">
+                  <a href={GITHUB_ORG} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink />
+                    {t("hero.github")}
+                  </a>
+                </Button>
+                <Button asChild size="lg" variant="outline" className="rounded-xl">
+                  <a href={AIRCAST} target="_blank" rel="noopener noreferrer">
+                    <ExternalLink />
+                    {common("visitSite")}
+                  </a>
+                </Button>
+              </div>
+              <SocialLinks />
             </div>
+            <figure className="border border-rule bg-card rounded-2xl overflow-hidden shadow-2xl">
+              <Image
+                src={HERO_SHOT.src}
+                alt={home(`aircast.shots.${HERO_SHOT.key}.alt`)}
+                width={HERO_SHOT.width}
+                height={HERO_SHOT.height}
+                priority
+                sizes="(min-width: 1024px) 640px, 100vw"
+                className="w-full h-auto"
+              />
+            </figure>
+          </div>
+          <div className="max-w-6xl mx-auto mt-10">
             <TagList tags={DRONE_TAGS} />
           </div>
         </header>
@@ -158,6 +206,15 @@ const DronesPage = ({ params }: { params: Promise<{ locale: string }> }) => {
         <Separator />
 
         <section id="contact" className="py-24 px-6 max-w-5xl mx-auto text-center scroll-mt-20">
+          <div className="relative w-28 h-28 mx-auto mb-8 rounded-full overflow-hidden border shadow-lg">
+            <Image
+              src={PORTRAIT.src}
+              alt={home("hero.portraitAlt")}
+              width={PORTRAIT.width}
+              height={PORTRAIT.height}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
           <SectionHeading title={t("contact.title")}>
             <p className="text-muted-foreground max-w-md mx-auto mb-8">{t("contact.body")}</p>
           </SectionHeading>

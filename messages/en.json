@@ -14,7 +14,8 @@
     "toggleTheme": "Toggle theme",
     "language": "Language",
     "about": "About",
-    "prototype": "Your shop, free"
+    "prototype": "Your shop, free",
+    "drones": "Drones"
   },
   "common": {
     "visitSite": "Visit Site",
@@ -1017,14 +1018,20 @@
   },
   "drones": {
     "meta": {
-      "title": "Pavlo Kostiuk | Ground control software for ArduPilot and PX4 drones",
+      "title": "Pavlo Kostiuk | Lead engineer — ground control software for ArduPilot and PX4 drones",
       "description": "Ground control station, MAVLink telemetry, low-latency video, mission planning and payload control — three years of drone software, with the public code to read."
     },
     "hero": {
-      "role": "Pavlo Kostiuk — drone & ground control software",
+      "role": "Pavlo Kostiuk — Founder & Lead Engineer, Aircast",
       "title": "Ground control software for ArduPilot and PX4 drones",
-      "intro": "I founded Aircast: a Raspberry Pi unit on the drone that streams video and MAVLink over 4G or Starlink, and a QGroundControl fork on the ground that flies it. This page is the engineering record — what was built, measured and flown, with the public code to read.",
-      "github": "Code on GitHub"
+      "intro": "I founded Aircast and lead its engineering: a Raspberry Pi unit on the drone that streams video and MAVLink over 4G or Starlink, and a QGroundControl fork on the ground that flies it. Three years from first prototype to a beta in the field — architecture, the core rewrite, the bench, the releases. This page is the record, with the public code to read.",
+      "github": "Code on GitHub",
+      "available": "Available now · remote · GMT+4",
+      "tldr": [
+        "Own the ground station end to end — Qt/C++ today, a Rust core behind it, one codebase for five platforms and the browser",
+        "Make the links boring: MAVLink routed anywhere, WebRTC video at ~300 ms, failover across LTE, Starlink and Wi-Fi",
+        "Prove every flight feature on a hardware-in-the-loop bench before a propeller turns, then ship it with A/B updates"
+      ]
     },
     "ledger": {
       "hero": {
@@ -1163,8 +1170,8 @@
       "intro": "What an operator sees on the unit itself, served from the daemon over the local network or VPN."
     },
     "contact": {
-      "title": "Hiring for ground control or drone software?",
-      "body": "Remote from Tbilisi (GMT+4). Send the role and I'll reply with the parts of this work that match it.",
+      "title": "Hiring a lead for ground control or drone software?",
+      "body": "Remote from Tbilisi (GMT+4), available now. Send the role and I'll reply with the parts of this work that match it — and what I'd build first.",
       "email": "Email me"
     }
   }
