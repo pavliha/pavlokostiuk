@@ -52,7 +52,7 @@ process in Docker.
   `cloud.pavlokostiuk.job-search-daily` (log: `~/Library/Logs/job-search-daily.log`):
   career-ops zero-token scans (plus the web-search scan on Mondays) →
   `scripts/sync-career-ops-statuses.mjs` (site statuses into career-ops via its
-  `set-status.mjs`) → `claude -p` scores new jobs (`/career-ops:career-ops pipeline`) →
+  `set-status.mjs`) → `claude -p` with `scripts/job-search-evaluate-prompt.md` scores up to 15 pending jobs per run in pipeline mode, unattended (the bare `pipeline` command stops to ask questions nobody answers) →
   `claude -p` with `scripts/job-search-replies-prompt.md` reads Gmail (read-only) for
   replies, moves statuses and uploads interview prep → `scripts/push-career-ops.mjs` sends
   the pipeline snapshot and each tailored CV PDF. It needs the Mac awake; launchd runs a

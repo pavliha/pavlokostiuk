@@ -27,7 +27,7 @@ if [ "$(date +%u)" = "1" ]; then
   run "weekly web-search scan" agent "/career-ops:career-ops scan"
 fi
 run "sync statuses to career-ops" node "$SITE_DIR/scripts/sync-career-ops-statuses.mjs"
-run "evaluate new jobs" agent "/career-ops:career-ops pipeline"
+run "evaluate new jobs" agent "$(cat "$SITE_DIR/scripts/job-search-evaluate-prompt.md")"
 run "check replies and prepare interviews" agent "$(cat "$SITE_DIR/scripts/job-search-replies-prompt.md")"
 run "push jobs and CVs to the site" node "$SITE_DIR/scripts/push-career-ops.mjs"
 
