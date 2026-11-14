@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
-import { Geist, Geist_Mono } from "next/font/google"
 import { notFound } from "next/navigation"
 import { hasLocale, NextIntlClientProvider } from "next-intl"
 import { setRequestLocale } from "next-intl/server"
 
 import AnalyticsProvider from "@/components/AnalyticsProvider"
+import { mono, sans } from "@/lib/fonts"
+import { themeScript } from "@/lib/theme-script"
 import { locales, routing } from "@/i18n/routing"
 
 import "../globals.css"
@@ -18,22 +19,6 @@ export const metadata: Metadata = {
 export const generateStaticParams = () => locales.map((locale) => ({ locale }))
 
 export const dynamicParams = false
-
-const sans = Geist({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "500", "600", "700"],
-  variable: "--font-sans-face",
-  display: "swap",
-})
-
-const mono = Geist_Mono({
-  subsets: ["latin", "latin-ext", "cyrillic"],
-  weight: ["400", "500"],
-  variable: "--font-mono-face",
-  display: "swap",
-})
-
-const themeScript = `if (localStorage.theme === 'dark' || (!('theme' in localStorage) && matchMedia('(prefers-color-scheme: dark)').matches)) document.documentElement.classList.add('dark'); else document.documentElement.classList.remove('dark');`
 
 const LocaleLayout = async ({ children, params }: { children: ReactNode; params: Promise<{ locale: string }> }) => {
   const { locale } = await params

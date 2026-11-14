@@ -1,9 +1,34 @@
 # Project Guidelines
 
-Static Next.js marketing site for pavlokostiuk.cloud. Four locales (`en`, `ka`, `uk`,
-`ru`) via next-intl, served by `next start` in Docker. No database and no API routes; every
-page is prerendered at build time and the server exists to serve them, handle redirects,
-and return real 404s.
+Next.js site for pavlokostiuk.cloud. The public marketing pages use four locales (`en`, `ka`,
+`uk`, `ru`) via next-intl, are prerendered at build time and need no database. The only
+dynamic part is the private `/internal` area (see below), served by the same `next start`
+process in Docker.
+
+## Internal area
+
+`/internal` holds Pavlo's private dashboards: **Today** (daily and weekly goals), **Jobs**
+(the career-ops pipeline) and **Outreach** (Aircast leads from Twenty CRM).
+
+- It is English-only and outside `[locale]`, so its copy lives in its components, not in
+  `messages/`. It has its own root layout, `noindex`, and `robots.ts` disallows it
+- Sign-in is one password (`INTERNAL_PASSWORD`) checked in a server action, limited to 5
+  attempts per IP per 15 minutes, with an iron-session cookie scoped to `/internal`. Every
+  server action calls `requireSignedIn()` itself; the layout guard does not cover actions
+- State is SQLite through Node's built-in `node:sqlite` at `INTERNAL_DB_PATH`, which must
+  sit on a Docker volume (`/data`) or every deploy wipes it. `jobs` holds the pipeline;
+  `events` (one row per kind and ref) is what the goal counters count
+- Leads are read live from Twenty CRM on each request; the Contacted/Replied/Interested
+  buttons PATCH `leadStatus` there and record an event here
+- `scripts/push-career-ops.mjs` reads `~/Code/career-ops/data/pipeline.md` and POSTs it to
+  `/internal/api/jobs` with `INTERNAL_INGEST_TOKEN`. Re-running it updates jobs without
+  touching their status
+- These variables are read at **runtime**, not build time, so they are set as Dokploy
+  environment variables, never as build args: `INTERNAL_PASSWORD`,
+  `INTERNAL_SESSION_SECRET`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`, `TWENTY_API_URL`,
+  `TWENTY_API_KEY`. `lib/internal/env.ts` validates them on first use
+- The e2e suite runs the internal tests against a throwaway database with test values from
+  `playwright.config.ts`; it never calls the CRM, so the Outreach page is checked by hand
 
 ## Dev Server
 
@@ -165,9 +190,10 @@ A request matching no route at all (`/nonsense`, an unknown locale) logs one int
 `dynamicParams = false` from `app/[locale]/layout.tsx` silences it and brings back a 500
 on unknown locales, so leave it.
 
-Environment variables are `NEXT_PUBLIC_*` and therefore inlined at **build** time. A local
-`.env` never reaches the deployed site — pass them as Docker build args (see `Dockerfile`
-and `.env.example`). Only PostHog is env-driven, and it stays off when unset.
+`NEXT_PUBLIC_*` variables are inlined at **build** time. A local `.env` never reaches the
+deployed site — pass them as Docker build args (see `Dockerfile` and `.env.example`). PostHog
+is the only one, and it stays off when unset. The internal area's variables are the
+exception: they are runtime environment variables (see "Internal area").
 
 Public constants that never differ between environments — the lead-capture endpoint, the
 WhatsApp link, the contact addresses — live in `content/site.ts`, not in the environment.
