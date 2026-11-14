@@ -5,7 +5,9 @@ import { INTERNAL_TIMEZONE } from "@/content/internal"
 
 const DAY = "yyyy-MM-dd"
 
-export const today = (): string => format(new TZDate(new Date(), INTERNAL_TIMEZONE), DAY)
+export const dayOf = (instant: string | Date): string => format(new TZDate(new Date(instant), INTERNAL_TIMEZONE), DAY)
+
+export const today = (): string => dayOf(new Date())
 
 export const weekOf = (day: string): [string, ...string[]] => {
   const [monday, ...rest] = eachDayOfInterval({ start: startOfISOWeek(parseISO(day)), end: endOfISOWeek(parseISO(day)) })

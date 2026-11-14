@@ -227,7 +227,7 @@ test.describe("internal dashboards", () => {
     expect((await push(request, [job(id, "Events Robotics")])).ok()).toBe(true)
     const events = await request.post("/internal/api/events", {
       headers: auth,
-      data: { events: [{ kind: "contacted", ref: "lead-x", day: daysAgo(1) }] },
+      data: { events: [{ kind: "applied", ref: "events-without-a-job", day: daysAgo(30) }] },
     })
     expect(events.ok()).toBe(true)
     await signIn(page)

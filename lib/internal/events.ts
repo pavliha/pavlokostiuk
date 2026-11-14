@@ -2,7 +2,7 @@ import { z } from "zod"
 
 import { database, transaction } from "@/lib/internal/db"
 
-export const EVENT_KINDS = ["applied", "contacted", "replied", "interested", "network"] as const
+export const EVENT_KINDS = ["applied", "network"] as const
 export type EventKind = (typeof EVENT_KINDS)[number]
 
 export const incomingEventSchema = z.object({

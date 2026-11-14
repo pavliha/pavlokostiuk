@@ -96,7 +96,7 @@ const JobSearchPage = async () => {
             applications
           </p>
         </div>
-        <WeekChart days={week} today={day} kind="applied" label="applications" />
+        <WeekChart days={week.map((entry) => ({ day: entry.day, value: entry.counts.applied }))} today={day} label="applications" />
       </section>
 
       <section aria-labelledby="networks-heading" className="grid gap-3">

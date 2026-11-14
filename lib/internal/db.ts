@@ -57,6 +57,15 @@ const MIGRATIONS = [
      SELECT id, company, role, location, url, score, NULL, 0, NULL, status, NULL, NULL, added_on FROM jobs;
    DROP TABLE jobs;
    ALTER TABLE jobs_next RENAME TO jobs;`,
+  `CREATE TABLE events_next (
+     kind TEXT NOT NULL CHECK (kind IN ('applied', 'network')),
+     ref TEXT NOT NULL,
+     day TEXT NOT NULL,
+     PRIMARY KEY (kind, ref)
+   );
+   INSERT INTO events_next SELECT kind, ref, day FROM events WHERE kind IN ('applied', 'network');
+   DROP TABLE events;
+   ALTER TABLE events_next RENAME TO events;`,
 ] as const
 
 const inTransaction = (db: DatabaseSync, work: (db: DatabaseSync) => void): void => {

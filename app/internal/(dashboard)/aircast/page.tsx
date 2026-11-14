@@ -7,14 +7,21 @@ import LeadRow from "@/components/internal/LeadRow"
 import StatusFilter from "@/components/internal/StatusFilter"
 import WeekChart from "@/components/internal/WeekChart"
 import { DAILY_GOALS, PART_108_DEADLINE, WEEKLY_GOALS } from "@/content/internal"
-import { listLeads, type Lead } from "@/lib/internal/crm"
 import { requireSignedIn } from "@/lib/internal/auth"
-import { LEAD_STATUSES, type LeadStatus } from "@/lib/internal/lead-transition"
-import { daysBetween, today, weekOf } from "@/lib/internal/days"
-import { countsByDay, eventDays } from "@/lib/internal/events"
+import { contactsAt, leadTransitions, listLeads, type Lead } from "@/lib/internal/crm"
+import { daysBetween, dayOf, today, weekOf } from "@/lib/internal/days"
 import { internalEnv } from "@/lib/internal/env"
+import { contactDays, countOn, replyDays } from "@/lib/internal/lead-activity"
+import { LEAD_STATUSES, type LeadStatus } from "@/lib/internal/lead-transition"
 
-const LABELS = { NEW: "To contact", CONTACTED: "Contacted", REPLIED: "Replied", INTERESTED: "Interested" } as const
+const LABELS: Record<LeadStatus, string> = {
+  NEW: "To contact",
+  CONTACTED: "Contacted",
+  REPLIED: "Replied",
+  INTERESTED: "Interested",
+  NOT_INTERESTED: "Not interested",
+  CUSTOMER: "Customer",
+}
 
 const FIT_ORDER = ["HIGH", "MEDIUM", "LOW", "UNKNOWN", "NONE"] as const
 
@@ -33,24 +40,27 @@ const AircastPage = async ({ searchParams }: { searchParams: Promise<{ status?: 
   const params = await searchParams
   const status = statusFrom(params.status)
   const showAll = params.all === "1"
-  const leads = await listLeads()
+  const [leads, transitions] = await Promise.all([listLeads(), leadTransitions()])
   const visible = leads
     .filter((lead) => lead.leadStatus === status)
     .toSorted((a, b) => fitRank(a) - fitRank(b) || a.name.localeCompare(b.name))
-  const contacted = eventDays("contacted")
+  const shown = showAll ? visible : visible.slice(0, PAGE_SIZE)
+  const people = await contactsAt(shown.map((lead) => lead.id))
+  const snapshots = leads.map((lead) => ({ id: lead.id, leadStatus: lead.leadStatus, createdDay: dayOf(lead.createdAt) }))
+  const contacted = contactDays(snapshots, transitions)
+  const replied = replyDays(snapshots, transitions)
   const crmBase = new URL(internalEnv().TWENTY_API_URL).origin
   const day = today()
   const daysLeft = daysBetween(day, PART_108_DEADLINE)
   const days = weekOf(day)
-  const week = countsByDay(days)
-  const thisWeek = (kind: "contacted" | "replied") => week.reduce((sum, entry) => sum + entry.counts[kind], 0)
+  const thisWeek = (entries: Map<string, string>) => days.reduce((sum, weekDay) => sum + countOn(entries, weekDay), 0)
 
   return (
     <>
       <header className="grid gap-1">
         <h1 className="text-3xl font-semibold tracking-tight">Aircast</h1>
         <p className="text-muted-foreground">
-          US BVLOS operator outreach from the CRM, high fit first. Part 108 statutory deadline {PART_108_DEADLINE}:{" "}
+          US BVLOS operator outreach, read live from Twenty CRM, high fit first. Part 108 statutory deadline {PART_108_DEADLINE}:{" "}
           {daysLeft > 0 ? (
             <>
               <span className="font-mono tabular-nums">{daysLeft}</span> days
@@ -64,9 +74,9 @@ const AircastPage = async ({ searchParams }: { searchParams: Promise<{ status?: 
       <div className="grid gap-4 lg:grid-cols-[1fr_2fr]">
         <GoalMeter
           label="Operator contacts"
-          done={week[days.indexOf(day)].counts.contacted}
+          done={countOn(contacted, day)}
           target={DAILY_GOALS.contacts}
-          note="New US BVLOS operators reached today, by email or LinkedIn."
+          note="Leads moved to Contacted today, here or in the CRM."
         />
         <section aria-labelledby="week-heading" className="grid gap-4 rounded-xl border bg-card p-4">
           <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -75,12 +85,12 @@ const AircastPage = async ({ searchParams }: { searchParams: Promise<{ status?: 
             </h2>
             <p className="text-sm text-muted-foreground">
               <span className="font-mono tabular-nums">
-                {thisWeek("contacted")} / {WEEKLY_GOALS.contacts}
+                {thisWeek(contacted)} / {WEEKLY_GOALS.contacts}
               </span>{" "}
-              contacts · <span className="font-mono tabular-nums">{thisWeek("replied")}</span> replies
+              contacts · <span className="font-mono tabular-nums">{thisWeek(replied)}</span> replies
             </p>
           </div>
-          <WeekChart days={week} today={day} kind="contacted" label="contacts" />
+          <WeekChart days={days.map((weekDay) => ({ day: weekDay, value: countOn(contacted, weekDay) }))} today={day} label="contacts" />
         </section>
       </div>
       <StatusFilter
@@ -94,8 +104,14 @@ const AircastPage = async ({ searchParams }: { searchParams: Promise<{ status?: 
       />
       {visible.length ? (
         <ul className="rounded-xl border bg-card px-4">
-          {(showAll ? visible : visible.slice(0, PAGE_SIZE)).map((lead) => (
-            <LeadRow key={lead.id} lead={lead} contactedOn={contacted.get(lead.id)} crmUrl={`${crmBase}/object/company/${lead.id}`} />
+          {shown.map((lead) => (
+            <LeadRow
+              key={lead.id}
+              lead={lead}
+              contacts={people.filter((person) => person.companyId === lead.id)}
+              contactedOn={contacted.get(lead.id)}
+              crmBase={crmBase}
+            />
           ))}
         </ul>
       ) : (

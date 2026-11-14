@@ -12,7 +12,7 @@ import { today } from "@/lib/internal/days"
 import { eventDays, recordEvent, removeEvent } from "@/lib/internal/events"
 import { JOB_STATUSES } from "@/lib/internal/job-transition"
 import { setJobStatus } from "@/lib/internal/jobs"
-import { LEAD_STATUSES, planLeadUpdate } from "@/lib/internal/lead-transition"
+import { checkLeadUpdate, LEAD_STATUSES } from "@/lib/internal/lead-transition"
 import { traced } from "@/lib/internal/log"
 
 export const signOut = async (): Promise<void> => {
@@ -45,10 +45,8 @@ export const updateLead = async (form: FormData): Promise<void> => {
   const from = z.enum(LEAD_STATUSES).parse(form.get("from"))
   const to = z.enum(LEAD_STATUSES).parse(form.get("to"))
   await traced("internal.lead.update", { leadId: id, from, to }, async () => {
-    const plan = planLeadUpdate(await leadStatus(id), from, to)
+    checkLeadUpdate(await leadStatus(id), from, to)
     await setLeadStatus(id, to)
-    if (plan.record) recordEvent(plan.record, id, today())
-    if (plan.remove) removeEvent(plan.remove, id)
   })
   refresh()
 }
