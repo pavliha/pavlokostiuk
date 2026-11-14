@@ -92,3 +92,22 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' "http://localhost:8099/nonsense")
           [ "$code" = "404" ] || { echo "FAIL /nonsense -> $code (expected 404)"; fail=1; }
           exit $fail
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: [verify, docker]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy the verified commit on Dokploy
+        env:
+          DOKPLOY_DEPLOY_URL: ${{ secrets.DOKPLOY_DEPLOY_URL }}
+          HEAD_SHA: ${{ github.sha }}
+          HEAD_MESSAGE: ${{ github.event.head_commit.message }}
+        run: |
+          body=$(jq -n --arg sha "$HEAD_SHA" --arg message "$HEAD_MESSAGE" \
+            '{ref: "refs/heads/master", head_commit: {id: $sha, message: $message}, commits: []}')
+          response=$(curl -sS --retry 5 --retry-all-errors --retry-delay 15 -w '\n%{http_code}' \
+            -X POST "$DOKPLOY_DEPLOY_URL" -H "Content-Type: application/json" -H "x-github-event: push" --data "$body")
+          code=$(printf '%s' "$response" | tail -n1)
+          printf '%s\n' "$response" | sed '$d'
+          [ "$code" = "200" ] || { echo "Dokploy did not accept the deploy (HTTP $code)"; exit 1; }

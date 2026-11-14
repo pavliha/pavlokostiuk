@@ -203,6 +203,13 @@ it does not inherit `/ecommerce`'s BrandScript.
 
 ## Deployment
 
+Deploys are triggered by CI, not by Dokploy's GitHub webhook: the `deploy` job in
+`.github/workflows/ci.yml` runs after `verify` and `docker` pass on a push to master and
+POSTs to the app's Dokploy deploy URL (GitHub secret `DOKPLOY_DEPLOY_URL`), retrying on
+network errors. The Dokploy app's trigger type is set to `tag` on purpose so the GitHub App
+push webhook no longer deploys: its deliveries to the VPS were being lost, and it deployed
+unverified commits. A red CI run therefore means nothing was deployed.
+
 Docker builds with `NEXT_OUTPUT=standalone` and runs `node server.js` on port 80. Standalone
 is a packaging choice only — it is the same compiled app that `next start` serves locally, and
 the full suite passes against both. Verify that parity after touching build config:
