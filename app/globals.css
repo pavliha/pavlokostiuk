@@ -18,6 +18,11 @@
   --font-mono: var(--font-mono-face), ui-monospace, "SF Mono", monospace;
 }
 
+.internal-fonts {
+  --font-sans-face: var(--font-geist-sans);
+  --font-mono-face: var(--font-geist-mono);
+}
+
 @utility noise {
   &::before {
     content: "";

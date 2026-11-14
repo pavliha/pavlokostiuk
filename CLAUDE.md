@@ -12,6 +12,9 @@ process in Docker.
 
 - It is English-only and outside `[locale]`, so its copy lives in its components, not in
   `messages/`. It has its own root layout, `noindex`, and `robots.ts` disallows it
+- Its root layout takes Geist from the `geist` package (`next/font/local`), not
+  `next/font/google`. A second root layout fetching Google Fonts made the Turbopack build
+  fail intermittently in CI and in the Docker build
 - Sign-in is Better Auth (`lib/internal/auth.ts`) with the passkey plugin; its endpoints
   live under `/internal/api/auth`. Passkeys are the normal way in; email and password stay
   as the fallback. Sign-up is disabled: on first use the server runs Better Auth's

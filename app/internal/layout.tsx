@@ -1,7 +1,9 @@
 import type { Metadata } from "next"
 import type { ReactNode } from "react"
 
-import { mono, sans } from "@/lib/fonts"
+import { GeistMono } from "geist/font/mono"
+import { GeistSans } from "geist/font/sans"
+
 import { themeScript } from "@/lib/theme-script"
 
 import "../globals.css"
@@ -13,7 +15,7 @@ export const metadata: Metadata = {
 }
 
 const InternalLayout = ({ children }: { children: ReactNode }) => (
-  <html lang="en" className={`${sans.variable} ${mono.variable}`} suppressHydrationWarning>
+  <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable} internal-fonts`} suppressHydrationWarning>
     <head>
       <script dangerouslySetInnerHTML={{ __html: themeScript }} />
     </head>
