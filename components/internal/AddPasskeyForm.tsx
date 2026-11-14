@@ -20,7 +20,7 @@ const AddPasskeyForm = () => {
     setError("")
     const result = await authClient.passkey.addPasskey({ name })
     setPending(false)
-    if (result?.error) setError(result.error.message ?? "The passkey was not saved.")
+    if (result?.error) setError(`The passkey was not saved (${result.error.status} ${result.error.statusText}): ${result.error.message}`)
     else router.refresh()
   }
 

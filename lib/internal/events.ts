@@ -20,7 +20,7 @@ const zeroCounts = (): DayCounts =>
 
 export type DayTally = { day: string; counts: DayCounts }
 
-export const countsByDay = (days: string[]): DayTally[] => {
+export const countsByDay = (days: readonly [string, ...string[]]): DayTally[] => {
   const rows = z
     .array(z.object({ day: z.string(), kind: z.enum(EVENT_KINDS), n: z.number() }))
     .parse(

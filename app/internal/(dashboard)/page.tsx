@@ -3,12 +3,15 @@ import NetworkChecklist from "@/components/internal/NetworkChecklist"
 import WeekChart from "@/components/internal/WeekChart"
 import { DAILY_GOALS, NETWORKS, WEEKLY_GOALS } from "@/content/internal"
 import { formatDay, today, weekOf } from "@/lib/internal/days"
+import { requireSignedIn } from "@/lib/internal/auth"
 import { countsByDay, eventDays } from "@/lib/internal/events"
 
-const TodayPage = () => {
+const TodayPage = async () => {
+  await requireSignedIn()
   const day = today()
-  const week = countsByDay(weekOf(day))
-  const todays = week[weekOf(day).indexOf(day)].counts
+  const days = weekOf(day)
+  const week = countsByDay(days)
+  const todays = week[days.indexOf(day)].counts
   const total = (kind: "applied" | "contacted" | "replied") => week.reduce((sum, entry) => sum + entry.counts[kind], 0)
   const joined = eventDays("network")
 

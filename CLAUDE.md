@@ -22,24 +22,42 @@ process in Docker.
   `INTERNAL_PASSWORD`. Passkeys are added and removed on `/internal/security`. The passkey
   relying party is the host of `BETTER_AUTH_URL`, so a passkey made on one host does not
   work on another
-- Password sign-in is rate limited by Better Auth (10 per minute per IP, client IP from
-  `cf-connecting-ip`). Every server action calls `requireSignedIn()` itself; the layout
-  guard does not cover actions
+- `INTERNAL_PASSWORD` is authoritative: on each start the owner's password hash is synced
+  to it, so rotating the variable and redeploying rotates the password
+- Password sign-in is rate limited by Better Auth (10 per minute per client IP). `proxy.ts`
+  resolves that IP for every `/internal` request into `x-internal-client-ip`: it trusts
+  `cf-connecting-ip` only when the nearest `X-Forwarded-For` hop (Traefik's view of the
+  peer) is a Cloudflare address (`lib/internal/cloudflare-ranges.ts`), so a request sent
+  straight to the origin cannot forge its way past the limit. Refresh the ranges from
+  cloudflare.com/ips when Cloudflare changes them
+- Every page and every server action calls `requireSignedIn()` itself. The dashboard layout
+  has no guard on purpose: layouts do not re-render on navigation, so they cannot be the
+  check
 - State is SQLite through Node's built-in `node:sqlite` at `INTERNAL_DB_PATH`, which must
   sit on a Docker volume (`/data`) or every deploy wipes it. `jobs` holds the pipeline;
   `events` (one row per kind and ref) is what the goal counters count
-- Leads are read live from Twenty CRM on each request; the Contacted/Replied/Interested
-  buttons PATCH `leadStatus` there and record an event here
-- `scripts/push-career-ops.mjs` reads `~/Code/career-ops/data/pipeline.md` and POSTs it to
-  `/internal/api/jobs` with `INTERNAL_INGEST_TOKEN`. Re-running it updates jobs without
-  touching their status
+- Leads are read live from Twenty CRM on each request. The Contacted/Replied/Interested
+  buttons re-read the lead's `leadStatus` first and refuse the change if it moved since the
+  page loaded (Explee sync moves leads too); `lib/internal/lead-transition.ts` decides which
+  event to record or remove
+- Each action and the ingest route emit one pino JSON line (`event`, ids, `outcome`,
+  `durationMs`, `err`) through `traced()` in `lib/internal/log.ts`
+- `scripts/push-career-ops.mjs` (parser in `scripts/career-ops-pipeline.mjs`) reads
+  `$CAREER_OPS_DIR/data/pipeline.md` and POSTs it to `$SITE_URL/internal/api/jobs` with
+  `INTERNAL_INGEST_TOKEN`; all three variables are required. The POST is a snapshot of the
+  pipeline: jobs are upserted without touching their status, and untouched (`todo`) jobs
+  missing from it are deleted. Schema changes go in `MIGRATIONS` in `lib/internal/db.ts`,
+  tracked by `PRAGMA user_version`
 - These variables are read at **runtime**, not build time, so they are set as Dokploy
   environment variables, never as build args: `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`,
   `INTERNAL_OWNER_EMAIL`, `INTERNAL_PASSWORD`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`,
   `TWENTY_API_URL`, `TWENTY_API_KEY`. `lib/internal/env.ts` validates them on first use
 - The e2e suite runs the internal tests against a throwaway database with test values from
-  `playwright.config.ts`, and exercises passkeys with Chromium's virtual WebAuthn
-  authenticator over CDP. It never calls the CRM, so the Outreach page is checked by hand
+  `e2e/internal-env.ts`, and exercises passkeys with Chromium's virtual WebAuthn
+  authenticator over CDP. Each sign-in uses its own `X-Forwarded-For` so tests do not share
+  a rate-limit bucket. Pure logic (lead transitions, client IP, the pipeline parser) has
+  unit tests in `e2e/unit/`, run by the same `npm test`. The suite never calls the CRM, so
+  the Outreach page is checked by hand
 
 ## Dev Server
 

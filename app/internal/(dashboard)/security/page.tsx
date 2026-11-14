@@ -3,9 +3,10 @@ import { headers } from "next/headers"
 import AddPasskeyForm from "@/components/internal/AddPasskeyForm"
 import { Button } from "@/components/ui/button"
 import { deletePasskey } from "@/app/internal/actions"
-import { authReady } from "@/lib/internal/auth"
+import { authReady, requireSignedIn } from "@/lib/internal/auth"
 
 const SecurityPage = async () => {
+  await requireSignedIn()
   const passkeys = await (await authReady()).api.listPasskeys({ headers: await headers() })
   return (
     <>

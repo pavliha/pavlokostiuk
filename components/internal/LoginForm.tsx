@@ -9,16 +9,27 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { authClient } from "@/lib/internal/auth-client"
 
-type AuthResult = { error: { message?: string } | null }
+type AuthError = { code?: string; message?: string; status: number; statusText: string }
+
+const HINTS: Record<string, string> = {
+  PASSKEY_NOT_FOUND:
+    "This device has no passkey for this site yet. Sign in with your password, then add one on the Security page.",
+  AUTH_CANCELLED: "The passkey prompt was closed before it finished. Try again.",
+  ERROR_CEREMONY_ABORTED: "The passkey prompt was closed before it finished. Try again.",
+  INVALID_EMAIL_OR_PASSWORD: "That email and password don't match.",
+}
+
+const describe = (error: AuthError): string =>
+  error.code && error.code in HINTS ? HINTS[error.code] : `Sign-in failed (${error.status} ${error.statusText}): ${error.message}`
 
 const LoginForm = () => {
   const router = useRouter()
   const [error, setError] = useState("")
   const [pending, setPending] = useState(false)
 
-  const settle = (result: AuthResult) => {
+  const settle = (result: { error: AuthError | null }) => {
     setPending(false)
-    if (result.error) setError(result.error.message ?? "Sign-in failed.")
+    if (result.error) setError(describe(result.error))
     else router.replace("/internal")
   }
 

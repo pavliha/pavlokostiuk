@@ -1,10 +1,13 @@
 import Link from "next/link"
+import { notFound } from "next/navigation"
 import { z } from "zod"
 
 import LeadRow from "@/components/internal/LeadRow"
 import StatusFilter from "@/components/internal/StatusFilter"
 import { PART_108_DEADLINE } from "@/content/internal"
-import { LEAD_STATUSES, listLeads, type Lead } from "@/lib/internal/crm"
+import { listLeads, type Lead } from "@/lib/internal/crm"
+import { requireSignedIn } from "@/lib/internal/auth"
+import { LEAD_STATUSES, type LeadStatus } from "@/lib/internal/lead-transition"
 import { daysBetween, today } from "@/lib/internal/days"
 import { eventDays } from "@/lib/internal/events"
 import { internalEnv } from "@/lib/internal/env"
@@ -17,9 +20,16 @@ const fitRank = (lead: Lead) => (lead.fit === null ? FIT_ORDER.length : FIT_ORDE
 
 const PAGE_SIZE = 40
 
+const statusFrom = (value: string | undefined): LeadStatus => {
+  if (value === undefined) return "NEW"
+  const parsed = z.enum(LEAD_STATUSES).safeParse(value)
+  return parsed.success ? parsed.data : notFound()
+}
+
 const OutreachPage = async ({ searchParams }: { searchParams: Promise<{ status?: string; all?: string }> }) => {
+  await requireSignedIn()
   const params = await searchParams
-  const status = z.enum(LEAD_STATUSES).catch("NEW").parse(params.status)
+  const status = statusFrom(params.status)
   const showAll = params.all === "1"
   const leads = await listLeads()
   const visible = leads

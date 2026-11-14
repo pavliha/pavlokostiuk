@@ -1,13 +1,22 @@
+import { notFound } from "next/navigation"
 import { z } from "zod"
 
 import JobRow from "@/components/internal/JobRow"
 import StatusFilter from "@/components/internal/StatusFilter"
-import { countJobs, JOB_STATUSES, listJobs } from "@/lib/internal/jobs"
+import { requireSignedIn } from "@/lib/internal/auth"
+import { countJobs, JOB_STATUSES, type JobStatus, listJobs } from "@/lib/internal/jobs"
 
 const LABELS = { todo: "To apply", applied: "Applied", skipped: "Skipped" } as const
 
+const statusFrom = (value: string | undefined): JobStatus => {
+  if (value === undefined) return "todo"
+  const parsed = z.enum(JOB_STATUSES).safeParse(value)
+  return parsed.success ? parsed.data : notFound()
+}
+
 const JobsPage = async ({ searchParams }: { searchParams: Promise<{ status?: string }> }) => {
-  const status = z.enum(JOB_STATUSES).catch("todo").parse((await searchParams).status)
+  await requireSignedIn()
+  const status = statusFrom((await searchParams).status)
   const counts = countJobs()
   const jobs = listJobs(status)
 

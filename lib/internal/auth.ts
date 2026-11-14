@@ -5,6 +5,7 @@ import { nextCookies } from "better-auth/next-js"
 import { headers } from "next/headers"
 import { redirect } from "next/navigation"
 
+import { CLIENT_IP_HEADER } from "@/lib/internal/client-ip"
 import { database } from "@/lib/internal/db"
 import { internalEnv } from "@/lib/internal/env"
 
@@ -23,17 +24,14 @@ const build = () => {
       storage: "memory",
       customRules: { "/sign-in/email": { window: 60, max: 10 } },
     },
-    advanced: { ipAddress: { ipAddressHeaders: ["cf-connecting-ip", "x-forwarded-for"] } },
+    advanced: { ipAddress: { ipAddressHeaders: [CLIENT_IP_HEADER] } },
     plugins: [passkey({ rpID: site.hostname, rpName: "Pavlo Kostiuk internal", origin: site.origin }), nextCookies()],
   })
 }
 
 type Auth = ReturnType<typeof build>
 
-const prepare = async (): Promise<Auth> => {
-  const auth = build()
-  const { runMigrations } = await getMigrations(auth.options)
-  await runMigrations()
+const ensureOwner = async (auth: Auth): Promise<void> => {
   const context = await auth.$context
   const env = internalEnv()
   const owner = await context.internalAdapter.findUserByEmail(env.INTERNAL_OWNER_EMAIL)
@@ -48,7 +46,21 @@ const prepare = async (): Promise<Auth> => {
       accountId: user.id,
       password: await context.password.hash(env.INTERNAL_PASSWORD),
     })
+    return
   }
+  const credential = (await context.internalAdapter.findAccounts(owner.user.id)).find(
+    (account) => account.providerId === "credential",
+  )
+  if (!credential?.password) throw new Error(`Owner ${env.INTERNAL_OWNER_EMAIL} has no password account`)
+  const current = await context.password.verify({ password: env.INTERNAL_PASSWORD, hash: credential.password })
+  if (!current) await context.internalAdapter.updatePassword(owner.user.id, await context.password.hash(env.INTERNAL_PASSWORD))
+}
+
+const prepare = async (): Promise<Auth> => {
+  const auth = build()
+  const { runMigrations } = await getMigrations(auth.options)
+  await runMigrations()
+  await ensureOwner(auth)
   return auth
 }
 
@@ -60,6 +72,7 @@ export const authReady = (): Promise<Auth> => {
   if (existing) return existing
   const created = prepare()
   instances.set(key, created)
+  created.catch(() => instances.delete(key))
   return created
 }
 

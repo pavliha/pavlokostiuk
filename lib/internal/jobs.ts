@@ -9,7 +9,7 @@ export const incomingJobSchema = z.object({
   id: z.string().min(1).max(200),
   company: z.string().min(1),
   role: z.string().min(1),
-  location: z.string(),
+  location: z.string().min(1).nullable(),
   url: z.url(),
   score: z.number().min(0).max(5).nullable(),
   hasCv: z.boolean(),
@@ -22,7 +22,7 @@ const rowSchema = z.object({
   id: z.string(),
   company: z.string(),
   role: z.string(),
-  location: z.string(),
+  location: z.string().nullable(),
   url: z.string(),
   score: z.number().nullable(),
   has_cv: z.number(),
@@ -34,7 +34,7 @@ export type Job = {
   id: string
   company: string
   role: string
-  location: string
+  location: string | null
   url: string
   score: number | null
   hasCv: boolean
@@ -86,8 +86,11 @@ export const setJobStatus = (id: string, status: JobStatus, day: string): void =
     if (status === "applied") db.prepare("INSERT INTO events (kind, ref, day) VALUES ('applied', ?, ?)").run(id, day)
   })
 
-export const upsertJobs = (jobs: IncomingJob[]): void =>
+export const replacePipeline = (jobs: IncomingJob[]): void =>
   transaction((db) => {
+    db.prepare("DELETE FROM jobs WHERE status = 'todo' AND id NOT IN (SELECT value FROM json_each(?))").run(
+      JSON.stringify(jobs.map((job) => job.id)),
+    )
     const statement = db.prepare(
       `INSERT INTO jobs (id, company, role, location, url, score, has_cv, added_on)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?)

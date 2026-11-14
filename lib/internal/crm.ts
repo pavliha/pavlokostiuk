@@ -1,9 +1,7 @@
 import { z } from "zod"
 
 import { internalEnv } from "@/lib/internal/env"
-
-export const LEAD_STATUSES = ["NEW", "CONTACTED", "REPLIED", "INTERESTED"] as const
-export type LeadStatus = (typeof LEAD_STATUSES)[number]
+import { LEAD_STATUSES, type LeadStatus } from "@/lib/internal/lead-transition"
 
 const FITS = ["HIGH", "MEDIUM", "LOW", "UNKNOWN", "NONE"] as const
 export type Fit = (typeof FITS)[number]
@@ -25,14 +23,14 @@ const responseSchema = z.object({
   pageInfo: z.object({ hasNextPage: z.boolean() }),
 })
 
-const crmFetch = async (path: string, init: RequestInit): Promise<unknown> => {
+const crmFetch = async (path: string, init: RequestInit & { method: "GET" | "PATCH" }): Promise<unknown> => {
   const env = internalEnv()
   const response = await fetch(new URL(path, env.TWENTY_API_URL), {
     ...init,
     cache: "no-store",
     headers: { Authorization: `Bearer ${env.TWENTY_API_KEY}`, "Content-Type": "application/json" },
   })
-  if (!response.ok) throw new Error(`Twenty CRM ${init.method ?? "GET"} ${path} failed: ${response.status} ${await response.text()}`)
+  if (!response.ok) throw new Error(`Twenty CRM ${init.method} ${path} failed: ${response.status} ${await response.text()}`)
   return response.json()
 }
 
@@ -45,6 +43,11 @@ export const listLeads = async (): Promise<Lead[]> => {
   if (parsed.pageInfo.hasNextPage) throw new Error("More than 200 open leads in Twenty CRM; add paging to listLeads")
   return parsed.data.companies
 }
+
+const statusSchema = z.object({ data: z.object({ company: z.object({ leadStatus: z.enum(LEAD_STATUSES) }) }) })
+
+export const leadStatus = async (id: string): Promise<LeadStatus> =>
+  statusSchema.parse(await crmFetch(`/rest/companies/${encodeURIComponent(id)}`, { method: "GET" })).data.company.leadStatus
 
 export const setLeadStatus = async (id: string, status: LeadStatus): Promise<void> => {
   await crmFetch(`/rest/companies/${encodeURIComponent(id)}`, {

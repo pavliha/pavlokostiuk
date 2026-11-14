@@ -1,6 +1,7 @@
 import { Badge } from "@/components/ui/badge"
 import { updateLead } from "@/app/internal/actions"
-import type { Lead, LeadStatus } from "@/lib/internal/crm"
+import type { Lead } from "@/lib/internal/crm"
+import type { LeadStatus } from "@/lib/internal/lead-transition"
 
 import ActionForm from "./ActionForm"
 
