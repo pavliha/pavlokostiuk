@@ -37,6 +37,26 @@ const MIGRATIONS = [
    INSERT INTO jobs_next SELECT id, company, role, NULLIF(location, ''), url, score, has_cv, status, added_on FROM jobs;
    DROP TABLE jobs;
    ALTER TABLE jobs_next RENAME TO jobs;`,
+  `CREATE TABLE jobs_next (
+     id TEXT PRIMARY KEY,
+     company TEXT NOT NULL,
+     role TEXT NOT NULL,
+     location TEXT,
+     url TEXT NOT NULL,
+     score REAL,
+     report INTEGER,
+     has_cv INTEGER NOT NULL DEFAULT 0,
+     prep TEXT,
+     status TEXT NOT NULL DEFAULT 'todo'
+       CHECK (status IN ('todo', 'applied', 'replied', 'interview', 'offer', 'rejected', 'skipped')),
+     prior_status TEXT,
+     status_on TEXT,
+     added_on TEXT NOT NULL
+   );
+   INSERT INTO jobs_next (id, company, role, location, url, score, report, has_cv, prep, status, prior_status, status_on, added_on)
+     SELECT id, company, role, location, url, score, NULL, 0, NULL, status, NULL, NULL, added_on FROM jobs;
+   DROP TABLE jobs;
+   ALTER TABLE jobs_next RENAME TO jobs;`,
 ] as const
 
 const inTransaction = (db: DatabaseSync, work: (db: DatabaseSync) => void): void => {

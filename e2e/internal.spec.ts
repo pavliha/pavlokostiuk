@@ -33,22 +33,28 @@ const addVirtualAuthenticator = async (page: Page) => {
   })
 }
 
-const job = (id: string, company: string) => ({
+const job = (id: string, company: string, score: number | null = 4.3) => ({
   id,
   company,
   role: "Senior Full-Stack Engineer",
   location: "Remote",
   url: `https://example.com/jobs/${id}`,
-  score: 4.3,
-  hasCv: true,
+  score,
+  report: null,
   addedOn: "2026-11-14",
 })
 
+const auth = { Authorization: `Bearer ${INTERNAL_TEST_ENV.INTERNAL_INGEST_TOKEN}` }
+
 const push = (request: APIRequestContext, jobs: ReturnType<typeof job>[]) =>
-  request.post("/internal/api/jobs", {
-    headers: { Authorization: `Bearer ${INTERNAL_TEST_ENV.INTERNAL_INGEST_TOKEN}` },
-    data: { jobs, events: [] },
-  })
+  request.post("/internal/api/jobs", { headers: auth, data: { jobs } })
+
+const setStatus = (request: APIRequestContext, id: string, status: string) =>
+  request.post(`/internal/api/jobs/${id}/status`, { headers: auth, data: { status, source: "e2e" } })
+
+const daysAgo = (days: number) => new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10)
+
+const MINIMAL_PDF = Buffer.from("%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n")
 
 test.describe("internal dashboards", () => {
   test("signed-out visitors are sent to the login page from every page", async ({ page }) => {
@@ -68,12 +74,12 @@ test.describe("internal dashboards", () => {
   })
 
   test("the ingest API rejects a missing or wrong token and a body that is not JSON", async ({ request }) => {
-    expect((await request.post("/internal/api/jobs", { data: { jobs: [], events: [] } })).status()).toBe(401)
+    expect((await request.post("/internal/api/jobs", { data: { jobs: [] } })).status()).toBe(401)
     expect(
       (
         await request.post("/internal/api/jobs", {
           headers: { Authorization: "Bearer wrong-token-of-the-right-shape-but-not-it" },
-          data: { jobs: [], events: [] },
+          data: { jobs: [] },
         })
       ).status(),
     ).toBe(401)
@@ -93,9 +99,11 @@ test.describe("internal dashboards", () => {
   test("a passkey added on the Security page signs in without the password", async ({ page }) => {
     await addVirtualAuthenticator(page)
     await signIn(page)
+    const prompt = page.getByRole("region", { name: "Add a passkey on this device" })
+    await prompt.getByLabel("Device name (optional)").fill("E2E authenticator")
+    await prompt.getByRole("button", { name: "Add a passkey" }).click()
+    await expect(prompt).toHaveCount(0)
     await page.getByRole("link", { name: "Security" }).click()
-    await page.getByLabel("Device name").fill("E2E authenticator")
-    await page.getByRole("button", { name: "Add a passkey" }).click()
     const passkeyRow = page.getByRole("listitem").filter({ hasText: "E2E authenticator" })
     await expect(passkeyRow).toBeVisible()
 
@@ -113,7 +121,8 @@ test.describe("internal dashboards", () => {
     await addVirtualAuthenticator(page)
     await signIn(page)
     await page.getByRole("link", { name: "Security" }).click()
-    await page.getByLabel("Device name").fill("Removed authenticator")
+    await expect(page.getByRole("heading", { name: "Security" })).toBeVisible()
+    await page.getByLabel("Device name (optional)").fill("Removed authenticator")
     await page.getByRole("button", { name: "Add a passkey" }).click()
     const passkeyRow = page.getByRole("listitem").filter({ hasText: "Removed authenticator" })
     await passkeyRow.getByRole("button", { name: "Remove" }).click()
@@ -124,26 +133,106 @@ test.describe("internal dashboards", () => {
     await expect(page.getByRole("alert").filter({ hasText: "Sign in with your password, then add one" })).toBeVisible()
   })
 
-  test("an applied job counts toward today's goal and can be undone", async ({ page, request }) => {
+  test("a ready job is applied to from Today, counts toward the goal, and can be undone", async ({ page, request }) => {
     expect((await push(request, [job(`e2e-${Date.now()}`, "Example Robotics")])).ok()).toBe(true)
 
     await signIn(page)
     const applications = page.getByRole("region", { name: "Applications" })
     await expect(applications).toContainText("0 / 3")
+    await expect(applications).toContainText("1 role is ready to apply")
 
-    await page.getByRole("link", { name: "Jobs" }).click()
-    const row = page.getByRole("listitem").filter({ hasText: "Example Robotics" })
-    await expect(row).toContainText("4.3")
-    await row.getByRole("button", { name: "Applied" }).click()
-    await expect(page.getByRole("listitem").filter({ hasText: "Example Robotics" })).toHaveCount(0)
-
-    await page.getByRole("link", { name: "Today" }).click()
+    const nextUp = page.getByRole("region", { name: "Next up" })
+    await nextUp.getByRole("listitem").filter({ hasText: "Example Robotics" }).getByRole("button", { name: "Mark applied" }).click()
     await expect(applications).toContainText("1 / 3")
 
-    await page.goto("/internal/jobs?status=applied")
-    await page.getByRole("listitem").filter({ hasText: "Example Robotics" }).getByRole("button", { name: "Undo" }).click()
-    await page.getByRole("link", { name: "Today" }).click()
+    await page.goto("/internal/jobs?status=active")
+    const row = page.getByRole("listitem").filter({ hasText: "Example Robotics" })
+    await expect(row).toContainText("Applied")
+    await row.getByRole("button", { name: "Undo" }).click()
+    await page.getByRole("link", { name: "Today", exact: true }).click()
     await expect(applications).toContainText("0 / 3")
+  })
+
+  test("jobs below the bar or unscored cannot be marked applied", async ({ page, request }) => {
+    const stamp = Date.now()
+    expect((await push(request, [job(`low-${stamp}`, "Low Score Corp", 3.2), job(`new-${stamp}`, "Unscored Corp", null)])).ok()).toBe(true)
+    await signIn(page)
+    await page.goto("/internal/jobs?status=below")
+    const low = page.getByRole("listitem").filter({ hasText: "Low Score Corp" })
+    await expect(low.getByRole("button", { name: "Skip" })).toBeVisible()
+    await expect(low.getByRole("button", { name: "Mark applied" })).toHaveCount(0)
+    await page.goto("/internal/jobs?status=evaluate")
+    await expect(page.getByRole("listitem").filter({ hasText: "Unscored Corp" }).getByRole("button", { name: "Mark applied" })).toHaveCount(0)
+  })
+
+  test("an application moves through the stages, refuses skipped stages, and shows interview prep", async ({ page, request }) => {
+    const id = `stage-${Date.now()}`
+    expect((await push(request, [job(id, "Stage Robotics")])).ok()).toBe(true)
+    expect((await setStatus(request, id, "applied")).ok()).toBe(true)
+    expect((await setStatus(request, id, "interview")).status()).toBe(409)
+    expect((await setStatus(request, id, "replied")).ok()).toBe(true)
+    expect((await setStatus(request, id, "interview")).ok()).toBe(true)
+    const prep = await request.put(`/internal/api/jobs/${id}/prep`, {
+      headers: { ...auth, "Content-Type": "text/markdown" },
+      data: "# Stage Robotics\n\nLead with the Aircast SFU story.",
+    })
+    expect(prep.ok()).toBe(true)
+
+    await signIn(page)
+    await page.goto("/internal/jobs?status=active")
+    const row = page.getByRole("listitem").filter({ hasText: "Stage Robotics" })
+    await expect(row).toContainText("Interviewing")
+    await row.getByRole("link", { name: "Interview prep" }).click()
+    await expect(page.getByText("Lead with the Aircast SFU story.")).toBeVisible()
+  })
+
+  test("a tailored CV uploaded by the daily run downloads only for a signed-in owner", async ({ page, request }) => {
+    const id = `cv-${Date.now()}`
+    expect((await push(request, [job(id, "CV Robotics")])).ok()).toBe(true)
+    const notPdf = await request.put(`/internal/api/jobs/${id}/cv`, { headers: { ...auth, "Content-Type": "application/pdf" }, data: "hello" })
+    expect(notPdf.status()).toBe(400)
+    const upload = await request.put(`/internal/api/jobs/${id}/cv`, {
+      headers: { ...auth, "Content-Type": "application/pdf" },
+      data: MINIMAL_PDF,
+    })
+    expect(upload.ok()).toBe(true)
+    expect((await request.get(`/internal/jobs/${id}/cv`)).status()).toBe(401)
+
+    await signIn(page)
+    await page.goto("/internal/jobs")
+    const download = page.waitForEvent("download")
+    await page.getByRole("listitem").filter({ hasText: "CV Robotics" }).getByRole("link", { name: "Download CV" }).click()
+    expect((await download).suggestedFilename()).toBe("Pavlo-Kostiuk-CV-CV-Robotics.pdf")
+  })
+
+  test("an application with no answer for a week shows up under Follow up", async ({ page, request }) => {
+    const id = `follow-${Date.now()}`
+    expect((await push(request, [job(id, "Quiet Robotics")])).ok()).toBe(true)
+    expect((await setStatus(request, id, "applied")).ok()).toBe(true)
+    const backdate = await request.post("/internal/api/events", {
+      headers: auth,
+      data: { events: [{ kind: "applied", ref: id, day: daysAgo(10) }] },
+    })
+    expect(backdate.ok()).toBe(true)
+
+    await signIn(page)
+    const row = page.getByRole("region", { name: "Follow up" }).getByRole("listitem").filter({ hasText: "Quiet Robotics" })
+    await expect(row).toContainText("no answer for 10 days")
+    await row.getByRole("button", { name: "They replied" }).click()
+    await expect(page.getByRole("region", { name: "Follow up" })).toHaveCount(0)
+  })
+
+  test("posting events alone leaves the job list untouched", async ({ request, page }) => {
+    const id = `events-${Date.now()}`
+    expect((await push(request, [job(id, "Events Robotics")])).ok()).toBe(true)
+    const events = await request.post("/internal/api/events", {
+      headers: auth,
+      data: { events: [{ kind: "contacted", ref: "lead-x", day: daysAgo(1) }] },
+    })
+    expect(events.ok()).toBe(true)
+    await signIn(page)
+    await page.goto("/internal/jobs")
+    await expect(page.getByRole("listitem").filter({ hasText: "Events Robotics" })).toBeVisible()
   })
 
   test("a new pipeline snapshot drops untouched jobs that left career-ops", async ({ page, request }) => {
@@ -154,7 +243,7 @@ test.describe("internal dashboards", () => {
     expect((await push(request, [job(`keep-${stamp}`, "Kept Robotics")])).ok()).toBe(true)
 
     await signIn(page)
-    await page.getByRole("link", { name: "Jobs" }).click()
+    await page.getByRole("link", { name: "Jobs", exact: true }).click()
     await expect(page.getByRole("listitem").filter({ hasText: "Kept Robotics" })).toBeVisible()
     await expect(page.getByRole("listitem").filter({ hasText: "Dropped Robotics" })).toHaveCount(0)
   })

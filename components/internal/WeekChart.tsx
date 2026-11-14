@@ -18,9 +18,6 @@ const WeekChart = ({ days, today }: { days: DayTally[]; today: string }) => {
             <span className="w-2.5 rounded-t-sm bg-primary min-h-0.5" style={{ height: height(counts.applied) }} />
             <span className="w-2.5 rounded-t-sm bg-foreground/50 min-h-0.5" style={{ height: height(counts.contacted) }} />
           </div>
-          <span className="font-mono tabular-nums">
-            {counts.applied}·{counts.contacted}
-          </span>
           <span className={day === today ? "font-semibold" : "text-muted-foreground"}>{formatDay(day, "EEE")}</span>
         </div>
       ))}

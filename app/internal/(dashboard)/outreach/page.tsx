@@ -45,7 +45,14 @@ const OutreachPage = async ({ searchParams }: { searchParams: Promise<{ status?:
         <h1 className="text-3xl font-semibold tracking-tight">Outreach</h1>
         <p className="text-muted-foreground">
           Aircast leads from the CRM, high fit first. Part 108 statutory deadline {PART_108_DEADLINE}:{" "}
-          <span className="font-mono tabular-nums">{daysLeft > 0 ? `${daysLeft} days` : "passed"}</span>.
+          {daysLeft > 0 ? (
+            <>
+              <span className="font-mono tabular-nums">{daysLeft}</span> days
+            </>
+          ) : (
+            "passed"
+          )}
+          .
         </p>
       </header>
       <StatusFilter

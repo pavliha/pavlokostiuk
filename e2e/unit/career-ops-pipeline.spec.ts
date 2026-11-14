@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test"
 
-import { parsePipeline } from "../../scripts/career-ops-pipeline.mjs"
+import { cvFileFor, parsePipeline } from "../../scripts/career-ops-pipeline.mjs"
 
 const PIPELINE = `# Pipeline
 
@@ -32,9 +32,21 @@ test.describe("parsePipeline", () => {
     expect(jobs[1].location).toBeNull()
   })
 
-  test("reads score and tailored-CV flag from evaluated rows", () => {
-    expect(jobs[2]).toMatchObject({ score: 4.2, hasCv: true, location: null })
-    expect(jobs[3]).toMatchObject({ score: 3.2, hasCv: false })
+  test("reads score and report number from evaluated rows, none from pending rows", () => {
+    expect(jobs[2]).toMatchObject({ score: 4.2, report: 3, location: null })
+    expect(jobs[3]).toMatchObject({ score: 3.2, report: 4 })
+    expect(jobs[0]).toMatchObject({ score: null, report: null })
+  })
+
+  test("finds the tailored CV for a report and ignores overflow drafts", () => {
+    const files = [
+      "Pavlo-Kostiuk-CV.pdf",
+      "cv-pavlo-kostiuk-003-acme-2026-11-14.overflow.pdf",
+      "cv-pavlo-kostiuk-003-acme-2026-11-14.pdf",
+      "cv-pavlo-kostiuk-013-other-2026-11-14.pdf",
+    ]
+    expect(cvFileFor(files, 3)).toBe("cv-pavlo-kostiuk-003-acme-2026-11-14.pdf")
+    expect(cvFileFor(files, 4)).toBeNull()
   })
 
   test("derives a stable id from the URL", () => {

@@ -42,12 +42,29 @@ process in Docker.
   event to record or remove
 - Each action and the ingest route emit one pino JSON line (`event`, ids, `outcome`,
   `durationMs`, `err`) through `traced()` in `lib/internal/log.ts`
-- `scripts/push-career-ops.mjs` (parser in `scripts/career-ops-pipeline.mjs`) reads
-  `$CAREER_OPS_DIR/data/pipeline.md` and POSTs it to `$SITE_URL/internal/api/jobs` with
-  `INTERNAL_INGEST_TOKEN`; all three variables are required. The POST is a snapshot of the
-  pipeline: jobs are upserted without touching their status, and untouched (`todo`) jobs
-  missing from it are deleted. Schema changes go in `MIGRATIONS` in `lib/internal/db.ts`,
-  tracked by `PRAGMA user_version`
+- **Job pipeline.** A job moves todo → applied → replied → interview → offer, with rejected
+  reachable from any active stage and skipped from todo; `lib/internal/job-transition.ts`
+  holds the rules and a single-level undo. Jobs are grouped Ready (todo, score ≥ 4.0), Needs
+  evaluation, Below 4.0, Active and Closed; only Ready rows can be marked applied. Today
+  shows the ready roles under "Next up" and applications with no answer after
+  `FOLLOW_UP_AFTER_DAYS` under "Follow up"
+- **Daily run.** `scripts/job-search-daily.sh` runs at 09:00 from the launchd agent
+  `cloud.pavlokostiuk.job-search-daily` (log: `~/Library/Logs/job-search-daily.log`):
+  career-ops zero-token scans (plus the web-search scan on Mondays) →
+  `scripts/sync-career-ops-statuses.mjs` (site statuses into career-ops via its
+  `set-status.mjs`) → `claude -p` scores new jobs (`/career-ops:career-ops pipeline`) →
+  `claude -p` with `scripts/job-search-replies-prompt.md` reads Gmail (read-only) for
+  replies, moves statuses and uploads interview prep → `scripts/push-career-ops.mjs` sends
+  the pipeline snapshot and each tailored CV PDF. It needs the Mac awake; launchd runs a
+  missed 09:00 on wake
+- **Ingest API** (Bearer `INTERNAL_INGEST_TOKEN`): `POST /internal/api/jobs` is a snapshot
+  (upserts, deletes untouched jobs and their CVs that left career-ops); `POST
+  /internal/api/events` adds events without touching jobs; `GET /internal/api/jobs/state`;
+  `POST /internal/api/jobs/<id>/status` (409 on an illegal jump); `PUT
+  /internal/api/jobs/<id>/cv` (PDF ≤ 5 MB, stored under `/data/cvs`); `PUT
+  /internal/api/jobs/<id>/prep` (markdown). CVs download from `/internal/jobs/<id>/cv` with
+  a session only. Schema changes go in `MIGRATIONS` in `lib/internal/db.ts`, tracked by
+  `PRAGMA user_version`
 - These variables are read at **runtime**, not build time, so they are set as Dokploy
   environment variables, never as build args: `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`,
   `INTERNAL_OWNER_EMAIL`, `INTERNAL_PASSWORD`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`,

@@ -6,6 +6,8 @@ export const WEEKLY_GOALS = { applications: 15, contacts: 15 } as const
 
 export const PART_108_DEADLINE = "2026-12-07"
 
+export const FOLLOW_UP_AFTER_DAYS = 7
+
 export const NETWORKS = [
   { id: "toptal", name: "Toptal", url: "https://www.toptal.com/developers/join" },
   { id: "lemon-io", name: "Lemon.io", url: "https://lemon.io/for-developers/" },

@@ -2,7 +2,7 @@ import { headers } from "next/headers"
 
 import AddPasskeyForm from "@/components/internal/AddPasskeyForm"
 import { Button } from "@/components/ui/button"
-import { deletePasskey } from "@/app/internal/actions"
+import { deletePasskey, signOut } from "@/app/internal/actions"
 import { authReady, requireSignedIn } from "@/lib/internal/auth"
 
 const SecurityPage = async () => {
@@ -49,6 +49,11 @@ const SecurityPage = async () => {
           <p className="text-muted-foreground">No passkeys yet. You are signing in with the password.</p>
         )}
       </section>
+      <form action={signOut} className="sm:hidden">
+        <Button type="submit" variant="outline">
+          Sign out
+        </Button>
+      </form>
     </>
   )
 }

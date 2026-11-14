@@ -8,6 +8,16 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { authClient } from "@/lib/internal/auth-client"
 
+const DEVICES: [RegExp, string][] = [
+  [/iPhone/, "iPhone"],
+  [/iPad/, "iPad"],
+  [/Android/, "Android phone"],
+  [/Macintosh/, "Mac"],
+  [/Windows/, "Windows PC"],
+]
+
+const thisDevice = (): string => DEVICES.find(([pattern]) => pattern.test(navigator.userAgent))?.[1] ?? "This device"
+
 const AddPasskeyForm = () => {
   const router = useRouter()
   const [error, setError] = useState("")
@@ -15,7 +25,8 @@ const AddPasskeyForm = () => {
 
   const add = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    const name = String(new FormData(event.currentTarget).get("name"))
+    const typed = String(new FormData(event.currentTarget).get("name")).trim()
+    const name = typed === "" ? thisDevice() : typed
     setPending(true)
     setError("")
     const result = await authClient.passkey.addPasskey({ name })
@@ -27,8 +38,8 @@ const AddPasskeyForm = () => {
   return (
     <form onSubmit={add} className="grid gap-3 sm:grid-cols-[1fr_auto] sm:items-end">
       <div className="grid gap-2">
-        <Label htmlFor="passkey-name">Device name</Label>
-        <Input id="passkey-name" name="name" placeholder="MacBook, iPhone…" required />
+        <Label htmlFor="passkey-name">Device name (optional)</Label>
+        <Input id="passkey-name" name="name" placeholder="Named after this device if left empty" />
       </div>
       <Button type="submit" disabled={pending}>
         Add a passkey
