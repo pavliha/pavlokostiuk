@@ -15,7 +15,7 @@ const signInWithPassword = async (page: Page, password: string) => {
 
 const signIn = async (page: Page) => {
   await signInWithPassword(page, INTERNAL_TEST_ENV.INTERNAL_PASSWORD)
-  await expect(page.getByRole("heading", { name: "Today" })).toBeVisible()
+  await expect(page.getByRole("heading", { name: "Job search" })).toBeVisible()
 }
 
 const addVirtualAuthenticator = async (page: Page) => {
@@ -59,7 +59,7 @@ const MINIMAL_PDF = Buffer.from("%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrail
 test.describe("internal dashboards", () => {
   test("signed-out visitors are sent to the login page from every page", async ({ page }) => {
     await Promise.all(
-      ["/internal", "/internal/jobs", "/internal/outreach", "/internal/security"].map(async (path) => {
+      ["/internal", "/internal/jobs", "/internal/aircast", "/internal/security"].map(async (path) => {
         const response = await page.request.get(path, { maxRedirects: 0 })
         expect(response.status()).toBe(307)
         expect(response.headers().location).toBe("/internal/login")
@@ -110,7 +110,7 @@ test.describe("internal dashboards", () => {
     await page.getByRole("button", { name: "Sign out" }).click()
     await expect(page).toHaveURL(/\/internal\/login$/)
     await page.getByRole("button", { name: "Sign in with passkey" }).click()
-    await expect(page.getByRole("heading", { name: "Today" })).toBeVisible()
+    await expect(page.getByRole("heading", { name: "Job search" })).toBeVisible()
 
     await page.getByRole("link", { name: "Security" }).click()
     await passkeyRow.getByRole("button", { name: "Remove" }).click()
@@ -133,7 +133,7 @@ test.describe("internal dashboards", () => {
     await expect(page.getByRole("alert").filter({ hasText: "Sign in with your password, then add one" })).toBeVisible()
   })
 
-  test("a ready job is applied to from Today, counts toward the goal, and can be undone", async ({ page, request }) => {
+  test("a ready job is applied to from Job search, counts toward the goal, and can be undone", async ({ page, request }) => {
     expect((await push(request, [job(`e2e-${Date.now()}`, "Example Robotics")])).ok()).toBe(true)
 
     await signIn(page)
@@ -149,7 +149,7 @@ test.describe("internal dashboards", () => {
     const row = page.getByRole("listitem").filter({ hasText: "Example Robotics" })
     await expect(row).toContainText("Applied")
     await row.getByRole("button", { name: "Undo" }).click()
-    await page.getByRole("link", { name: "Today", exact: true }).click()
+    await page.getByRole("link", { name: "Job search", exact: true }).click()
     await expect(applications).toContainText("0 / 3")
   })
 
@@ -243,7 +243,7 @@ test.describe("internal dashboards", () => {
     expect((await push(request, [job(`keep-${stamp}`, "Kept Robotics")])).ok()).toBe(true)
 
     await signIn(page)
-    await page.getByRole("link", { name: "Jobs", exact: true }).click()
+    await page.getByRole("link", { name: "Pipeline", exact: true }).click()
     await expect(page.getByRole("listitem").filter({ hasText: "Kept Robotics" })).toBeVisible()
     await expect(page.getByRole("listitem").filter({ hasText: "Dropped Robotics" })).toHaveCount(0)
   })

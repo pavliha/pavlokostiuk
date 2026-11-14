@@ -7,8 +7,8 @@ process in Docker.
 
 ## Internal area
 
-`/internal` holds Pavlo's private dashboards: **Today** (daily and weekly goals), **Jobs**
-(the career-ops pipeline) and **Outreach** (Aircast leads from Twenty CRM).
+`/internal` holds Pavlo's private dashboards, kept apart by project: **Job search** (daily application and network goals, next up, follow-ups), **Pipeline**
+(the career-ops jobs) and **Aircast** (operator-contact goal, its own week chart and the leads from Twenty CRM).
 
 - It is English-only and outside `[locale]`, so its copy lives in its components, not in
   `messages/`. It has its own root layout, `noindex`, and `robots.ts` disallows it
@@ -45,7 +45,7 @@ process in Docker.
 - **Job pipeline.** A job moves todo → applied → replied → interview → offer, with rejected
   reachable from any active stage and skipped from todo; `lib/internal/job-transition.ts`
   holds the rules and a single-level undo. Jobs are grouped Ready (todo, score ≥ 4.0), Needs
-  evaluation, Below 4.0, Active and Closed; only Ready rows can be marked applied. Today
+  evaluation, Below 4.0, Active and Closed; only Ready rows can be marked applied. Job search
   shows the ready roles under "Next up" and applications with no answer after
   `FOLLOW_UP_AFTER_DAYS` under "Follow up"
 - **Daily run.** `scripts/job-search-daily.sh` runs at 09:00 from the launchd agent
@@ -74,7 +74,7 @@ process in Docker.
   authenticator over CDP. Each sign-in uses its own `X-Forwarded-For` so tests do not share
   a rate-limit bucket. Pure logic (lead transitions, client IP, the pipeline parser) has
   unit tests in `e2e/unit/`, run by the same `npm test`. The suite never calls the CRM, so
-  the Outreach page is checked by hand
+  the Aircast page is checked by hand
 
 ## Dev Server
 

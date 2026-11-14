@@ -1,22 +1,23 @@
-import type { DayTally } from "@/lib/internal/events"
+import type { DayTally, EventKind } from "@/lib/internal/events"
 import { formatDay } from "@/lib/internal/days"
 
 const BAR_HEIGHT = 56
 
-const WeekChart = ({ days, today }: { days: DayTally[]; today: string }) => {
-  const peak = Math.max(3, ...days.flatMap(({ counts }) => [counts.applied, counts.contacted]))
-  const height = (value: number) => `${Math.round((value / peak) * BAR_HEIGHT)}px`
+const WeekChart = ({ days, today, kind, label }: { days: DayTally[]; today: string; kind: EventKind; label: string }) => {
+  const peak = Math.max(3, ...days.map(({ counts }) => counts[kind]))
   return (
     <div className="grid grid-cols-7 gap-2">
       {days.map(({ day, counts }) => (
         <div key={day} className="grid justify-items-center gap-1 text-xs">
           <div
-            className="flex items-end gap-1"
+            className="flex items-end"
             style={{ height: `${BAR_HEIGHT}px` }}
-            aria-label={`${formatDay(day, "EEEE")}: ${counts.applied} applications, ${counts.contacted} contacts`}
+            aria-label={`${formatDay(day, "EEEE")}: ${counts[kind]} ${label}`}
           >
-            <span className="w-2.5 rounded-t-sm bg-primary min-h-0.5" style={{ height: height(counts.applied) }} />
-            <span className="w-2.5 rounded-t-sm bg-foreground/50 min-h-0.5" style={{ height: height(counts.contacted) }} />
+            <span
+              className="w-3 rounded-t-sm bg-primary min-h-0.5"
+              style={{ height: `${Math.round((counts[kind] / peak) * BAR_HEIGHT)}px` }}
+            />
           </div>
           <span className={day === today ? "font-semibold" : "text-muted-foreground"}>{formatDay(day, "EEE")}</span>
         </div>

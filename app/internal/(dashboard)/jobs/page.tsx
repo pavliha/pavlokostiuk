@@ -29,7 +29,7 @@ const JobsPage = async ({ searchParams }: { searchParams: Promise<{ status?: str
   return (
     <>
       <header className="grid gap-1">
-        <h1 className="text-3xl font-semibold tracking-tight">Jobs</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Pipeline</h1>
         <p className="text-muted-foreground">{VIEWS[view].description}</p>
       </header>
       <StatusFilter

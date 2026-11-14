@@ -20,8 +20,8 @@ export const NETWORKS = [
 export type NetworkId = (typeof NETWORKS)[number]["id"]
 
 export const INTERNAL_NAV = [
-  { href: "/internal", label: "Today" },
-  { href: "/internal/jobs", label: "Jobs" },
-  { href: "/internal/outreach", label: "Outreach" },
+  { href: "/internal", label: "Job search" },
+  { href: "/internal/jobs", label: "Pipeline" },
+  { href: "/internal/aircast", label: "Aircast" },
   { href: "/internal/security", label: "Security" },
 ] as const

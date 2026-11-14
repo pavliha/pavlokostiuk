@@ -15,14 +15,14 @@ import { followUps, listJobs } from "@/lib/internal/jobs"
 
 const NEXT_UP = 3
 
-const TodayPage = async () => {
+const JobSearchPage = async () => {
   await requireSignedIn()
   const passkeys = await (await authReady()).api.listPasskeys({ headers: await headers() })
   const day = today()
   const days = weekOf(day)
   const week = countsByDay(days)
   const todays = week[days.indexOf(day)].counts
-  const total = (kind: "applied" | "contacted" | "replied") => week.reduce((sum, entry) => sum + entry.counts[kind], 0)
+  const appliedThisWeek = week.reduce((sum, entry) => sum + entry.counts.applied, 0)
   const joined = eventDays("network")
   const ready = listJobs("ready")
   const overdue = followUps(daysBefore(day, FOLLOW_UP_AFTER_DAYS))
@@ -31,23 +31,17 @@ const TodayPage = async () => {
     <>
       <header className="grid gap-1">
         <p className="text-sm text-muted-foreground">{formatDay(day, "EEEE, d MMMM")}</p>
-        <h1 className="text-3xl font-semibold tracking-tight">Today</h1>
+        <h1 className="text-3xl font-semibold tracking-tight">Job search</h1>
       </header>
 
       {passkeys.length === 0 && <PasskeyPrompt />}
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-4 sm:grid-cols-2">
         <GoalMeter
           label="Applications"
           done={todays.applied}
           target={DAILY_GOALS.applications}
           note={`${ready.length} ${ready.length === 1 ? "role is" : "roles are"} ready to apply (scored 4.0 or higher).`}
-        />
-        <GoalMeter
-          label="Operator contacts"
-          done={todays.contacted}
-          target={DAILY_GOALS.contacts}
-          note="New US BVLOS operators reached, by email or LinkedIn."
         />
         <GoalMeter
           label="Network sign-up"
@@ -97,27 +91,12 @@ const TodayPage = async () => {
           </h2>
           <p className="text-sm text-muted-foreground">
             <span className="font-mono tabular-nums">
-              {total("applied")} / {WEEKLY_GOALS.applications}
+              {appliedThisWeek} / {WEEKLY_GOALS.applications}
             </span>{" "}
-            applications ·{" "}
-            <span className="font-mono tabular-nums">
-              {total("contacted")} / {WEEKLY_GOALS.contacts}
-            </span>{" "}
-            contacts ·{" "}
-            <span className="font-mono tabular-nums">{total("replied")}</span> replies
+            applications
           </p>
         </div>
-        <WeekChart days={week} today={day} />
-        <p className="flex gap-4 text-xs text-muted-foreground">
-          <span className="inline-flex items-center gap-1.5">
-            <span className="size-2.5 rounded-sm bg-primary" aria-hidden="true" />
-            Applications
-          </span>
-          <span className="inline-flex items-center gap-1.5">
-            <span className="size-2.5 rounded-sm bg-foreground/50" aria-hidden="true" />
-            Operator contacts
-          </span>
-        </p>
+        <WeekChart days={week} today={day} kind="applied" label="applications" />
       </section>
 
       <section aria-labelledby="networks-heading" className="grid gap-3">
@@ -130,4 +109,4 @@ const TodayPage = async () => {
   )
 }
 
-export default TodayPage
+export default JobSearchPage
