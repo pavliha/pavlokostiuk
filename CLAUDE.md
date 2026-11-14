@@ -7,8 +7,10 @@ process in Docker.
 
 ## Internal area
 
-`/internal` holds Pavlo's private dashboards, kept apart by project: **Job search** (daily application and network goals, next up, follow-ups), **Pipeline**
-(the career-ops jobs) and **Aircast** (operator-contact goal, its own week chart and the leads from Twenty CRM).
+`/internal` holds Pavlo's private job-search dashboard: **Job search** (daily application and
+network goals, next up, follow-ups) and **Pipeline** (the career-ops jobs). Aircast outreach
+does not live here: it is the "Outreach" board and "Aircast outreach" dashboard inside Twenty
+CRM (crm.aircast.one), so the site holds no CRM key.
 
 - It is English-only and outside `[locale]`, so its copy lives in its components, not in
   `messages/`. It has its own root layout, `noindex`, and `robots.ts` disallows it
@@ -36,16 +38,6 @@ process in Docker.
 - State is SQLite through Node's built-in `node:sqlite` at `INTERNAL_DB_PATH`, which must
   sit on a Docker volume (`/data`) or every deploy wipes it. `jobs` holds the pipeline;
   `events` holds only job-search events (`applied`, `network`) for the Job search goals
-- **Aircast is Twenty CRM, nothing local.** Leads (every `leadStatus`, paged), their people
-  and the contact/reply counts are read live on each request. Counts come from Twenty's
-  timeline: the day a company moved NEW → CONTACTED is its contact day, the day it moved
-  into REPLIED/INTERESTED/NOT_INTERESTED/CUSTOMER its reply day, so changes made in the
-  CRM UI or by the Explee sync count the same as the site's buttons; a company created
-  already past NEW counts on its `createdAt` day (`lib/internal/lead-activity.ts`). The
-  buttons re-read `leadStatus` and refuse a change if it moved since the page loaded, one
-  stage at a time along NEW → CONTACTED → REPLIED → INTERESTED
-  (`lib/internal/lead-transition.ts`). Twenty allows 100 REST requests a minute per key; a
-  page load spends about five
 - Each action and the ingest route emit one pino JSON line (`event`, ids, `outcome`,
   `durationMs`, `err`) through `traced()` in `lib/internal/log.ts`
 - **Job pipeline.** A job moves todo → applied → replied → interview → offer, with rejected
@@ -73,14 +65,13 @@ process in Docker.
   `PRAGMA user_version`
 - These variables are read at **runtime**, not build time, so they are set as Dokploy
   environment variables, never as build args: `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`,
-  `INTERNAL_OWNER_EMAIL`, `INTERNAL_PASSWORD`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`,
-  `TWENTY_API_URL`, `TWENTY_API_KEY`. `lib/internal/env.ts` validates them on first use
+  `INTERNAL_OWNER_EMAIL`, `INTERNAL_PASSWORD`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`.
+  `lib/internal/env.ts` validates them on first use
 - The e2e suite runs the internal tests against a throwaway database with test values from
   `e2e/internal-env.ts`, and exercises passkeys with Chromium's virtual WebAuthn
   authenticator over CDP. Each sign-in uses its own `X-Forwarded-For` so tests do not share
-  a rate-limit bucket. Pure logic (lead transitions and activity, client IP, the pipeline parser) has
-  unit tests in `e2e/unit/`, run by the same `npm test`. The suite never calls the CRM, so
-  the Aircast page is checked by hand
+  a rate-limit bucket. Pure logic (job transitions, client IP, the pipeline parser) has
+  unit tests in `e2e/unit/`, run by the same `npm test`
 
 ## Dev Server
 

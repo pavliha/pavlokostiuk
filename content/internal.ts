@@ -1,10 +1,8 @@
 export const INTERNAL_TIMEZONE = "Asia/Tbilisi"
 
-export const DAILY_GOALS = { applications: 3, contacts: 3, networks: 1 } as const
+export const DAILY_GOALS = { applications: 3, networks: 1 } as const
 
-export const WEEKLY_GOALS = { applications: 15, contacts: 15 } as const
-
-export const PART_108_DEADLINE = "2026-12-07"
+export const WEEKLY_GOALS = { applications: 15 } as const
 
 export const FOLLOW_UP_AFTER_DAYS = 7
 
@@ -22,6 +20,5 @@ export type NetworkId = (typeof NETWORKS)[number]["id"]
 export const INTERNAL_NAV = [
   { href: "/internal", label: "Job search" },
   { href: "/internal/jobs", label: "Pipeline" },
-  { href: "/internal/aircast", label: "Aircast" },
   { href: "/internal/security", label: "Security" },
 ] as const

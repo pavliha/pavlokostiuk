@@ -12,6 +12,4 @@ export const INTERNAL_TEST_ENV = {
   INTERNAL_PASSWORD: "e2e-internal-password",
   INTERNAL_INGEST_TOKEN: "e2e-ingest-token-at-least-32-characters-long",
   INTERNAL_DB_PATH: join(tmpdir(), `internal-e2e-${run}.db`),
-  TWENTY_API_URL: "https://crm.aircast.one",
-  TWENTY_API_KEY: "not-used-by-the-e2e-suite",
 }

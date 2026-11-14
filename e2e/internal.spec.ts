@@ -1,5 +1,7 @@
 import { type APIRequestContext, expect, type Page, test } from "@playwright/test"
 
+import { daysBefore, today } from "@/lib/internal/days"
+
 import { INTERNAL_TEST_ENV } from "./internal-env"
 
 const isolatedClientIp = () => `198.18.${Math.floor(Math.random() * 256)}.${Math.floor(Math.random() * 254) + 1}`
@@ -52,14 +54,14 @@ const push = (request: APIRequestContext, jobs: ReturnType<typeof job>[]) =>
 const setStatus = (request: APIRequestContext, id: string, status: string) =>
   request.post(`/internal/api/jobs/${id}/status`, { headers: auth, data: { status, source: "e2e" } })
 
-const daysAgo = (days: number) => new Date(Date.now() - days * 86_400_000).toISOString().slice(0, 10)
+const daysAgo = (days: number) => daysBefore(today(), days)
 
 const MINIMAL_PDF = Buffer.from("%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n")
 
 test.describe("internal dashboards", () => {
   test("signed-out visitors are sent to the login page from every page", async ({ page }) => {
     await Promise.all(
-      ["/internal", "/internal/jobs", "/internal/aircast", "/internal/security"].map(async (path) => {
+      ["/internal", "/internal/jobs", "/internal/security"].map(async (path) => {
         const response = await page.request.get(path, { maxRedirects: 0 })
         expect(response.status()).toBe(307)
         expect(response.headers().location).toBe("/internal/login")
