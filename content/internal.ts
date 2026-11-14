@@ -21,4 +21,5 @@ export const INTERNAL_NAV = [
   { href: "/internal", label: "Today" },
   { href: "/internal/jobs", label: "Jobs" },
   { href: "/internal/outreach", label: "Outreach" },
+  { href: "/internal/security", label: "Security" },
 ] as const

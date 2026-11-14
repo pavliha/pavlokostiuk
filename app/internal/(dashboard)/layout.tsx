@@ -1,7 +1,7 @@
 import type { ReactNode } from "react"
 
 import InternalNav from "@/components/internal/InternalNav"
-import { requireSignedIn } from "@/lib/internal/session"
+import { requireSignedIn } from "@/lib/internal/auth"
 
 export const dynamic = "force-dynamic"
 

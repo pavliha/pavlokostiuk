@@ -3,7 +3,7 @@ import { z } from "zod"
 import { incomingEventSchema, importEvents } from "@/lib/internal/events"
 import { incomingJobSchema, upsertJobs } from "@/lib/internal/jobs"
 import { internalEnv } from "@/lib/internal/env"
-import { matchesSecret } from "@/lib/internal/session"
+import { matchesSecret } from "@/lib/internal/secret"
 
 const payloadSchema = z.object({
   jobs: z.array(incomingJobSchema).max(1000),

@@ -1,11 +1,17 @@
-import { expect, test } from "@playwright/test"
+import { expect, type Page, test } from "@playwright/test"
 
 import { INTERNAL_TEST_ENV } from "../playwright.config"
 
-const signIn = async (page: import("@playwright/test").Page) => {
+const signInWithPassword = async (page: Page, password = INTERNAL_TEST_ENV.INTERNAL_PASSWORD) => {
   await page.goto("/internal/login")
-  await page.getByLabel("Password").fill(INTERNAL_TEST_ENV.INTERNAL_PASSWORD)
-  await page.getByRole("button", { name: "Sign in" }).click()
+  await page.getByText("Use password instead").click()
+  await page.getByLabel("Email").fill(INTERNAL_TEST_ENV.INTERNAL_OWNER_EMAIL)
+  await page.getByLabel("Password").fill(password)
+  await page.getByRole("button", { name: "Sign in with password" }).click()
+}
+
+const signIn = async (page: Page) => {
+  await signInWithPassword(page)
   await expect(page.getByRole("heading", { name: "Today" })).toBeVisible()
 }
 
@@ -18,15 +24,45 @@ test.describe("internal dashboards", () => {
   })
 
   test("a wrong password is refused", async ({ page }) => {
-    await page.goto("/internal/login")
-    await page.getByLabel("Password").fill("not-the-password")
-    await page.getByRole("button", { name: "Sign in" }).click()
-    await expect(page.getByRole("alert").filter({ hasText: "That password is wrong." })).toBeVisible()
+    await signInWithPassword(page, "not-the-password")
+    await expect(page.getByRole("alert").filter({ hasText: /invalid/i })).toBeVisible()
+    await expect(page).toHaveURL(/\/internal\/login$/)
   })
 
   test("the ingest API rejects requests without the token", async ({ request }) => {
     const response = await request.post("/internal/api/jobs", { data: { jobs: [], events: [] } })
     expect(response.status()).toBe(401)
+  })
+
+  test("a passkey added on the Security page signs in without the password", async ({ page }) => {
+    const cdp = await page.context().newCDPSession(page)
+    await cdp.send("WebAuthn.enable")
+    await cdp.send("WebAuthn.addVirtualAuthenticator", {
+      options: {
+        protocol: "ctap2",
+        transport: "internal",
+        hasResidentKey: true,
+        hasUserVerification: true,
+        isUserVerified: true,
+        automaticPresenceSimulation: true,
+      },
+    })
+
+    await signIn(page)
+    await page.getByRole("link", { name: "Security" }).click()
+    await page.getByLabel("Device name").fill("E2E authenticator")
+    await page.getByRole("button", { name: "Add a passkey" }).click()
+    const passkeyRow = page.getByRole("listitem").filter({ hasText: "E2E authenticator" })
+    await expect(passkeyRow).toBeVisible()
+
+    await page.getByRole("button", { name: "Sign out" }).click()
+    await expect(page).toHaveURL(/\/internal\/login$/)
+    await page.getByRole("button", { name: "Sign in with passkey" }).click()
+    await expect(page.getByRole("heading", { name: "Today" })).toBeVisible()
+
+    await page.getByRole("link", { name: "Security" }).click()
+    await passkeyRow.getByRole("button", { name: "Remove" }).click()
+    await expect(passkeyRow).toHaveCount(0)
   })
 
   test("an applied job counts toward today's goal and can be undone", async ({ page, request }) => {

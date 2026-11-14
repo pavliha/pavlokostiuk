@@ -12,9 +12,16 @@ process in Docker.
 
 - It is English-only and outside `[locale]`, so its copy lives in its components, not in
   `messages/`. It has its own root layout, `noindex`, and `robots.ts` disallows it
-- Sign-in is one password (`INTERNAL_PASSWORD`) checked in a server action, limited to 5
-  attempts per IP per 15 minutes, with an iron-session cookie scoped to `/internal`. Every
-  server action calls `requireSignedIn()` itself; the layout guard does not cover actions
+- Sign-in is Better Auth (`lib/internal/auth.ts`) with the passkey plugin; its endpoints
+  live under `/internal/api/auth`. Passkeys are the normal way in; email and password stay
+  as the fallback. Sign-up is disabled: on first use the server runs Better Auth's
+  migrations and creates the single owner account from `INTERNAL_OWNER_EMAIL` and
+  `INTERNAL_PASSWORD`. Passkeys are added and removed on `/internal/security`. The passkey
+  relying party is the host of `BETTER_AUTH_URL`, so a passkey made on one host does not
+  work on another
+- Password sign-in is rate limited by Better Auth (10 per minute per IP, client IP from
+  `cf-connecting-ip`). Every server action calls `requireSignedIn()` itself; the layout
+  guard does not cover actions
 - State is SQLite through Node's built-in `node:sqlite` at `INTERNAL_DB_PATH`, which must
   sit on a Docker volume (`/data`) or every deploy wipes it. `jobs` holds the pipeline;
   `events` (one row per kind and ref) is what the goal counters count
@@ -24,11 +31,12 @@ process in Docker.
   `/internal/api/jobs` with `INTERNAL_INGEST_TOKEN`. Re-running it updates jobs without
   touching their status
 - These variables are read at **runtime**, not build time, so they are set as Dokploy
-  environment variables, never as build args: `INTERNAL_PASSWORD`,
-  `INTERNAL_SESSION_SECRET`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`, `TWENTY_API_URL`,
-  `TWENTY_API_KEY`. `lib/internal/env.ts` validates them on first use
+  environment variables, never as build args: `BETTER_AUTH_URL`, `BETTER_AUTH_SECRET`,
+  `INTERNAL_OWNER_EMAIL`, `INTERNAL_PASSWORD`, `INTERNAL_INGEST_TOKEN`, `INTERNAL_DB_PATH`,
+  `TWENTY_API_URL`, `TWENTY_API_KEY`. `lib/internal/env.ts` validates them on first use
 - The e2e suite runs the internal tests against a throwaway database with test values from
-  `playwright.config.ts`; it never calls the CRM, so the Outreach page is checked by hand
+  `playwright.config.ts`, and exercises passkeys with Chromium's virtual WebAuthn
+  authenticator over CDP. It never calls the CRM, so the Outreach page is checked by hand
 
 ## Dev Server
 
