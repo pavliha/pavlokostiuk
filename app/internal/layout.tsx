@@ -19,7 +19,7 @@ const InternalLayout = ({ children }: { children: ReactNode }) => (
     <head>
       <script dangerouslySetInnerHTML={{ __html: themeScript }} />
     </head>
-    <body className="antialiased bg-background text-foreground">{children}</body>
+    <body className="antialiased bg-background text-foreground overflow-x-clip">{children}</body>
   </html>
 )
 

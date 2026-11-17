@@ -56,6 +56,9 @@ const setStatus = (request: APIRequestContext, id: string, status: string) =>
 
 const daysAgo = (days: number) => daysBefore(today(), days)
 
+const boardCard = (page: Page, column: string, company: string) =>
+  page.getByRole("region", { name: column, exact: true }).getByRole("listitem").filter({ hasText: company })
+
 const MINIMAL_PDF = Buffer.from("%PDF-1.4\n1 0 obj<</Type/Catalog>>endobj\ntrailer<</Root 1 0 R>>\n%%EOF\n")
 
 test.describe("internal dashboards", () => {
@@ -147,8 +150,8 @@ test.describe("internal dashboards", () => {
     await nextUp.getByRole("listitem").filter({ hasText: "Example Robotics" }).getByRole("button", { name: "Mark applied" }).click()
     await expect(applications).toContainText("1 / 3")
 
-    await page.goto("/internal/jobs?status=active")
-    const row = page.getByRole("listitem").filter({ hasText: "Example Robotics" })
+    await page.goto("/internal/jobs")
+    const row = boardCard(page, "Applied", "Example Robotics")
     await expect(row).toContainText("Applied")
     await row.getByRole("button", { name: "Undo" }).click()
     await page.getByRole("link", { name: "Job search", exact: true }).click()
@@ -167,6 +170,19 @@ test.describe("internal dashboards", () => {
     await expect(page.getByRole("listitem").filter({ hasText: "Unscored Corp" }).getByRole("button", { name: "Mark applied" })).toHaveCount(0)
   })
 
+  test("the board moves a card from column to column as the application advances", async ({ page, request }) => {
+    expect((await push(request, [job(`board-${Date.now()}`, "Board Robotics")])).ok()).toBe(true)
+
+    await signIn(page)
+    await page.getByRole("link", { name: "Pipeline", exact: true }).click()
+    await boardCard(page, "To apply", "Board Robotics").getByRole("button", { name: "Mark applied" }).click()
+    await expect(boardCard(page, "Applied", "Board Robotics")).toBeVisible()
+    await expect(boardCard(page, "To apply", "Board Robotics")).toHaveCount(0)
+    await boardCard(page, "Applied", "Board Robotics").getByRole("button", { name: "They replied" }).click()
+    await expect(boardCard(page, "Replied", "Board Robotics")).toBeVisible()
+    await expect(boardCard(page, "Applied", "Board Robotics")).toHaveCount(0)
+  })
+
   test("an application moves through the stages, refuses skipped stages, and shows interview prep", async ({ page, request }) => {
     const id = `stage-${Date.now()}`
     expect((await push(request, [job(id, "Stage Robotics")])).ok()).toBe(true)
@@ -181,8 +197,8 @@ test.describe("internal dashboards", () => {
     expect(prep.ok()).toBe(true)
 
     await signIn(page)
-    await page.goto("/internal/jobs?status=active")
-    const row = page.getByRole("listitem").filter({ hasText: "Stage Robotics" })
+    await page.goto("/internal/jobs")
+    const row = boardCard(page, "Interviewing", "Stage Robotics")
     await expect(row).toContainText("Interviewing")
     await row.getByRole("link", { name: "Interview prep" }).click()
     await expect(page.getByText("Lead with the Aircast SFU story.")).toBeVisible()

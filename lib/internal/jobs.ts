@@ -3,14 +3,21 @@ import { z } from "zod"
 import { database, transaction } from "@/lib/internal/db"
 import { JOB_STATUSES, type JobStatus, planJobUpdate } from "@/lib/internal/job-transition"
 
-export const JOB_VIEWS = ["ready", "evaluate", "below", "active", "closed"] as const
-export type JobView = (typeof JOB_VIEWS)[number]
+export const BOARD_COLUMNS = ["ready", "applied", "replied", "interview", "offer", "closed"] as const
+export const TRIAGE_VIEWS = ["evaluate", "below"] as const
+export type BoardColumn = (typeof BOARD_COLUMNS)[number]
+export type TriageView = (typeof TRIAGE_VIEWS)[number]
+export type JobView = BoardColumn | TriageView
+const JOB_VIEWS: readonly JobView[] = [...BOARD_COLUMNS, ...TRIAGE_VIEWS]
 
 const VIEW_WHERE: Record<JobView, string> = {
   ready: "jobs.status = 'todo' AND jobs.score >= 4",
   evaluate: "jobs.status = 'todo' AND jobs.score IS NULL",
   below: "jobs.status = 'todo' AND jobs.score < 4",
-  active: "jobs.status IN ('applied', 'replied', 'interview', 'offer')",
+  applied: "jobs.status = 'applied'",
+  replied: "jobs.status = 'replied'",
+  interview: "jobs.status = 'interview'",
+  offer: "jobs.status = 'offer'",
   closed: "jobs.status IN ('rejected', 'skipped')",
 }
 

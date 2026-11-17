@@ -14,8 +14,8 @@ const JobPage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <>
       <header className="grid gap-2">
-        <Link href="/internal/jobs?status=active" className="text-sm text-primary hover:underline underline-offset-4">
-          ← Active applications
+        <Link href="/internal/jobs" className="text-sm text-primary hover:underline underline-offset-4">
+          ← Board
         </Link>
         <div className="flex flex-wrap items-baseline gap-3">
           <ScoreBadge score={job.score} />
